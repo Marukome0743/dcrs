@@ -2,7 +2,7 @@ import { UploadFormHook } from '@/components/uploadFormHook'
 
 export default function Upload() {
   return (
-    <main className="flex min-h-screen flex-col p-24">
+    <main className="min-h-screen flex flex-col items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <UploadFormHook />
     </main>
   )
