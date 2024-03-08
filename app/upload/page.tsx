@@ -1,4 +1,5 @@
-import { UploadFormHook } from '@/components/uploadFormHook'
+import { ProfileForm } from '@/components/profileForm'
+import Link from 'next/link'
 
 export default function Upload() {
   return (
@@ -7,7 +8,14 @@ export default function Upload() {
       <span className="before:content-['*'] before:ml-0.5 before:text-red-500">
         は必須項目です
       </span>
-      <UploadFormHook />
+      <ProfileForm />
+      <br />
+      <Link
+        href="/"
+        className="group relative w-1/8 flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
+        ホームに戻る
+      </Link>
     </main>
   )
 }
