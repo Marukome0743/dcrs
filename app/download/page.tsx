@@ -1,7 +1,5 @@
-// https://sailboatui.com/docs/components/table/
 'use client'
-
-import { useFormData } from '@/components/useFormData'
+// https://sailboatui.com/docs/components/table/
 import Link from 'next/link'
 
 // デバッグ用
@@ -12,22 +10,7 @@ import Link from 'next/link'
 // }
 
 export default function Download() {
-  // const localFormData = JSON.parse(localStorage.getItem('FormData') || '{}')
-  const { formdata, loading } = useFormData()
-  if (loading) {
-    return (
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
-        <h1>読み込み中・・・</h1>
-      </main>
-    )
-  }
-  // if (formdata === undefined) {
-  //   return (
-  //     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-  //       <h1>FormDataはありません</h1>
-  //     </main>
-  //   )
-  // }
+  const profile = JSON.parse(localStorage.getItem('profile') || '{}')
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -66,46 +49,46 @@ export default function Download() {
                 />
               </div>
             </th>
-            {/* localFormDataなし */}
-            {formdata === undefined ? (
+            {/* localprofileなし */}
+            {profile === undefined ? (
               <td className="px-6 py-4 font-medium text-gray-900">
-                localFormDataなし
+                localprofileなし
               </td>
             ) : (
-              // localFormDataあり
+              // localprofileあり
               <th className="px-6 py-4 font-medium text-gray-900">
-                {formdata.name}
+                {profile.name}
               </th>
             )}
-            {/* localFormDataなし */}
-            {formdata === undefined ? (
+            {/* localprofileなし */}
+            {profile === undefined ? (
               <td className="px-6 py-4 font-medium text-gray-900">
-                localFormDataなし
+                localprofileなし
               </td>
             ) : (
-              // localFormDataあり
-              <td className="px-6 py-4">{formdata.company}</td>
+              // localprofileあり
+              <td className="px-6 py-4">{profile.company}</td>
             )}
-            {/* localFormDataなし */}
-            {formdata === undefined ? (
-              <td className="px-6 py-4">localFormDataなし</td>
+            {/* localprofileなし */}
+            {profile === undefined ? (
+              <td className="px-6 py-4">localprofileなし</td>
             ) : (
-              // localFormDataあり
-              <td className="px-6 py-4">{formdata.employeeId}</td>
+              // localprofileあり
+              <td className="px-6 py-4">{profile.employeeId}</td>
             )}
-            {/* localFormDataなし */}
-            {formdata === undefined ? (
-              <td className="px-6 py-4">localFormDataなし</td>
+            {/* localprofileなし */}
+            {profile === undefined ? (
+              <td className="px-6 py-4">localprofileなし</td>
             ) : (
-              // localFormDataあり
-              <td className="px-6 py-4">{formdata.phone}</td>
+              // localprofileあり
+              <td className="px-6 py-4">{profile.phoneNumber}</td>
             )}
-            {/* localFormDataなし */}
-            {formdata === undefined ? (
-              <td className="px-6 py-4">localFormDataなし</td>
+            {/* localprofileなし */}
+            {profile === undefined ? (
+              <td className="px-6 py-4">localprofileなし</td>
             ) : (
-              // localFormDataあり
-              <td className="px-6 py-4">{formdata.mail}</td>
+              // localprofileあり
+              <td className="px-6 py-4">{profile.mail}</td>
             )}
 
             <td className="flex justify-end gap-4 px-6 py-4 font-medium">
