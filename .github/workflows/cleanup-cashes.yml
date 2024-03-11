@@ -4,6 +4,7 @@ on:
   pull_request_target:
     paths:
       - "app/**"
+      - "components/**"
       - "public/**"
       - "bun.lockb"
       - "package.json"

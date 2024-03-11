@@ -8,6 +8,7 @@ on:
   push:
     paths:
       - "app/**"
+      - "components/**"
       - "public/**"
       - "bun.lockb"
       - "package.json"
@@ -16,6 +17,7 @@ on:
   pull_request:
     paths:
       - "app/**"
+      - "components/**"
       - "public/**"
       - "bun.lockb"
       - "package.json"

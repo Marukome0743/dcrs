@@ -21,8 +21,8 @@
 ✨feature:
 - all:
   - changed-files:
-    - any-glob-to-any-file: 'app/**'
-    - all-globs-to-all-files: '!app/**/*.test.tsx'
+    - any-glob-to-any-file: ['app/**', 'components/**']
+    - all-globs-to-all-files: ['!app/**/*.test.tsx', '!components/**/*.test.tsx']
 🪸git:
 - changed-files:
   - any-glob-to-any-file: ['.gitattributes', '.gitignore']
