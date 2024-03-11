@@ -40,7 +40,7 @@ export function ProfileForm() {
         </span>
         <input
           className="block w-80"
-          {...register('name')}
+          {...register('name', { required: true })}
           placeholder="オープン太郎"
           required={true}
         />
@@ -52,7 +52,7 @@ export function ProfileForm() {
         <select
           className="block w-80"
           defaultValue={''}
-          {...register('company')}
+          {...register('company', { required: true })}
           required={true}
         >
           <option value="" disabled>
@@ -73,7 +73,7 @@ export function ProfileForm() {
         <input
           className="block w-80"
           placeholder="123456"
-          {...register('employeeId')}
+          {...register('employeeId', { required: true })}
           required={true}
         />
       </label>
@@ -84,7 +84,7 @@ export function ProfileForm() {
         <input
           className="block w-80"
           placeholder="090-1234-5678"
-          {...register('phoneNumber')}
+          {...register('phoneNumber', { required: true })}
           required={true}
         />
       </label>
@@ -95,7 +95,7 @@ export function ProfileForm() {
         <input
           className="block w-80"
           placeholder="example@mail.com"
-          {...register('mail')}
+          {...register('mail', { required: true })}
           required={true}
         />
       </label>
@@ -156,7 +156,7 @@ function ImageUpload({
             type="file"
             accept="image/*"
             id={imageId}
-            {...register('image')}
+            {...register('image', { required: true })}
             alt="Upload Image"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setImage(e.target.files)
