@@ -5,6 +5,7 @@ import type React from 'react'
 import {
   type SubmitHandler,
   type UseFormRegister,
+  type UseFormUnregister,
   useForm,
 } from 'react-hook-form'
 
@@ -18,7 +19,7 @@ type Profile = {
 }
 
 export function ProfileForm() {
-  const { register, handleSubmit } = useForm<Profile>()
+  const { register, handleSubmit, unregister } = useForm<Profile>()
   const onSubmit: SubmitHandler<Profile> = (data) => {
     alert(JSON.stringify(data, null, 2))
     // デモ版仮でlocalStorageに保存
@@ -106,7 +107,7 @@ export function ProfileForm() {
         同意する
         <input type="checkbox" required={true} />
       </label>
-      <ImageUpload register={register} />
+      <ImageUpload register={register} unregister={unregister} />
       <button
         className="rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
         type="submit"
@@ -117,9 +118,20 @@ export function ProfileForm() {
   )
 }
 
-function ImageUpload({ register }: { register: UseFormRegister<Profile> }) {
+function ImageUpload({
+  register,
+  unregister,
+}: {
+  register: UseFormRegister<Profile>
+  unregister: UseFormUnregister<Profile>
+}) {
   const imageId = useId()
   const [image, setImage] = useState<FileList | null>(null)
+
+  function onClickCancel() {
+    setImage(null)
+    unregister('image')
+  }
 
   return (
     <>
@@ -161,7 +173,7 @@ function ImageUpload({ register }: { register: UseFormRegister<Profile> }) {
           />
           <button
             type="button"
-            onClick={() => setImage(null)}
+            onClick={onClickCancel}
             className="mr-2 rounded-full bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700"
           >
             × アップロードキャンセル
