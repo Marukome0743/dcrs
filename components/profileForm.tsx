@@ -1,5 +1,14 @@
 'use client'
 
+import {
+  CheckIcon,
+  EnvelopeIcon,
+  IdentificationIcon,
+  PhoneIcon,
+  PhotoIcon,
+  UserIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/solid'
 import { useId, useState } from 'react'
 import type React from 'react'
 import {
@@ -34,29 +43,32 @@ export function ProfileForm() {
       onSubmit={handleSubmit(onSubmit)}
       className="grid grid-cols-1 gap-6 [&>labe:input]:w-80"
     >
-      <label className="block">
-        <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
-          お名前
+      <label className="input input-bordered flex items-center gap-2">
+        <UserIcon className="h-4 w-4 opacity-70" />
+        <span className="label-text after:ml-0.5 after:text-red-500 after:content-['*']">
+          氏名
         </span>
         <input
-          className="block w-80"
+          type="text"
+          className="grow"
           {...register('name', { required: true })}
           placeholder="オープン太郎"
           required={true}
         />
       </label>
-      <label className="block">
-        <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
-          所属会社
-        </span>
+      <label className="form-control w-full max-w-xs">
+        <div className="label">
+          <span className="label-text after:ml-0.5 after:text-red-500 after:content-['*']">
+            所属会社
+          </span>
+        </div>
         <select
-          className="block w-80"
-          defaultValue={''}
+          className="select select-bordered w-full max-w-xs"
           {...register('company', { required: true })}
           required={true}
         >
-          <option value="" disabled>
-            以下から選択して下さい。
+          <option disabled selected>
+            以下から１つ選択
           </option>
           <option value="株式会社オープンアップグループ">
             株式会社オープンアップグループ
@@ -66,52 +78,57 @@ export function ProfileForm() {
           </option>
         </select>
       </label>
-      <label className="block">
+      <label className="input input-bordered flex items-center gap-2">
+        <IdentificationIcon className="h-4 w-4 opacity-70" />
         <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
           社員番号
         </span>
         <input
+          type="number"
           className="block w-80"
           placeholder="123456"
           {...register('employeeId', { required: true })}
           required={true}
         />
       </label>
-      <label className="block">
+      <label className="input input-bordered flex items-center gap-2">
+        <PhoneIcon className="h-4 w-4 opacity-70" />
         <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
-          連絡可能な個人電話番号
+          電話番号
         </span>
         <input
+          type="tel"
           className="block w-80"
-          placeholder="090-1234-5678"
+          placeholder="09012345678"
           {...register('phoneNumber', { required: true })}
           required={true}
         />
       </label>
-      <label className="block">
+      <label className="input input-bordered flex items-center gap-2">
+        <EnvelopeIcon className="h-4 w-4 opacity-70" />
         <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
           メールアドレス
         </span>
         <input
+          type="email"
           className="block w-80"
           placeholder="example@mail.com"
           {...register('mail', { required: true })}
           required={true}
         />
       </label>
-      <label className="block">
-        <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
-          個人情報提供への同意
-        </span>
-        <br />
-        同意する
-        <input type="checkbox" required={true} />
-      </label>
+      <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
+        個人情報提供への同意
+      </span>
+      <div className="form-control">
+        <label className="label cursor-pointer">
+          <span className="label-text">同意する</span>
+          <input type="checkbox" className="checkbox" required={true} />
+        </label>
+      </div>
       <ImageUpload register={register} unregister={unregister} />
-      <button
-        className="rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
-        type="submit"
-      >
+      <button className="btn btn-warning" type="submit">
+        <CheckIcon className="h-6 w-6" />
         確認画面へ
       </button>
     </form>
@@ -136,34 +153,42 @@ function ImageUpload({
   return (
     <>
       {!image ? (
-        <label
-          className="mb-5"
-          style={{
-            border: 'white 3px dotted',
-            display: 'flex',
-            borderRadius: 12,
-            justifyContent: 'center',
-            alignItems: 'center',
-            overflow: 'hidden',
-            cursor: 'pointer',
-          }}
-        >
-          <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
-            画像をアップロードする
-          </span>
-          <input
-            className="h-1 w-1 opacity-0"
-            type="file"
-            accept="image/*"
-            id={imageId}
-            {...register('image', { required: true })}
-            alt="Upload Image"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setImage(e.target.files)
-            }
-            required={true}
-          />
-        </label>
+        <>
+          <label className="block font-medium text-gray-900 text-sm leading-6">
+            <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
+              障がい者手帳の画像・写真
+            </span>
+          </label>
+          <div className="mt-2 flex justify-center rounded-lg border border-gray-900/25 border-dashed px-6 py-10">
+            <div className="text-center">
+              <PhotoIcon
+                className="mx-auto h-12 w-12 text-gray-300"
+                aria-hidden="true"
+              />
+              <div className="mt-4 flex text-gray-600 text-sm leading-6">
+                <label className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2">
+                  <span>アップロード</span>
+                  <input
+                    type="file"
+                    className="sr-only"
+                    accept="image/*"
+                    id={imageId}
+                    {...register('image', { required: true })}
+                    alt="Upload Image"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setImage(e.target.files)
+                    }
+                    required={true}
+                  />
+                </label>
+                <p className="pl-1">又は、ドラッグ＆ドロップ</p>
+              </div>
+              <p className="text-gray-600 text-xs leading-5">
+                PNG, JPG, GIF, WEBP のファイルを 100MB まで
+              </p>
+            </div>
+          </div>
+        </>
       ) : (
         <>
           <img
@@ -174,9 +199,10 @@ function ImageUpload({
           <button
             type="button"
             onClick={onClickCancel}
-            className="mr-2 rounded-full bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700"
+            className="btn btn-error"
           >
-            × アップロードキャンセル
+            <XMarkIcon className="h-6 w-6" />
+            アップロードキャンセル
           </button>
         </>
       )}
