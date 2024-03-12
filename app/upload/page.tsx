@@ -1,4 +1,5 @@
 import { ProfileForm } from '@/components/profileForm'
+import { HomeIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link'
 
 export default function Upload() {
@@ -8,12 +9,12 @@ export default function Upload() {
       <span className="before:ml-0.5 before:text-red-500 before:content-['*']">
         は必須項目です
       </span>
+      <br />
       <ProfileForm />
       <br />
-      <Link
-        href="/"
-        className="group relative flex w-1/8 justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 font-medium text-sm text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-      >
+      <br />
+      <Link href="/" className="btn btn-primary">
+        <HomeIcon className="h-6 w-6" />
         ホームに戻る
       </Link>
     </main>
