@@ -9,6 +9,7 @@ import {
   UserIcon,
   XMarkIcon,
 } from '@heroicons/react/24/solid'
+import Image from 'next/image'
 import { useId, useState } from 'react'
 import type React from 'react'
 import {
@@ -120,12 +121,13 @@ export function ProfileForm() {
       <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
         個人情報提供への同意
       </span>
-      <div className="form-control">
-        <label className="label cursor-pointer">
-          <span className="label-text">同意する</span>
-          <input type="checkbox" className="checkbox" required={true} />
-        </label>
-      </div>
+      <label className="label cursor-pointer">
+        <span className="label-text">同意する</span>
+        <input type="checkbox" className="checkbox" required={true} />
+      </label>
+      <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
+        障がい者手帳の画像・写真
+      </span>
       <ImageUpload register={register} unregister={unregister} />
       <button className="btn btn-warning" type="submit">
         <CheckIcon className="h-6 w-6" />
@@ -153,46 +155,41 @@ function ImageUpload({
   return (
     <>
       {!image ? (
-        <>
-          <label className="block font-medium text-gray-900 text-sm leading-6">
-            <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
-              障がい者手帳の画像・写真
-            </span>
-          </label>
-          <div className="mt-2 flex justify-center rounded-lg border border-gray-900/25 border-dashed px-6 py-10">
-            <div className="text-center">
-              <PhotoIcon
-                className="mx-auto h-12 w-12 text-gray-300"
-                aria-hidden="true"
-              />
-              <div className="mt-4 flex text-gray-600 text-sm leading-6">
-                <label className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2">
-                  <span>アップロード</span>
-                  <input
-                    type="file"
-                    className="sr-only"
-                    accept="image/*"
-                    id={imageId}
-                    {...register('image', { required: true })}
-                    alt="Upload Image"
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      setImage(e.target.files)
-                    }
-                    required={true}
-                  />
-                </label>
-                <p className="pl-1">又は、ドラッグ＆ドロップ</p>
-              </div>
-              <p className="text-gray-600 text-xs leading-5">
-                PNG, JPG, GIF, WEBP のファイルを 1MB まで
-              </p>
+        <div className="mt-2 flex justify-center rounded-lg border border-gray-900/25 border-dashed px-6 py-10">
+          <div className="text-center">
+            <PhotoIcon
+              className="mx-auto h-12 w-12 text-gray-300"
+              aria-hidden="true"
+            />
+            <div className="mt-4 flex text-gray-600 text-sm leading-6">
+              <label className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2">
+                <span>アップロード</span>
+                <input
+                  type="file"
+                  className="sr-only"
+                  accept="image/*"
+                  id={imageId}
+                  {...register('image', { required: true })}
+                  alt="Upload Image"
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setImage(e.target.files)
+                  }
+                  required={true}
+                />
+              </label>
+              <p className="pl-1">又は、ドラッグ＆ドロップ</p>
             </div>
+            <p className="text-gray-600 text-xs leading-5">
+              PNG, JPG, GIF, WEBP のファイルを 1MB まで
+            </p>
           </div>
-        </>
+        </div>
       ) : (
         <>
-          <img
+          <Image
             src={encodeURI(URL.createObjectURL(image[0]))}
+            width={100}
+            height={100}
             alt="Uploaded File"
             className="h-64 w-96 object-scale-down"
           />
