@@ -11,6 +11,8 @@ import type {
   UseFormUnregister,
 } from 'react-hook-form'
 
+const MAX_UPLOAD_FILE_SIZE = 1024 * 1024
+
 export function ImageUploader<FormType extends FieldValues>({
   register,
   unregister,
@@ -22,6 +24,14 @@ export function ImageUploader<FormType extends FieldValues>({
 }) {
   const imageId = useId()
   const [image, setImage] = useState<FileList | null>(null)
+
+  function onClickUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    if (e.target.files && e.target.files[0].size > MAX_UPLOAD_FILE_SIZE) {
+      alert('1MB以下でアップロードして下さい')
+      return
+    }
+    setImage(e.target.files)
+  }
 
   function onClickCancel() {
     setImage(null)
@@ -64,9 +74,7 @@ export function ImageUploader<FormType extends FieldValues>({
                 id={imageId}
                 {...register(inputType, { required: true })}
                 alt="Upload Image"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setImage(e.target.files)
-                }
+                onChange={(e) => onClickUpload(e)}
                 required={true}
               />
             </label>
@@ -100,6 +108,11 @@ function DropImageZone({
   function onDrop(e: DragEvent<HTMLDivElement>) {
     e.preventDefault()
     setIsHoverd(false)
+
+    if (e.dataTransfer.files[0].size > MAX_UPLOAD_FILE_SIZE) {
+      alert('1MB以下でアップロードして下さい')
+      return
+    }
     setImage(e.dataTransfer.files)
   }
 
