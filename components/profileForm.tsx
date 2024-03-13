@@ -31,10 +31,7 @@ export function ProfileForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="grid grid-cols-1 gap-6 [&>labe:input]:w-80"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="grid gap-6">
       <label className="input input-bordered flex items-center gap-2">
         <UserIcon className="h-4 w-4 opacity-70" />
         <span className="label-text after:ml-0.5 after:text-red-500 after:content-['*']">
@@ -78,7 +75,7 @@ export function ProfileForm() {
         </span>
         <input
           type="number"
-          className="block w-80"
+          className="grow"
           placeholder="123456"
           {...register('employeeId', { required: true })}
           required={true}
@@ -91,7 +88,7 @@ export function ProfileForm() {
         </span>
         <input
           type="tel"
-          className="block w-80"
+          className="grow"
           placeholder="09012345678"
           {...register('phoneNumber', { required: true })}
           required={true}
@@ -100,11 +97,11 @@ export function ProfileForm() {
       <label className="input input-bordered flex items-center gap-2">
         <EnvelopeIcon className="h-4 w-4 opacity-70" />
         <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
-          メールアドレス
+          Eメール
         </span>
         <input
           type="email"
-          className="block w-80"
+          className="grow"
           placeholder="example@mail.com"
           {...register('mail', { required: true })}
           required={true}
