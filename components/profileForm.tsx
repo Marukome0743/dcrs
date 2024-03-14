@@ -1,12 +1,14 @@
 'use client'
 
 import {
+  ArrowTopRightOnSquareIcon,
   CheckIcon,
   EnvelopeIcon,
   IdentificationIcon,
   PhoneIcon,
   UserIcon,
 } from '@heroicons/react/24/solid'
+import Link from 'next/link'
 import { type SubmitHandler, useForm } from 'react-hook-form'
 import { ImageUploader } from './imageUploader'
 
@@ -18,6 +20,11 @@ type Profile = {
   mail: string
   image: FileList
 }
+
+const COMPANYS = [
+  '株式会社オープンアップグループ',
+  '株式会社ビーネックステクノロジーズ',
+] as const
 
 export function ProfileForm() {
   const { register, handleSubmit, unregister } = useForm<Profile>()
@@ -60,12 +67,11 @@ export function ProfileForm() {
           <option value={''} disabled>
             以下から１つ選択
           </option>
-          <option value="株式会社オープンアップグループ">
-            株式会社オープンアップグループ
-          </option>
-          <option value="株式会社ビーネックステクノロジーズ">
-            株式会社ビーネックステクノロジーズ
-          </option>
+          {COMPANYS.map((company) => (
+            <option key={company} value={company}>
+              {company}
+            </option>
+          ))}
         </select>
       </label>
       <label className="input input-bordered flex items-center gap-2">
@@ -107,16 +113,30 @@ export function ProfileForm() {
           required={true}
         />
       </label>
-      <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
-        個人情報提供への同意
-      </span>
-      <label className="label cursor-pointer">
-        <span className="label-text">同意する</span>
-        <input type="checkbox" className="checkbox" required={true} />
-      </label>
-      <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
+      <div className="card bg-base-100 shadow-xl">
+        <div className="card-body">
+          <div className="mb-2 after:ml-0.5 after:text-red-500 after:content-['*']">
+            個人情報提供への同意
+          </div>
+          <div className="items-center text-center">
+            <Link
+              href="https://www.openupgroup.co.jp/privacy-policy/"
+              target="_blank"
+              className="mb-2 inline-flex items-center gap-1 text-blue-600 underline"
+            >
+              個人情報保護方針
+              <ArrowTopRightOnSquareIcon className="h-4 w-4" />
+            </Link>
+            <label className="label cursor-pointer justify-center">
+              <span className="label-text mr-2">同意する</span>
+              <input type="checkbox" className="checkbox" required={true} />
+            </label>
+          </div>
+        </div>
+      </div>
+      <div className="after:ml-0.5 after:text-red-500 after:content-['*']">
         障がい者手帳の画像・写真
-      </span>
+      </div>
       <ImageUploader<Profile>
         register={register}
         unregister={unregister}
