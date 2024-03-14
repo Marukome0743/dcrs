@@ -21,6 +21,11 @@ type Profile = {
   image: FileList
 }
 
+const COMPANYS = [
+  '株式会社オープンアップグループ',
+  '株式会社ビーネックステクノロジーズ',
+] as const
+
 export function ProfileForm() {
   const { register, handleSubmit, unregister } = useForm<Profile>()
   const onSubmit: SubmitHandler<Profile> = (data) => {
@@ -62,12 +67,11 @@ export function ProfileForm() {
           <option value={''} disabled>
             以下から１つ選択
           </option>
-          <option value="株式会社オープンアップグループ">
-            株式会社オープンアップグループ
-          </option>
-          <option value="株式会社ビーネックステクノロジーズ">
-            株式会社ビーネックステクノロジーズ
-          </option>
+          {COMPANYS.map((company) => (
+            <option key={company} value={company}>
+              {company}
+            </option>
+          ))}
         </select>
       </label>
       <label className="input input-bordered flex items-center gap-2">
