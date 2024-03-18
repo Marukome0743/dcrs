@@ -1,21 +1,17 @@
 import { ProfileForm } from '@/components/profileForm'
+import { Step } from '@/components/step'
 import { HomeIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link'
+
+const STEP = ['必要情報の入力', '入力確認', '完了']
 
 export default function Upload() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-50 px-4 py-12 lg:px-8 sm:px-6">
-      <ul className="steps mb-8">
-        <li className="step step-primary">必要情報の入力</li>
-        <li className="step">入力確認</li>
-        <li className="step">完了</li>
-      </ul>
-      <h1 className="mb-3 font-semibold text-2xl">必要情報の入力</h1>
-      <p className="before:ml-0.5 before:text-red-500 before:content-['*']">
-        は必須項目
-      </p>
-      <br />
-      <ProfileForm />
+      <Step step={STEP} targetStep={0} />
+      <ProfileForm>
+        <Step step={STEP} targetStep={1} />
+      </ProfileForm>
       <br />
       <br />
       <Link href="/" className="btn btn-primary">

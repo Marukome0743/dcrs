@@ -9,7 +9,10 @@ import {
   UserIcon,
 } from '@heroicons/react/24/solid'
 import Link from 'next/link'
-import { type SubmitHandler, useForm } from 'react-hook-form'
+import type React from 'react'
+import { useRef, useState } from 'react'
+import { type Path, type UseFormRegister, useForm } from 'react-hook-form'
+import { ConfirmDialog } from './confirmDialog'
 import { ImageUploader } from './imageUploader'
 
 type Profile = {
@@ -21,131 +24,160 @@ type Profile = {
   image: FileList
 }
 
+const CHECKLIST = {
+  name: '氏名',
+  company: '所属会社',
+  employeeId: '社員番号',
+  phoneNumber: '電話番号',
+  mail: 'Eメール',
+  agreement: '個人情報提供への同意',
+  image: '障がい者手帳の画像・写真',
+}
+
 const COMPANYS = [
   '株式会社オープンアップグループ',
   '株式会社ビーネックステクノロジーズ',
 ] as const
 
-export function ProfileForm() {
-  const { register, handleSubmit, unregister } = useForm<Profile>()
-  const onSubmit: SubmitHandler<Profile> = (data) => {
-    alert(JSON.stringify(data, null, 2))
-    // デモ版仮でlocalStorageに保存
-    // ホントはAPI送信してDBに投げたい。
-    if (typeof localStorage !== 'undefined') {
-      localStorage.setItem('profile', JSON.stringify(data))
-    }
-  }
+export function ProfileForm({ children }: { children: React.ReactNode }) {
+  const { register, handleSubmit, unregister, getValues } = useForm<Profile>()
+  const dialog = useRef<HTMLDialogElement>(null)
+  const [imageSrc, setImageSrc] = useState<string>('')
+  const onSubmit = handleSubmit(() => {
+    setImageSrc(document.getElementsByTagName('img')?.[0]?.src || '')
+    dialog.current?.showModal()
+  })
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="grid gap-6">
-      <label className="input input-bordered flex items-center gap-2">
-        <UserIcon className="h-4 w-4 opacity-70" />
-        <span className="label-text after:ml-0.5 after:text-red-500 after:content-['*']">
-          氏名
-        </span>
-        <input
-          type="text"
-          className="grow"
-          {...register('name', { required: true })}
+    <>
+      <form onSubmit={onSubmit} className="grid gap-6">
+        <p className="text-center before:ml-0.5 before:text-red-500 before:content-['*']">
+          は必須項目
+        </p>
+        <Input
+          Icon={UserIcon}
+          name="name"
           placeholder="オープン太郎"
-          required={true}
+          register={register}
+          title={CHECKLIST.name}
+          type="text"
         />
-      </label>
-      <label className="form-control w-full max-w-xs">
-        <div className="label">
-          <p className="label-text after:ml-0.5 after:text-red-500 after:content-['*']">
-            所属会社
-          </p>
-        </div>
-        <select
-          className="select select-bordered w-full max-w-xs"
-          {...register('company', { required: true })}
-          defaultValue={''}
-          required={true}
-        >
-          <option value={''} disabled>
-            以下から１つ選択
-          </option>
-          {COMPANYS.map((company) => (
-            <option key={company} value={company}>
-              {company}
+        <label className="form-control w-full max-w-xs">
+          <div className="label">
+            <p className="label-text after:ml-0.5 after:text-red-500 after:content-['*']">
+              {CHECKLIST.company}
+            </p>
+          </div>
+          <select
+            className="select select-bordered w-full max-w-xs"
+            {...register('company', { required: true })}
+            defaultValue={''}
+            required={true}
+          >
+            <option value={''} disabled>
+              以下から１つ選択
             </option>
-          ))}
-        </select>
-      </label>
-      <label className="input input-bordered flex items-center gap-2">
-        <IdentificationIcon className="h-4 w-4 opacity-70" />
-        <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
-          社員番号
-        </span>
-        <input
-          type="number"
-          className="grow"
+            {COMPANYS.map((company) => (
+              <option key={company} value={company}>
+                {company}
+              </option>
+            ))}
+          </select>
+        </label>
+        <Input
+          Icon={IdentificationIcon}
+          name="employeeId"
           placeholder="123456"
-          {...register('employeeId', { required: true })}
-          required={true}
+          register={register}
+          title={CHECKLIST.employeeId}
+          type="number"
         />
-      </label>
-      <label className="input input-bordered flex items-center gap-2">
-        <PhoneIcon className="h-4 w-4 opacity-70" />
-        <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
-          電話番号
-        </span>
-        <input
-          type="tel"
-          className="grow"
+        <Input
+          Icon={PhoneIcon}
+          name="phoneNumber"
           placeholder="09012345678"
-          {...register('phoneNumber', { required: true })}
-          required={true}
+          register={register}
+          title={CHECKLIST.phoneNumber}
+          type="tel"
         />
-      </label>
-      <label className="input input-bordered flex items-center gap-2">
-        <EnvelopeIcon className="h-4 w-4 opacity-70" />
-        <span className="after:ml-0.5 after:text-red-500 after:content-['*']">
-          Eメール
-        </span>
-        <input
-          type="email"
-          className="grow"
+        <Input
+          Icon={EnvelopeIcon}
+          name="mail"
           placeholder="example@mail.com"
-          {...register('mail', { required: true })}
-          required={true}
+          register={register}
+          title={CHECKLIST.mail}
+          type="email"
         />
-      </label>
-      <div className="card bg-base-100 shadow-xl">
-        <div className="card-body">
-          <p className="mb-2 after:ml-0.5 after:text-red-500 after:content-['*']">
-            個人情報提供への同意
-          </p>
-          <div className="items-center text-center">
-            <Link
-              href="https://www.openupgroup.co.jp/privacy-policy/"
-              target="_blank"
-              className="mb-2 inline-flex items-center gap-1 text-blue-600 underline"
-            >
-              個人情報保護方針
-              <ArrowTopRightOnSquareIcon className="h-4 w-4" />
-            </Link>
-            <label className="label cursor-pointer justify-center">
-              <span className="label-text mr-2">同意する</span>
-              <input type="checkbox" className="checkbox" required={true} />
-            </label>
+        <div className="card bg-base-100 shadow-xl">
+          <div className="card-body">
+            <p className="mb-2 after:ml-0.5 after:text-red-500 after:content-['*']">
+              {CHECKLIST.agreement}
+            </p>
+            <div className="items-center text-center">
+              <Link
+                href="https://www.openupgroup.co.jp/privacy-policy/"
+                target="_blank"
+                className="mb-2 inline-flex items-center gap-1 text-blue-600 underline"
+              >
+                個人情報保護方針
+                <ArrowTopRightOnSquareIcon className="h-4 w-4" />
+              </Link>
+              <label className="label cursor-pointer justify-center">
+                <span className="label-text mr-2">同意する</span>
+                <input type="checkbox" className="checkbox" required={true} />
+              </label>
+            </div>
           </div>
         </div>
-      </div>
-      <p className="after:ml-0.5 after:text-red-500 after:content-['*']">
-        障がい者手帳の画像・写真
-      </p>
-      <ImageUploader<Profile>
-        register={register}
-        unregister={unregister}
-        inputType="image"
+        <p className="after:ml-0.5 after:text-red-500 after:content-['*']">
+          {CHECKLIST.image}
+        </p>
+        <ImageUploader<Profile> register={register} unregister={unregister} />
+        <button className="btn btn-warning" type="submit">
+          <CheckIcon className="h-6 w-6" />
+          確認画面へ
+        </button>
+      </form>
+      <ConfirmDialog<Profile>
+        dialog={dialog}
+        checkList={CHECKLIST}
+        imageSrc={imageSrc}
+        values={getValues()}
+      >
+        {children}
+      </ConfirmDialog>
+    </>
+  )
+}
+
+function Input({
+  Icon,
+  name,
+  placeholder,
+  register,
+  title,
+  type,
+}: {
+  Icon: React.ElementType
+  name: Path<Profile>
+  placeholder: string
+  register: UseFormRegister<Profile>
+  title: string
+  type: string
+}) {
+  return (
+    <label className="input input-bordered flex items-center gap-2">
+      <Icon className="h-4 w-4 opacity-70" />
+      <span className="label-text after:ml-0.5 after:text-red-500 after:content-['*']">
+        {title}
+      </span>
+      <input
+        type={type}
+        className="grow"
+        {...register(name, { required: true })}
+        placeholder={placeholder}
+        required={true}
       />
-      <button className="btn btn-warning" type="submit">
-        <CheckIcon className="h-6 w-6" />
-        確認画面へ
-      </button>
-    </form>
+    </label>
   )
 }
