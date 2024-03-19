@@ -16,11 +16,9 @@ const MAX_UPLOAD_FILE_SIZE = 1024 * 1024
 export function ImageUploader<FormType extends FieldValues>({
   register,
   unregister,
-  inputType,
 }: {
   register: UseFormRegister<FormType>
   unregister: UseFormUnregister<FormType>
-  inputType: Path<FormType>
 }) {
   const imageId = useId()
   const [image, setImage] = useState<FileList | null>(null)
@@ -35,7 +33,7 @@ export function ImageUploader<FormType extends FieldValues>({
 
   function onClickCancel() {
     setImage(null)
-    unregister(inputType)
+    unregister('image' as Path<FormType>)
   }
 
   return (
@@ -72,7 +70,7 @@ export function ImageUploader<FormType extends FieldValues>({
                 className="sr-only"
                 accept="image/*"
                 id={imageId}
-                {...register(inputType, { required: true })}
+                {...register('image' as Path<FormType>, { required: true })}
                 alt="Upload Image"
                 onChange={(e) => onClickUpload(e)}
                 required={true}

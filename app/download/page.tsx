@@ -14,7 +14,7 @@ export default function Download() {
     const profile = JSON.parse(localStorage.getItem('profile') || '{}')
 
     return (
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <>
         <table className="w-full border-collapse bg-white text-left text-gray-500 text-sm">
           <thead className="bg-gray-50">
             <tr>
@@ -127,7 +127,7 @@ export default function Download() {
           <HomeIcon className="h-6 w-6" />
           ホームに戻る
         </Link>
-      </main>
+      </>
     )
   }
 }
