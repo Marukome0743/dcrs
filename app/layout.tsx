@@ -11,7 +11,7 @@ const sawarabi = Sawarabi_Gothic({
 
 export const metadata: Metadata = {
   title: 'DCRS',
-  description: '障害者手帳登録システム',
+  description: '障がい者手帳登録システム',
 }
 
 export default function RootLayout({
