@@ -1,10 +1,10 @@
-import { Footer } from '@/components/footer'
+import { Footer } from '@/app/components/footer'
 import type { Metadata } from 'next'
 import { Sawarabi_Gothic } from 'next/font/google'
 import type React from 'react'
 import './globals.css'
 
-const inter = Sawarabi_Gothic({
+const sawarabi = Sawarabi_Gothic({
   subsets: ['latin'],
   weight: '400',
 })
@@ -21,8 +21,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={inter.className}>
-        {children}
+      <body className={sawarabi.className}>
+        <main className="flex min-h-screen flex-col items-center justify-center bg-gray-50 px-4 py-12 lg:px-8 sm:px-6">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

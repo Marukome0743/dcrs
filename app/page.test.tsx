@@ -4,19 +4,12 @@ import Home from './page'
 
 render(<Home />)
 
-test('main test', () => {
-  const main = document.querySelector('main')
-  expect(main?.getAttribute('class')).toEqual(
-    'flex min-h-screen flex-col items-center justify-center bg-gray-50 px-4 py-12 lg:px-8 sm:px-6',
-  )
-})
-
-test('h2 test', () => {
-  const h2 = document.querySelector('h2')
-  expect(h2?.getAttribute('class')).toEqual(
+test('h1 test', () => {
+  const h1 = document.querySelector('h1')
+  expect(h1?.getAttribute('class')).toEqual(
     'mt-6 text-center font-extrabold text-3xl text-gray-900',
   )
-  expect(h2?.textContent).toEqual('障がい者手帳登録システム')
+  expect(h1?.textContent).toEqual('障がい者手帳登録システム')
 })
 
 test('p test', () => {
