@@ -1,7 +1,7 @@
 import { HomeIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link'
 
-export function HomeButton() {
+export function HomeBtn() {
   return (
     <Link href="/" className="btn btn-primary my-4">
       <HomeIcon className="h-6 w-6" />
