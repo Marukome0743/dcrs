@@ -1,5 +1,4 @@
 import { Step } from '@/app/components/step'
-import { STEP } from '@/app/upload/page'
 import {
   ArrowUturnLeftIcon,
   PaperAirplaneIcon,
@@ -8,6 +7,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import type React from 'react'
 import type { FieldValues } from 'react-hook-form'
+import { STEP } from '../page'
 
 export function ConfirmDialog<FormType extends FieldValues>({
   checkList,
@@ -24,7 +24,7 @@ export function ConfirmDialog<FormType extends FieldValues>({
 }) {
   const router = useRouter()
   function onSubmit() {
-    router.push('/upload/success')
+    router.push('/register/success')
   }
 
   return (

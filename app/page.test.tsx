@@ -32,7 +32,7 @@ test('Link test', () => {
   expect(link1?.textContent).toEqual(
     '[派遣従業員向け]障がい者手帳画像をアップロードします。',
   )
-  expect(link1?.getAttribute('href')).toEqual('/upload')
+  expect(link1?.getAttribute('href')).toEqual('/register')
 
   expect(link2?.getAttribute('class')).toEqual(
     'group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 font-medium text-sm text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2',
