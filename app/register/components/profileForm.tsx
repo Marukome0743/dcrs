@@ -32,9 +32,9 @@ const CHECKLIST = {
   email: 'Eメール',
   agreement: '個人情報提供への同意',
   image: '障がい者手帳の画像・写真',
-}
+} as const
 
-const COMPANYS = [
+const COMPANIES = [
   '株式会社オープンアップグループ',
   '株式会社ビーネックステクノロジーズ',
 ] as const
@@ -77,7 +77,7 @@ export function ProfileForm() {
             <option value={''} disabled>
               以下から１つ選択
             </option>
-            {COMPANYS.map((company) => (
+            {COMPANIES.map((company) => (
               <option key={company} value={company}>
                 {company}
               </option>
@@ -113,27 +113,28 @@ export function ProfileForm() {
             <p className="mb-2 after:ml-0.5 after:text-red-500 after:content-['*']">
               {CHECKLIST.agreement}
             </p>
-            <div className="items-center text-center">
-              <Link
-                href="https://www.openupgroup.co.jp/privacy-policy/"
-                target="_blank"
-                className="mb-2 inline-flex items-center gap-1 text-blue-600 underline"
-              >
-                個人情報保護方針
-                <ArrowTopRightOnSquareIcon className="h-4 w-4" />
-              </Link>
-              <label className="label cursor-pointer justify-center">
-                <span className="label-text mr-2">同意する</span>
-                <input type="checkbox" className="checkbox" required={true} />
-              </label>
-            </div>
+            <Link
+              href="https://www.openupgroup.co.jp/privacy-policy/"
+              target="_blank"
+              className="inline-flex items-center gap-1 self-center text-blue-600 underline underline-offset-4"
+            >
+              個人情報保護方針
+              <ArrowTopRightOnSquareIcon className="h-4 w-4" />
+            </Link>
+            <label className="label cursor-pointer self-center">
+              <span className="label-text mr-2">同意する</span>
+              <input type="checkbox" className="checkbox" required={true} />
+            </label>
           </div>
         </div>
         <p className="after:ml-0.5 after:text-red-500 after:content-['*']">
           {CHECKLIST.image}
         </p>
         <ImageUploader<Profile> register={register} unregister={unregister} />
-        <button className="btn btn-warning" type="submit">
+        <button
+          className="btn btn-warning w-max place-self-center"
+          type="submit"
+        >
           <CheckIcon className="h-6 w-6" />
           確認画面へ
         </button>
