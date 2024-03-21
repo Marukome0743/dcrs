@@ -50,7 +50,7 @@ export function ImageUploader<FormType extends FieldValues>({
           <button
             type="button"
             onClick={onClickCancel}
-            className="btn btn-error"
+            className="btn btn-error w-max place-self-center"
           >
             <XMarkIcon className="h-6 w-6" />
             アップロードキャンセル
