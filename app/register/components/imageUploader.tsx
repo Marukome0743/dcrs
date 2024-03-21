@@ -36,23 +36,13 @@ export function ImageUploader<FormType extends FieldValues>({
   return (
     <>
       {image ? (
-        <>
-          <Image
-            src={encodeURI(URL.createObjectURL(image[0]))}
-            width={100}
-            height={100}
-            alt="Uploaded File"
-            className="h-64 w-96 object-scale-down"
-          />
-          <button
-            type="button"
-            onClick={onClickCancel}
-            className="btn btn-error w-max place-self-center"
-          >
-            <XMarkIcon className="h-6 w-6" />
-            アップロードキャンセル
-          </button>
-        </>
+        <Image
+          src={encodeURI(URL.createObjectURL(image[0]))}
+          width={100}
+          height={100}
+          alt="Uploaded File"
+          className="w-full max-w-xs"
+        />
       ) : (
         <DropImageZone setImage={setImage}>
           <PhotoIcon
@@ -80,6 +70,15 @@ export function ImageUploader<FormType extends FieldValues>({
           </p>
         </DropImageZone>
       )}
+      <button
+        type="button"
+        onClick={onClickCancel}
+        className="btn btn-error w-max place-self-center"
+        disabled={image === null}
+      >
+        <XMarkIcon className="h-6 w-6" />
+        アップロードキャンセル
+      </button>
     </>
   )
 }
