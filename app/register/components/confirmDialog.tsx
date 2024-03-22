@@ -23,8 +23,17 @@ export function ConfirmDialog<FormType extends FieldValues>({
   values: FormType
 }) {
   const router = useRouter()
-  function onSubmit() {
-    router.push('/register/success')
+  async function onSubmit() {
+    try {
+      await fetch('/api/user', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      })
+      router.push('/register/success')
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -45,7 +54,7 @@ export function ConfirmDialog<FormType extends FieldValues>({
                         width={100}
                         height={100}
                         alt="Uploaded File"
-                        className="h-64 w-96 object-scale-down"
+                        className="h-auto w-auto object-scale-down"
                       />
                     ) : (
                       values[key]
