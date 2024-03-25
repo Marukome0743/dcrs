@@ -40,5 +40,5 @@ test('Link test', () => {
   expect(link2?.textContent).toEqual(
     '[労務担当者向け]障がい者手帳画像をダウンロードします。',
   )
-  expect(link2?.getAttribute('href')).toEqual('/download')
+  expect(link2?.getAttribute('href')).toEqual('/users')
 })
