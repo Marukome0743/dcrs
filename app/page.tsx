@@ -16,7 +16,7 @@ export default function Home() {
         [派遣従業員向け]障がい者手帳画像をアップロードします。
       </Link>
       <Link
-        href="/download"
+        href="/users"
         className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 font-medium text-sm text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
       >
         [労務担当者向け]障がい者手帳画像をダウンロードします。
