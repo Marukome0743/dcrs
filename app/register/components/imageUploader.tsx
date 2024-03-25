@@ -24,7 +24,9 @@ export function ImageUploader<FormType extends FieldValues>({
   const [image, setImage] = useState<FileList | null>(null)
 
   function onClickUpload(e: React.ChangeEvent<HTMLInputElement>) {
-    if (isFileTooLarge(e.target.files?.[0].size as number)) return
+    if (isFileTooLarge(e.target.files?.[0].size as number)) {
+      return
+    }
     setImage(e.target.files)
   }
 
@@ -94,8 +96,9 @@ function DropImageZone({
 
   function onDragLeave(e: DragEvent<HTMLDivElement>) {
     e.preventDefault()
-    if (e.relatedTarget && e.currentTarget.contains(e.relatedTarget as Node))
+    if (e.relatedTarget && e.currentTarget.contains(e.relatedTarget as Node)) {
       return
+    }
     setIsHoverd(false)
   }
 
@@ -103,7 +106,9 @@ function DropImageZone({
     e.preventDefault()
     setIsHoverd(false)
 
-    if (isFileTooLarge(e.dataTransfer.files[0].size)) return
+    if (isFileTooLarge(e.dataTransfer.files[0].size)) {
+      return
+    }
     setImage(e.dataTransfer.files)
   }
 

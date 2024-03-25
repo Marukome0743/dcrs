@@ -55,7 +55,7 @@ export function ProfileForm() {
           は必須項目
         </p>
         <Input
-          Icon={UserIcon}
+          icon=<UserIcon className="h-6 w-6" />
           name="name"
           placeholder="オープン太郎"
           register={register}
@@ -74,7 +74,7 @@ export function ProfileForm() {
             defaultValue={''}
             required={true}
           >
-            <option value={''} disabled>
+            <option value={''} disabled={true}>
               以下から１つ選択
             </option>
             {COMPANIES.map((company) => (
@@ -85,7 +85,7 @@ export function ProfileForm() {
           </select>
         </label>
         <Input
-          Icon={IdentificationIcon}
+          icon=<IdentificationIcon className="h-6 w-6" />
           name="employeeId"
           placeholder="123456"
           register={register}
@@ -93,7 +93,7 @@ export function ProfileForm() {
           type="number"
         />
         <Input
-          Icon={PhoneIcon}
+          icon=<PhoneIcon className="h-6 w-6" />
           name="telephone"
           placeholder="09012345678"
           register={register}
@@ -101,7 +101,7 @@ export function ProfileForm() {
           type="tel"
         />
         <Input
-          Icon={EnvelopeIcon}
+          icon=<EnvelopeIcon className="h-6 w-6" />
           name="email"
           placeholder="example@mail.com"
           register={register}
@@ -150,23 +150,23 @@ export function ProfileForm() {
 }
 
 function Input({
-  Icon,
+  icon,
   name,
   placeholder,
   register,
   title,
   type,
 }: {
-  Icon: React.ElementType
+  icon: React.ReactNode
   name: Path<Profile>
   placeholder: string
   register: UseFormRegister<Profile>
   title: string
   type: string
-}) {
+}): React.JSX.Element {
   return (
     <label className="input input-bordered flex items-center gap-2">
-      <Icon className="h-4 w-4 opacity-70" />
+      {icon}
       <span className="label-text after:ml-0.5 after:text-red-500 after:content-['*']">
         {title}
       </span>

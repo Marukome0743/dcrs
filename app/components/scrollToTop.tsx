@@ -5,10 +5,10 @@ import { useState } from 'react'
 
 export function ScrollToTop() {
   const [isScrollToTop, setIsScrollToTop] = useState(false)
-  const SCROLL_POINT = 200
+  const scrollPoint = 200
 
   if (typeof window !== 'undefined') {
-    window.onscroll = () => setIsScrollToTop(SCROLL_POINT < window.scrollY)
+    window.onscroll = () => setIsScrollToTop(scrollPoint < window.scrollY)
   }
 
   return (
