@@ -52,7 +52,7 @@ export function ImageUploader<FormType extends FieldValues>({
             aria-hidden="true"
           />
           <div className="mt-4 flex text-gray-600 text-sm leading-6">
-            <label className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2">
+            <label className="grow relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2">
               <span>アップロード</span>
               <input
                 type="file"
