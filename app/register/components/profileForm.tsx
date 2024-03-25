@@ -172,7 +172,7 @@ function Input({
       </span>
       <input
         type={type}
-        className="grow"
+        className="grow max-w-xs"
         {...register(name, { required: true })}
         placeholder={placeholder}
         required={true}
