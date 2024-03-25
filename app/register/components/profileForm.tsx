@@ -35,8 +35,8 @@ const CHECKLIST = {
 } as const
 
 const COMPANIES = [
-  '株式会社オープンアップグループ',
-  '株式会社ビーネックステクノロジーズ',
+  'オープンアップグループ',
+  'ビーネックステクノロジーズ',
 ] as const
 
 export function ProfileForm() {
@@ -167,12 +167,12 @@ function Input({
   return (
     <label className="input input-bordered flex items-center gap-2">
       {icon}
-      <span className="label-text after:ml-0.5 after:text-red-500 after:content-['*']">
+      <span className="label-text whitespace-nowrap after:ml-0.5 after:text-red-500 after:content-['*']">
         {title}
       </span>
       <input
         type={type}
-        className="grow"
+        // className="grow"
         {...register(name, { required: true })}
         placeholder={placeholder}
         required={true}
