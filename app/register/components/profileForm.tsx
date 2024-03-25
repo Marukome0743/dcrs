@@ -50,7 +50,7 @@ export function ProfileForm() {
 
   return (
     <>
-      <form onSubmit={onSubmit} className="grid gap-6">
+      <form onSubmit={onSubmit} className="flex flex-col gap-6">
         <p className="text-center before:ml-0.5 before:text-red-500 before:content-['*']">
           は必須項目
         </p>
