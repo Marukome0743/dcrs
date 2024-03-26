@@ -19,7 +19,7 @@ export function ScrollToTop() {
           className="btn btn-square btn-primary fixed right-10 bottom-10"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          <ChevronDoubleUpIcon className="h-8 w-8" />
+          <ChevronDoubleUpIcon className="size-8" />
         </button>
       )}
     </>
