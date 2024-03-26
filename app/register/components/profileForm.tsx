@@ -165,7 +165,7 @@ function Input({
   type: string
 }): React.JSX.Element {
   return (
-    <label className="input input-bordered flex items-center gap-2">
+    <label className="input input-bordered flex flex-row items-center gap-2">
       {icon}
       <span className="text-sm whitespace-nowrap after:ml-0.5 after:text-red-500 after:content-['*']">
         {title}
