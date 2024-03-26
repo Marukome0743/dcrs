@@ -78,7 +78,7 @@ export function ImageUploader<FormType extends FieldValues>({
         className="btn btn-error w-max place-self-center"
         disabled={image === null}
       >
-        <XMarkIcon className="h-6 w-6" />
+        <XMarkIcon className="size-6" />
         アップロードキャンセル
       </button>
     </>
