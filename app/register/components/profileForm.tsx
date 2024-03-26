@@ -35,8 +35,8 @@ const CHECKLIST = {
 } as const
 
 const COMPANIES = [
-  '株式会社オープンアップグループ',
-  '株式会社ビーネックステクノロジーズ',
+  'オープンアップグループ',
+  'ビーネックステクノロジーズ',
 ] as const
 
 export function ProfileForm() {
@@ -50,12 +50,12 @@ export function ProfileForm() {
 
   return (
     <>
-      <form onSubmit={onSubmit} className="grid gap-6">
+      <form onSubmit={onSubmit} className="flex flex-col gap-6  max-w-xs">
         <p className="text-center before:ml-0.5 before:text-red-500 before:content-['*']">
           は必須項目
         </p>
         <Input
-          icon=<UserIcon className="h-6 w-6 opacity-70" />
+          icon=<UserIcon className="size-6 opacity-70" />
           name="name"
           placeholder="オープン太郎"
           register={register}
@@ -85,7 +85,7 @@ export function ProfileForm() {
           </select>
         </label>
         <Input
-          icon=<IdentificationIcon className="h-6 w-6 opacity-70" />
+          icon=<IdentificationIcon className="size-6 opacity-70" />
           name="employeeId"
           placeholder="123456"
           register={register}
@@ -93,7 +93,7 @@ export function ProfileForm() {
           type="number"
         />
         <Input
-          icon=<PhoneIcon className="h-6 w-6 opacity-70" />
+          icon=<PhoneIcon className="size-6 opacity-70" />
           name="telephone"
           placeholder="09012345678"
           register={register}
@@ -101,7 +101,7 @@ export function ProfileForm() {
           type="tel"
         />
         <Input
-          icon=<EnvelopeIcon className="h-6 w-6 opacity-70" />
+          icon=<EnvelopeIcon className="size-6 opacity-70" />
           name="email"
           placeholder="example@mail.com"
           register={register}

@@ -43,7 +43,7 @@ export function ImageUploader<FormType extends FieldValues>({
           width={100}
           height={100}
           alt="Uploaded File"
-          className="w-full max-w-xs"
+          className="w-full"
         />
       ) : (
         <DropImageZone setImage={setImage}>
