@@ -1,133 +1,132 @@
-'use client'
-import { HomeIcon } from '@heroicons/react/24/solid'
-import Link from 'next/link'
+const TABLE_HEADER = [
+  'ID',
+  '作成日',
+  '氏名',
+  '所属会社',
+  '社員番号',
+  '電話番号',
+  'メールアドレス',
+  '障がい者手帳画像',
+]
 
-// デバッグ用
-// localstrageをクリア
-// const clearLocalstrage = () => {
-//   localStorage.clear()
-//   console.log('localStorageをクリアしました')
-// }
+async function getUser(url: string) {
+  const req = await fetch(`${url}/api/user`)
+  return req.json()
+}
 
-export default function Download() {
-  if (typeof window !== 'undefined') {
-    const profile = JSON.parse(localStorage.getItem('profile') || '{}')
+export default function User() {
+  const users = getUser('http://localhost:3000')
 
-    return (
-      <>
-        <table className="w-full border-collapse bg-white text-left text-gray-500 text-sm">
-          <thead className="bg-gray-50">
-            <tr>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900" />
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-                name
-              </th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-                company
-              </th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-                employeeId
-              </th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-                phone number
-              </th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-                mail
-              </th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-                operation
-              </th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100 border-gray-100 border-t">
-            <tr className="hover:bg-gray-50">
-              <th className="px-6 py-4">
-                <div className="flex h-5 items-center">
-                  <input
-                    type="checkbox"
-                    name="checkGroup1"
-                    className="h-4 w-4 rounded border-gray-300 text-primary-600 shadow-sm disabled:cursor-not-allowed focus:border-primary-300 disabled:text-gray-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0"
-                  />
-                </div>
-              </th>
-              {/* localprofileなし */}
-              {profile === undefined ? (
-                <td className="px-6 py-4 font-medium text-gray-900">
-                  localprofileなし
-                </td>
-              ) : (
-                // localprofileあり
-                <th className="px-6 py-4 font-medium text-gray-900">
-                  {profile.name}
-                </th>
-              )}
-              {/* localprofileなし */}
-              {profile === undefined ? (
-                <td className="px-6 py-4 font-medium text-gray-900">
-                  localprofileなし
-                </td>
-              ) : (
-                // localprofileあり
-                <td className="px-6 py-4">{profile.company}</td>
-              )}
-              {/* localprofileなし */}
-              {profile === undefined ? (
-                <td className="px-6 py-4">localprofileなし</td>
-              ) : (
-                // localprofileあり
-                <td className="px-6 py-4">{profile.employeeId}</td>
-              )}
-              {/* localprofileなし */}
-              {profile === undefined ? (
-                <td className="px-6 py-4">localprofileなし</td>
-              ) : (
-                // localprofileあり
-                <td className="px-6 py-4">{profile.phoneNumber}</td>
-              )}
-              {/* localprofileなし */}
-              {profile === undefined ? (
-                <td className="px-6 py-4">localprofileなし</td>
-              ) : (
-                // localprofileあり
-                <td className="px-6 py-4">{profile.mail}</td>
-              )}
+  return (
+    <div className="overflow-x-auto">
+      <table className="table table-xs">
+        <thead>
+          <tr>
+            <th>
+              <label>
+                <input type="checkbox" className="checkbox" />
+              </label>
+            </th>
 
-              <td className="flex justify-end gap-4 px-6 py-4 font-medium">
-                <button type="button" className="text-primary-700">
-                  clearLocalstrage
-                </button>
-              </td>
-            </tr>
-            <tr className="hover:bg-gray-50">
-              <th className="px-6 py-4">
-                <div className="flex h-5 items-center">
-                  <input
-                    type="checkbox"
-                    id="example12"
-                    name="checkGroup1"
-                    className="h-4 w-4 rounded border-gray-300 text-primary-600 shadow-sm disabled:cursor-not-allowed focus:border-primary-300 disabled:text-gray-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0"
-                  />
-                </div>
-              </th>
-              <td className="px-6 py-4 font-medium text-gray-900">
-                Helen Howard
-              </td>
-              <td className="px-6 py-4">samplecompany</td>
-              <td className="px-6 py-4">999999</td>
-              <td className="px-6 py-4">999-999-888</td>
-              <td className="px-6 py-4">samplemail@samplemail.com</td>
-              <td className="flex justify-end gap-4 px-6 py-4 font-medium">
-                <button type="button">Delete</button>
-                <button type="button">Edit</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <Link href="/" className="btn btn-primary">
-          <HomeIcon className="h-6 w-6" />
-          ホームに戻る
-        </Link>
-      </>
-    )
-  }
+            <th>ID</th>
+            <th>作成日</th>
+            <th>氏名</th>
+            <th>所属会社</th>
+            <th>社員番号</th>
+            <th>電話番号</th>
+            <th>メールアドレス</th>
+            <th>障がい者手帳画像</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <label>
+                <input type="checkbox" className="checkbox" />
+              </label>
+            </th>
+            <th>1</th>
+            <td>Cy Ganderton</td>
+            <td>Quality Control Specialist</td>
+            <td>Littel, Schaden and Vandervort</td>
+            <td>Canada</td>
+            <td>12/16/2020</td>
+            <td>Blue</td>
+          </tr>
+          <tr>
+            <th>
+              <label>
+                <input type="checkbox" className="checkbox" />
+              </label>
+            </th>
+            <th>2</th>
+            <td>Hart Hagerty</td>
+            <td>Desktop Support Technician</td>
+            <td>Zemlak, Daniel and Leannon</td>
+            <td>United States</td>
+            <td>12/5/2020</td>
+            <td>Purple</td>
+          </tr>
+          <tr>
+            <th>
+              <label>
+                <input type="checkbox" className="checkbox" />
+              </label>
+            </th>
+            <th>3</th>
+            <td>Brice Swyre</td>
+            <td>Tax Accountant</td>
+            <td>Carroll Group</td>
+            <td>China</td>
+            <td>8/15/2020</td>
+            <td>Red</td>
+          </tr>
+          <tr>
+            <th>
+              <label>
+                <input type="checkbox" className="checkbox" />
+              </label>
+            </th>
+            <th>4</th>
+            <td>Marjy Ferencz</td>
+            <td>Office Assistant I</td>
+            <td>Rowe-Schoen</td>
+            <td>Russia</td>
+            <td>3/25/2021</td>
+            <td>Crimson</td>
+          </tr>
+          <tr>
+            <th>
+              <label>
+                <input type="checkbox" className="checkbox" />
+              </label>
+            </th>
+            <th>5</th>
+            <td>Yancy Tear</td>
+            <td>Community Outreach Specialist</td>
+            <td>Wyman-Ledner</td>
+            <td>Brazil</td>
+            <td>5/22/2020</td>
+            <td>Indigo</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>
+              <label>
+                <input type="checkbox" className="checkbox" />
+              </label>
+            </th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Job</th>
+            <th>company</th>
+            <th>location</th>
+            <th>Last Login</th>
+            <th>Favorite Color</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  )
 }
