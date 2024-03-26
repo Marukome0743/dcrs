@@ -28,34 +28,35 @@ export function ConfirmDialog<FormType extends FieldValues>({
   }
 
   return (
-    <dialog ref={dialog} className="modal modal-bottom sm:modal-middle">
-      <div className="modal-box text-center">
+    <dialog
+      ref={dialog}
+      className="modal modal-bottom sm:modal-middle sm:max-w-xs"
+    >
+      <div className="grid gap-4 modal-box text-center">
         <Step step={STEP} targetStep={1} />
-        <div className="overflow-x-auto">
-          <table className="table">
-            <tbody>
-              {Object.entries(checkList).map(([key, value]) => (
-                <tr key={key}>
-                  <th>{value}</th>
-                  <td>
-                    {key === 'agreement' && '同意する'}
-                    {key === 'image' && imageSrc ? (
-                      <Image
-                        src={imageSrc}
-                        width={100}
-                        height={100}
-                        alt="Uploaded File"
-                        className="w-full max-w-xs"
-                      />
-                    ) : (
-                      values[key]
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <table className="table">
+          <tbody>
+            {Object.entries(checkList).map(([key, value]) => (
+              <tr key={key}>
+                <th>{value}</th>
+                <td>
+                  {key === 'agreement' && '同意する'}
+                  {key === 'image' && imageSrc ? (
+                    <Image
+                      src={imageSrc}
+                      width={100}
+                      height={100}
+                      alt="Uploaded File"
+                      className="w-full"
+                    />
+                  ) : (
+                    values[key]
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
         <div className="modal-action justify-center gap-4">
           <button type="submit" className="btn btn-info" onClick={onSubmit}>
             <PaperAirplaneIcon className="h-6 w-6" />
