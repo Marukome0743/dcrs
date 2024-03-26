@@ -8,7 +8,6 @@ export default function Upload() {
     <>
       <Step step={STEP} targetStep={0} />
       <ProfileForm />
-      <br />
     </>
   )
 }
