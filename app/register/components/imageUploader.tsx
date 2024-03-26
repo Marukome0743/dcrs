@@ -43,12 +43,12 @@ export function ImageUploader<FormType extends FieldValues>({
           width={100}
           height={100}
           alt="Uploaded File"
-          className="w-full max-w-xs"
+          className="w-full"
         />
       ) : (
         <DropImageZone setImage={setImage}>
           <PhotoIcon
-            className="mx-auto h-12 w-12 text-gray-300"
+            className="mx-auto size-12 text-gray-300"
             aria-hidden="true"
           />
           <div className="mt-4 flex text-gray-600 text-sm leading-6">
@@ -78,7 +78,7 @@ export function ImageUploader<FormType extends FieldValues>({
         className="btn btn-error w-max place-self-center"
         disabled={image === null}
       >
-        <XMarkIcon className="h-6 w-6" />
+        <XMarkIcon className="size-6" />
         アップロードキャンセル
       </button>
     </>
