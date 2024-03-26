@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={sawarabi.className}>
-        <main className="flex min-h-screen flex-col items-center justify-center bg-gray-50 px-4 py-12 lg:px-8 sm:px-6">
+        <main className="flex flex-col gap-6 min-h-svh items-center justify-center bg-gray-50 px-4 py-6 lg:px-8 sm:px-6">
           {children}
         </main>
         <Footer />
