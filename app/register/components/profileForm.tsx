@@ -1,14 +1,12 @@
 'use client'
 
 import {
-  ArrowTopRightOnSquareIcon,
   CheckIcon,
   EnvelopeIcon,
   IdentificationIcon,
   PhoneIcon,
   UserIcon,
 } from '@heroicons/react/24/solid'
-import Link from 'next/link'
 import type React from 'react'
 import { useRef, useState } from 'react'
 import { type Path, type UseFormRegister, useForm } from 'react-hook-form'
@@ -109,18 +107,24 @@ export function ProfileForm() {
           type="email"
         />
         <div className="card bg-base-100 shadow-xl">
-          <div className="card-body">
+          <div className="card-body overflow-y-auto max-h-72">
             <p className="mb-2 after:ml-0.5 after:text-red-500 after:content-['*']">
               {CHECKLIST.agreement}
             </p>
-            <Link
-              href="https://www.openupgroup.co.jp/privacy-policy/"
-              target="_blank"
-              className="inline-flex items-center gap-1 self-center text-blue-600 underline underline-offset-4"
-            >
-              個人情報保護方針
-              <ArrowTopRightOnSquareIcon className="size-4" />
-            </Link>
+            <p className="text-sm">
+              お預かりした個人情報は、株式会社オープンアップグループ（以下「当社」）が業務に利用するほか、
+              当社のグループ企業において、以下の利用目的で共同利用します。
+              <br />
+              共同利用についての公表事項及び共同利用者の範囲に含まれるグループ企業の一覧は、
+              以下の個人情報保護方針の記載をご覧下さい。
+              <br />
+              株式会社オープンアップグループは、提供頂いた個人情報を法令及び個人情報保護方針に従って
+              安全且つ適切に取り扱います。
+              <br />
+              個人情報に関する問い合わせ・請求方法等につきましては、「個人情報について」をご覧下さい。
+              <br />
+              上記の内容について同意頂ける方は、以下の「同意する」にチェックをお願い致します。
+            </p>
             <label className="label cursor-pointer self-center">
               <span className="label-text mr-2">同意する</span>
               <input type="checkbox" className="checkbox" required={true} />
