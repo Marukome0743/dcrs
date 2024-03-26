@@ -167,12 +167,11 @@ function Input({
   return (
     <label className="input input-bordered flex items-center gap-2">
       {icon}
-      <span className="label-text after:ml-0.5 after:text-red-500 after:content-['*']">
+      <span className="text-sm after:ml-0.5 after:text-red-500 after:content-['*']">
         {title}
       </span>
       <input
         type={type}
-        className="grow"
         {...register(name, { required: true })}
         placeholder={placeholder}
         required={true}
