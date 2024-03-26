@@ -35,8 +35,8 @@ const CHECKLIST = {
 } as const
 
 const COMPANIES = [
-  '株式会社オープンアップグループ',
-  '株式会社ビーネックステクノロジーズ',
+  'オープンアップグループ',
+  'ビーネックステクノロジーズ',
 ] as const
 
 export function ProfileForm() {
@@ -50,26 +50,26 @@ export function ProfileForm() {
 
   return (
     <>
-      <form onSubmit={onSubmit} className="grid gap-6">
+      <form onSubmit={onSubmit} className="flex flex-col gap-6 max-w-xs">
         <p className="text-center before:ml-0.5 before:text-red-500 before:content-['*']">
           は必須項目
         </p>
         <Input
-          icon=<UserIcon className="h-6 w-6 opacity-70" />
+          icon=<UserIcon className="mr-2 size-4 opacity-70" />
           name="name"
           placeholder="オープン太郎"
           register={register}
           title={CHECKLIST.name}
           type="text"
         />
-        <label className="form-control w-full max-w-xs">
+        <label className="form-control w-full">
           <div className="label">
             <p className="label-text after:ml-0.5 after:text-red-500 after:content-['*']">
               {CHECKLIST.company}
             </p>
           </div>
           <select
-            className="select select-bordered w-full max-w-xs"
+            className="select select-bordered"
             {...register('company', { required: true })}
             defaultValue={''}
             required={true}
@@ -85,7 +85,7 @@ export function ProfileForm() {
           </select>
         </label>
         <Input
-          icon=<IdentificationIcon className="h-6 w-6 opacity-70" />
+          icon=<IdentificationIcon className="mr-2 size-4 opacity-70" />
           name="employeeId"
           placeholder="123456"
           register={register}
@@ -93,7 +93,7 @@ export function ProfileForm() {
           type="number"
         />
         <Input
-          icon=<PhoneIcon className="h-6 w-6 opacity-70" />
+          icon=<PhoneIcon className="mr-2 size-4 opacity-70" />
           name="telephone"
           placeholder="09012345678"
           register={register}
@@ -101,7 +101,7 @@ export function ProfileForm() {
           type="tel"
         />
         <Input
-          icon=<EnvelopeIcon className="h-6 w-6 opacity-70" />
+          icon=<EnvelopeIcon className="mr-2 size-4 opacity-70" />
           name="email"
           placeholder="example@mail.com"
           register={register}
@@ -119,7 +119,7 @@ export function ProfileForm() {
               className="inline-flex items-center gap-1 self-center text-blue-600 underline underline-offset-4"
             >
               個人情報保護方針
-              <ArrowTopRightOnSquareIcon className="h-4 w-4" />
+              <ArrowTopRightOnSquareIcon className="size-4" />
             </Link>
             <label className="label cursor-pointer self-center">
               <span className="label-text mr-2">同意する</span>
@@ -135,7 +135,7 @@ export function ProfileForm() {
           className="btn btn-warning w-max place-self-center"
           type="submit"
         >
-          <CheckIcon className="h-6 w-6" />
+          <CheckIcon className="size-6" />
           確認画面へ
         </button>
       </form>
@@ -165,14 +165,13 @@ function Input({
   type: string
 }): React.JSX.Element {
   return (
-    <label className="input input-bordered flex items-center gap-2">
-      {icon}
-      <span className="label-text after:ml-0.5 after:text-red-500 after:content-['*']">
+    <label className="input input-bordered flex flex-row items-center gap-2">
+      <span className="items-center text-sm whitespace-nowrap after:ml-0.5 after:text-red-500 after:content-['*']">
+        {icon}
         {title}
       </span>
       <input
         type={type}
-        className="grow"
         {...register(name, { required: true })}
         placeholder={placeholder}
         required={true}
