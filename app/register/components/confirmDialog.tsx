@@ -23,8 +23,21 @@ export function ConfirmDialog<FormType extends FieldValues>({
   values: FormType
 }) {
   const router = useRouter()
-  function onSubmit() {
-    router.push('/register/success')
+
+  async function onSubmit(event: React.MouseEvent<HTMLButtonElement>) {
+    event.currentTarget.disabled = true
+    event.currentTarget.innerHTML =
+      '<span class="loading loading-ring loading-lg"></span>送信中...'
+    try {
+      await fetch('/api/user', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      })
+      router.push('/register/success')
+    } catch (error) {
+      alert(error)
+    }
   }
 
   return (
