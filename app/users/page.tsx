@@ -1,133 +1,82 @@
-'use client'
-import { HomeIcon } from '@heroicons/react/24/solid'
-import Link from 'next/link'
+import type { User } from '@prisma/client'
 
-// デバッグ用
-// localstrageをクリア
-// const clearLocalstrage = () => {
-//   localStorage.clear()
-//   console.log('localStorageをクリアしました')
-// }
+function getUsers() {
+  return fetch(`${process.env.URL}/api/user`)
+    .then((res) => {
+      if (!res.ok) {
+        return null
+      }
+      return res.json()
+    })
+    .catch((error) => {
+      throw new Error(error)
+    })
+}
 
-export default function Download() {
-  if (typeof window !== 'undefined') {
-    const profile = JSON.parse(localStorage.getItem('profile') || '{}')
+export default async function Users() {
+  const userData = await getUsers()
 
-    return (
-      <>
-        <table className="w-full border-collapse bg-white text-left text-gray-500 text-sm">
-          <thead className="bg-gray-50">
-            <tr>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900" />
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-                name
-              </th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-                company
-              </th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-                employeeId
-              </th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-                phone number
-              </th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-                mail
-              </th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-                operation
-              </th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100 border-gray-100 border-t">
-            <tr className="hover:bg-gray-50">
-              <th className="px-6 py-4">
-                <div className="flex h-5 items-center">
-                  <input
-                    type="checkbox"
-                    name="checkGroup1"
-                    className="h-4 w-4 rounded border-gray-300 text-primary-600 shadow-sm disabled:cursor-not-allowed focus:border-primary-300 disabled:text-gray-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0"
-                  />
-                </div>
-              </th>
-              {/* localprofileなし */}
-              {profile === undefined ? (
-                <td className="px-6 py-4 font-medium text-gray-900">
-                  localprofileなし
-                </td>
-              ) : (
-                // localprofileあり
-                <th className="px-6 py-4 font-medium text-gray-900">
-                  {profile.name}
+  return (
+    <div className="overflow-x-auto">
+      <table className="table table-xs">
+        <thead>
+          <TableIndex />
+        </thead>
+        <tbody>
+          {userData ? (
+            userData.users.map((user: User) => (
+              <tr key={user.id}>
+                <th>
+                  <label>
+                    <input type="checkbox" className="checkbox" />
+                  </label>
                 </th>
-              )}
-              {/* localprofileなし */}
-              {profile === undefined ? (
-                <td className="px-6 py-4 font-medium text-gray-900">
-                  localprofileなし
-                </td>
-              ) : (
-                // localprofileあり
-                <td className="px-6 py-4">{profile.company}</td>
-              )}
-              {/* localprofileなし */}
-              {profile === undefined ? (
-                <td className="px-6 py-4">localprofileなし</td>
-              ) : (
-                // localprofileあり
-                <td className="px-6 py-4">{profile.employeeId}</td>
-              )}
-              {/* localprofileなし */}
-              {profile === undefined ? (
-                <td className="px-6 py-4">localprofileなし</td>
-              ) : (
-                // localprofileあり
-                <td className="px-6 py-4">{profile.phoneNumber}</td>
-              )}
-              {/* localprofileなし */}
-              {profile === undefined ? (
-                <td className="px-6 py-4">localprofileなし</td>
-              ) : (
-                // localprofileあり
-                <td className="px-6 py-4">{profile.mail}</td>
-              )}
+                <td>{user.id}</td>
+                <td>{String(user.createdAt)}</td>
+                <td>{user.name}</td>
+                <td>{user.company}</td>
+                <td>{user.employeeId}</td>
+                <td>{user.telephone}</td>
+                <td>{user.email}</td>
+                <td>{user.image}</td>
+              </tr>
+            ))
+          ) : (
+            <tr className="text-center">
+              <th colSpan={9}>対応待ちデータなし</th>
+            </tr>
+          )}
+        </tbody>
+        <tfoot>
+          <TableIndex />
+        </tfoot>
+      </table>
+    </div>
+  )
+}
 
-              <td className="flex justify-end gap-4 px-6 py-4 font-medium">
-                <button type="button" className="text-primary-700">
-                  clearLocalstrage
-                </button>
-              </td>
-            </tr>
-            <tr className="hover:bg-gray-50">
-              <th className="px-6 py-4">
-                <div className="flex h-5 items-center">
-                  <input
-                    type="checkbox"
-                    id="example12"
-                    name="checkGroup1"
-                    className="h-4 w-4 rounded border-gray-300 text-primary-600 shadow-sm disabled:cursor-not-allowed focus:border-primary-300 disabled:text-gray-400 focus:ring focus:ring-primary-200 focus:ring-opacity-50 focus:ring-offset-0"
-                  />
-                </div>
-              </th>
-              <td className="px-6 py-4 font-medium text-gray-900">
-                Helen Howard
-              </td>
-              <td className="px-6 py-4">samplecompany</td>
-              <td className="px-6 py-4">999999</td>
-              <td className="px-6 py-4">999-999-888</td>
-              <td className="px-6 py-4">samplemail@samplemail.com</td>
-              <td className="flex justify-end gap-4 px-6 py-4 font-medium">
-                <button type="button">Delete</button>
-                <button type="button">Edit</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <Link href="/" className="btn btn-primary">
-          <HomeIcon className="h-6 w-6" />
-          ホームに戻る
-        </Link>
-      </>
-    )
-  }
+function TableIndex() {
+  const indexList = [
+    'ID',
+    '作成日',
+    '氏名',
+    '所属会社',
+    '社員番号',
+    '電話番号',
+    'メールアドレス',
+    '障がい者手帳画像',
+  ]
+
+  return (
+    <tr>
+      <th>
+        <label>
+          <input type="checkbox" className="checkbox" />
+        </label>
+      </th>
+      {indexList.map((index) => (
+        <th key={index}>{index}</th>
+      ))}
+    </tr>
+  )
 }
