@@ -16,7 +16,7 @@ import { ImageUploader } from './imageUploader'
 type Profile = {
   name: string
   company: string
-  employeeId: number
+  employeeId: string
   telephone: string
   email: string
   image: FileList
