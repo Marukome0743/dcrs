@@ -9,6 +9,7 @@ RUN bun i --frozen-lockfile
 FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+RUN bun postinstall
 RUN bun test
 RUN NODE_ENV=production bun run build
 
