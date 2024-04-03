@@ -2,13 +2,12 @@ FROM oven/bun:canary as base
 WORKDIR /usr/src/app
 
 FROM base AS deps
-COPY package.json bun.lockb ./
+COPY package.json bun.lockb prisma/schema.prisma ./
 RUN bun i --frozen-lockfile
 
 FROM base AS builder
 COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY . .
-RUN bun postinstall
 RUN bun test
 RUN NODE_ENV=production bun run build
 
