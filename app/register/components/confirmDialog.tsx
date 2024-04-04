@@ -1,4 +1,6 @@
 import { Step } from '@/app/components/step'
+import type { Checklist } from '@/app/interfaces/checklist'
+import type { Profile } from '@/app/interfaces/profile'
 import {
   ArrowUturnLeftIcon,
   PaperAirplaneIcon,
@@ -6,21 +8,19 @@ import {
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import type React from 'react'
-import type { FieldValues } from 'react-hook-form'
+import type { Path } from 'react-hook-form'
 import { STEP } from '../page'
 
-export function ConfirmDialog<FormType extends FieldValues>({
+export function ConfirmDialog({
   checkList,
   dialog,
   imageSrc,
   values,
 }: {
-  checkList: {
-    [key: string]: string
-  }
+  checkList: Checklist[]
   dialog: React.RefObject<HTMLDialogElement>
   imageSrc: string
-  values: FormType
+  values: Profile
 }) {
   const router = useRouter()
 
@@ -51,12 +51,12 @@ export function ConfirmDialog<FormType extends FieldValues>({
         <Step step={STEP} targetStep={1} />
         <table className="table">
           <tbody>
-            {Object.entries(checkList).map(([key, value]) => (
-              <tr key={key}>
+            {checkList.map(({ name, value }) => (
+              <tr key={name}>
                 <th>{value}</th>
                 <td>
-                  {key === 'agreement' && '同意する'}
-                  {key === 'image' && imageSrc ? (
+                  {name === 'agreement' && '同意する'}
+                  {name === 'image' && imageSrc ? (
                     <Image
                       src={imageSrc}
                       width={100}
@@ -65,7 +65,7 @@ export function ConfirmDialog<FormType extends FieldValues>({
                       className="w-full"
                     />
                   ) : (
-                    values[key]
+                    (values[name as Path<Profile>] as string)
                   )}
                 </td>
               </tr>
