@@ -1,24 +1,20 @@
 'use client'
 
+import type { Profile } from '@/app/interfaces/profile'
 import { PhotoIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import { type DragEvent, useId, useState } from 'react'
 import type React from 'react'
-import type {
-  FieldValues,
-  Path,
-  UseFormRegister,
-  UseFormUnregister,
-} from 'react-hook-form'
+import type { Path, UseFormRegister, UseFormUnregister } from 'react-hook-form'
 
 const MAX_UPLOAD_FILE_SIZE = 1024 * 1024
 
-export function ImageUploader<FormType extends FieldValues>({
+export function ImageUploader({
   register,
   unregister,
 }: {
-  register: UseFormRegister<FormType>
-  unregister: UseFormUnregister<FormType>
+  register: UseFormRegister<Profile>
+  unregister: UseFormUnregister<Profile>
 }) {
   const imageId = useId()
   const [image, setImage] = useState<FileList | null>(null)
@@ -32,7 +28,7 @@ export function ImageUploader<FormType extends FieldValues>({
 
   function onClickCancel() {
     setImage(null)
-    unregister('image' as Path<FormType>)
+    unregister('image' as Path<Profile>)
   }
 
   return (
@@ -59,7 +55,7 @@ export function ImageUploader<FormType extends FieldValues>({
                 className="sr-only"
                 accept="image/*"
                 id={imageId}
-                {...register('image' as Path<FormType>, { required: true })}
+                {...register('image' as Path<Profile>, { required: true })}
                 alt="Upload Image"
                 onChange={(e) => onClickUpload(e)}
                 required={true}
