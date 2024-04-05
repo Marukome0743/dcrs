@@ -1,6 +1,8 @@
 import { Step } from '@/app/components/step'
 import type { Checklist } from '@/app/interfaces/checklist'
 import type { Profile } from '@/app/interfaces/profile'
+import { getServerUrl } from '@/app/lib/s3'
+import { CvtDataUrl2File } from '@/app/register/components/cvtDataUrl2File'
 import {
   ArrowUturnLeftIcon,
   PaperAirplaneIcon,
@@ -15,33 +17,68 @@ export function ConfirmDialog({
   checkList,
   dialog,
   imageSrc,
+  fileType,
+  extention,
   values,
 }: {
   checkList: Checklist[]
   dialog: React.RefObject<HTMLDialogElement>
   imageSrc: string
+  fileType: string
+  extention: string
   values: Profile
 }) {
   const router = useRouter()
 
-  function onSubmit(event: React.MouseEvent<HTMLButtonElement>) {
+  async function onSubmit(event: React.MouseEvent<HTMLButtonElement>) {
     event.currentTarget.disabled = true
     event.currentTarget.innerHTML =
       '<span class="loading loading-ring loading-lg"></span>送信中...'
-    fetch('/api/user', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(values),
+
+    const fileName = `${crypto.randomUUID()}.${extention}`
+    const file = await CvtDataUrl2File(imageSrc, fileName)
+    const url = await getServerUrl(fileName)
+
+    await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': fileType,
+        'Content-Disposition': `attachment; filename=${fileName}`,
+      },
+      body: file,
     })
+      .catch((error) => {
+        alert(error)
+        return
+      })
       .then((res) => {
-        if (!res.ok) {
+        if (!res) {
+          alert('送信に失敗しました')
+        } else if (res.ok) {
+          // values.image[0] からファイル取得困難のためdbdataにs3に保存したファイル名を押し込む。
+          const dbdata = Object.assign(values, { fileName: fileName })
+          fetch('/api/user', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dbdata),
+          })
+            .then((res) => {
+              if (!res.ok) {
+                // DB登録失敗時の画像削除処理は未実装
+                alert(res.statusText)
+                return
+              }
+              router.push('/register/success')
+            })
+            .catch((error) => {
+              // DB登録失敗時の画像削除処理は未実装
+              alert(error)
+            })
+        } else {
+          // DB登録失敗時の画像削除処理は未実装
           alert(res.statusText)
           return
         }
-        router.push('/register/success')
-      })
-      .catch((error) => {
-        alert(error)
       })
   }
 

@@ -17,7 +17,7 @@ export async function POST(request: Request) {
       employeeId: body.employeeId,
       telephone: body.telephone,
       email: body.email,
-      image: 'image',
+      image: body.fileName,
     },
   })
   return NextResponse.json({ user })

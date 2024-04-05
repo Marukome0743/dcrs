@@ -12,9 +12,13 @@ const MAX_UPLOAD_FILE_SIZE = 1024 * 1024
 export function ImageUploader({
   register,
   unregister,
+  setFileType,
+  setExtention,
 }: {
   register: UseFormRegister<Profile>
   unregister: UseFormUnregister<Profile>
+  setFileType: React.Dispatch<React.SetStateAction<string>>
+  setExtention: React.Dispatch<React.SetStateAction<string>>
 }) {
   const imageId = useId()
   const [image, setImage] = useState<FileList | null>(null)
@@ -24,10 +28,14 @@ export function ImageUploader({
       return
     }
     setImage(e.target.files)
+    setFileType(e.target.files?.[0].type as string)
+    setExtention(e.target.files?.[0].name?.split('.').pop() as string)
   }
 
   function onClickCancel() {
     setImage(null)
+    setFileType('')
+    setExtention('')
     unregister('image' as Path<Profile>)
   }
 

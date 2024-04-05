@@ -70,6 +70,8 @@ export function ProfileForm() {
   const { register, handleSubmit, unregister, getValues } = useForm<Profile>()
   const dialog = useRef<HTMLDialogElement>(null)
   const [imageSrc, setImageSrc] = useState<string>('')
+  const [fileType, setFileType] = useState<string>('')
+  const [extention, setExtention] = useState<string>('')
   const onSubmit = handleSubmit(() => {
     setImageSrc(document.getElementsByTagName('img')?.[0]?.src || '')
     dialog.current?.showModal()
@@ -151,7 +153,12 @@ export function ProfileForm() {
         <p className="after:ml-0.5 after:text-red-500 after:content-['*']">
           {checklist.find((item) => item.name === 'image')?.value}
         </p>
-        <ImageUploader register={register} unregister={unregister} />
+        <ImageUploader
+          register={register}
+          unregister={unregister}
+          setFileType={setFileType}
+          setExtention={setExtention}
+        />
         <button
           className="btn btn-warning w-max place-self-center"
           type="submit"
@@ -164,6 +171,8 @@ export function ProfileForm() {
         dialog={dialog}
         checkList={checklist}
         imageSrc={imageSrc}
+        fileType={fileType}
+        extention={extention}
         values={getValues()}
       />
     </>
