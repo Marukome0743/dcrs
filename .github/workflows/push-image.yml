@@ -85,6 +85,9 @@ jobs:
           cache-to: type=inline
           outputs: ${{ github.event_name == 'push' && 'type=image,name=target,annotation-index.org.opencontainers.image.description=dcrs multi-arch image' || 'type=docker' }}
           provenance: false
+          secrets: |
+            "POSTGRES_PRISMA_URL=${{ secrets.POSTGRES_PRISMA_URL }}"
+            "POSTGRES_URL_NON_POOLING=${{ secrets.POSTGRES_URL_NON_POOLING }}"
 
       - name: Docker Scout
         if: github.repository_owner == env.REPOSITORY_OWNER && github.event_name == 'pull_request_target'

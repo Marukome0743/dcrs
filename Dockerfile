@@ -1,4 +1,8 @@
 FROM oven/bun:canary as base
+RUN --mount=type=secret,id=POSTGRES_PRISMA_URL \
+  cat /run/secrets/POSTGRES_PRISMA_URL
+RUN --mount=type=secret,id=POSTGRES_URL_NON_POOLING \
+  cat /run/secrets/POSTGRES_URL_NON_POOLING
 WORKDIR /usr/src/app
 
 FROM base AS deps
