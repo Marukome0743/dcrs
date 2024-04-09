@@ -17,7 +17,7 @@ RUN bun test
 RUN NODE_ENV=production bun run build
 
 FROM oven/bun:canary-distroless
-WORKDIR /app
+WORKDIR /usr/src/app
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.1 /lambda-adapter /opt/extensions/lambda-adapter
 
 COPY --from=builder /app/.next/standalone ./
