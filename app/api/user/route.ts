@@ -9,15 +9,17 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const body = await request.json()
+  const body = await request.formData()
+  const image = body.get('image') as File
+
   const user = await prisma.user.create({
     data: {
-      name: body.name,
-      company: body.company,
-      employeeId: body.employeeId,
-      telephone: body.telephone,
-      email: body.email,
-      image: body.fileName,
+      name: body.get('name') as string,
+      company: body.get('company') as string,
+      employeeId: body.get('employeeId') as string,
+      telephone: body.get('telephone') as string,
+      email: body.get('email') as string,
+      image: image.name,
     },
   })
   return NextResponse.json({ user })
