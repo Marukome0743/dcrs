@@ -67,13 +67,12 @@ const COMPANIES = [
 ] as const
 
 export function ProfileForm() {
-  const { register, handleSubmit, unregister, getValues } = useForm<Profile>()
+  const { handleSubmit, register, unregister, getValues, setValue } =
+    useForm<Profile>()
   const dialog = useRef<HTMLDialogElement>(null)
-  const [imageSrc, setImageSrc] = useState<string>('')
-  const [fileType, setFileType] = useState<string>('')
-  const [extention, setExtention] = useState<string>('')
+  const [image, setImage] = useState<HTMLImageElement>()
   const onSubmit = handleSubmit(() => {
-    setImageSrc(document.getElementsByTagName('img')?.[0]?.src || '')
+    setImage(document.getElementsByTagName('img')?.[0] as HTMLImageElement)
     dialog.current?.showModal()
   })
 
@@ -156,8 +155,7 @@ export function ProfileForm() {
         <ImageUploader
           register={register}
           unregister={unregister}
-          setFileType={setFileType}
-          setExtention={setExtention}
+          setValue={setValue}
         />
         <button
           className="btn btn-warning w-max place-self-center"
@@ -170,9 +168,7 @@ export function ProfileForm() {
       <ConfirmDialog
         dialog={dialog}
         checkList={checklist}
-        imageSrc={imageSrc}
-        fileType={fileType}
-        extention={extention}
+        image={image as HTMLImageElement}
         values={getValues()}
       />
     </>
