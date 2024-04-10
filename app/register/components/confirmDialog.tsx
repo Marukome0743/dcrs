@@ -1,8 +1,6 @@
 import { Step } from '@/app/components/step'
 import type { Checklist } from '@/app/interfaces/checklist'
 import type { Profile } from '@/app/interfaces/profile'
-import { getServerUrl } from '@/app/lib/s3'
-import { CvtDataUrl2File } from '@/app/register/components/cvtDataUrl2File'
 import {
   ArrowUturnLeftIcon,
   PaperAirplaneIcon,
@@ -16,16 +14,12 @@ import { STEP } from '../page'
 export function ConfirmDialog({
   checkList,
   dialog,
-  imageSrc,
-  fileType,
-  extention,
+  image,
   values,
 }: {
   checkList: Checklist[]
   dialog: React.RefObject<HTMLDialogElement>
-  imageSrc: string
-  fileType: string
-  extention: string
+  image: HTMLImageElement
   values: Profile
 }) {
   const router = useRouter()
@@ -35,50 +29,22 @@ export function ConfirmDialog({
     event.currentTarget.innerHTML =
       '<span class="loading loading-ring loading-lg"></span>送信中...'
 
-    const fileName = `${crypto.randomUUID()}.${extention}`
-    const file = await CvtDataUrl2File(imageSrc, fileName)
-    const url = await getServerUrl(fileName)
+    const formElement = document.querySelector('form')
+    const formData = new FormData(formElement as HTMLFormElement)
 
-    await fetch(url, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': fileType,
-        'Content-Disposition': `attachment; filename=${fileName}`,
-      },
-      body: file,
+    fetch('/api/user', {
+      method: 'POST',
+      body: formData,
     })
-      .catch((error) => {
-        alert(error)
-        return
-      })
       .then((res) => {
-        if (!res) {
-          alert('送信に失敗しました')
-        } else if (res.ok) {
-          // values.image[0] からファイル取得困難のためdbdataにs3に保存したファイル名を押し込む。
-          const dbdata = Object.assign(values, { fileName: fileName })
-          fetch('/api/user', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dbdata),
-          })
-            .then((res) => {
-              if (!res.ok) {
-                // DB登録失敗時の画像削除処理は未実装
-                alert(res.statusText)
-                return
-              }
-              router.push('/register/success')
-            })
-            .catch((error) => {
-              // DB登録失敗時の画像削除処理は未実装
-              alert(error)
-            })
-        } else {
-          // DB登録失敗時の画像削除処理は未実装
+        if (!res.ok) {
           alert(res.statusText)
           return
         }
+        router.push('/register/success')
+      })
+      .catch((error) => {
+        alert(error)
       })
   }
 
@@ -93,9 +59,9 @@ export function ConfirmDialog({
                 <th>{value}</th>
                 <td>
                   {name === 'agreement' && '同意する'}
-                  {name === 'image' && imageSrc ? (
+                  {name === 'image' && image ? (
                     <Image
-                      src={imageSrc}
+                      src={image.src}
                       width={100}
                       height={100}
                       alt="Uploaded File"

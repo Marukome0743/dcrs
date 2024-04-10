@@ -3,24 +3,26 @@
 import type { Profile } from '@/app/interfaces/profile'
 import { PhotoIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
-import { type DragEvent, useId, useState } from 'react'
+import { type DragEvent, useState } from 'react'
 import type React from 'react'
-import type { Path, UseFormRegister, UseFormUnregister } from 'react-hook-form'
+import type {
+  Path,
+  UseFormRegister,
+  UseFormSetValue,
+  UseFormUnregister,
+} from 'react-hook-form'
 
 const MAX_UPLOAD_FILE_SIZE = 1024 * 1024
 
 export function ImageUploader({
   register,
   unregister,
-  setFileType,
-  setExtention,
+  setValue,
 }: {
   register: UseFormRegister<Profile>
   unregister: UseFormUnregister<Profile>
-  setFileType: React.Dispatch<React.SetStateAction<string>>
-  setExtention: React.Dispatch<React.SetStateAction<string>>
+  setValue: UseFormSetValue<Profile>
 }) {
-  const imageId = useId()
   const [image, setImage] = useState<FileList | null>(null)
 
   function onClickUpload(e: React.ChangeEvent<HTMLInputElement>) {
@@ -28,20 +30,21 @@ export function ImageUploader({
       return
     }
     setImage(e.target.files)
-    setFileType(e.target.files?.[0].type as string)
-    setExtention(e.target.files?.[0].name?.split('.').pop() as string)
   }
 
   function onClickCancel() {
     setImage(null)
-    setFileType('')
-    setExtention('')
     unregister('image' as Path<Profile>)
+
+    const imageInput = document.querySelector(
+      'input[type="file"]',
+    ) as HTMLInputElement
+    imageInput.value = ''
   }
 
   return (
     <>
-      {image ? (
+      {image && (
         <Image
           src={encodeURI(URL.createObjectURL(image[0]))}
           width={100}
@@ -49,33 +52,31 @@ export function ImageUploader({
           alt="Uploaded File"
           className="w-full"
         />
-      ) : (
-        <DropImageZone setImage={setImage}>
-          <PhotoIcon
-            className="mx-auto size-12 text-gray-300"
-            aria-hidden="true"
-          />
-          <div className="mt-4 flex text-gray-600 text-sm leading-6">
-            <label className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2">
-              <span>アップロード</span>
-              <input
-                type="file"
-                className="sr-only"
-                accept="image/*"
-                id={imageId}
-                {...register('image' as Path<Profile>, { required: true })}
-                alt="Upload Image"
-                onChange={(e) => onClickUpload(e)}
-                required={true}
-              />
-            </label>
-            <p className="pl-1">又は、ドラッグ＆ドロップ</p>
-          </div>
-          <p className="text-gray-600 text-xs leading-5">
-            PNG, JPG, GIF, WEBP のファイルを 1MB まで
-          </p>
-        </DropImageZone>
       )}
+      <DropImageZone image={image} setImage={setImage} setValue={setValue}>
+        <PhotoIcon
+          className="mx-auto size-12 text-gray-300"
+          aria-hidden="true"
+        />
+        <div className="mt-4 flex text-gray-600 text-sm leading-6">
+          <label className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2">
+            <span>アップロード</span>
+            <input
+              type="file"
+              className="sr-only"
+              accept="image/*"
+              {...register('image' as Path<Profile>, { required: true })}
+              alt="Upload Image"
+              onChange={(e) => onClickUpload(e)}
+              required={true}
+            />
+          </label>
+          <p className="pl-1">又は、ドラッグ＆ドロップ</p>
+        </div>
+        <p className="text-gray-600 text-xs leading-5">
+          PNG, JPG, GIF, WEBP のファイルを 1MB まで
+        </p>
+      </DropImageZone>
       <button
         type="button"
         onClick={onClickCancel}
@@ -91,10 +92,14 @@ export function ImageUploader({
 
 function DropImageZone({
   children,
+  image,
   setImage,
+  setValue,
 }: {
   children: React.ReactNode
+  image: FileList | null
   setImage: React.Dispatch<React.SetStateAction<FileList | null>>
+  setValue: UseFormSetValue<Profile>
 }) {
   const [isHoverd, setIsHoverd] = useState<boolean>(false)
 
@@ -113,6 +118,7 @@ function DropImageZone({
     if (isFileTooLarge(e.dataTransfer.files[0].size)) {
       return
     }
+    setValue('image', e.dataTransfer.files)
     setImage(e.dataTransfer.files)
   }
 
@@ -125,6 +131,7 @@ function DropImageZone({
       className={`mt-2 justify-center rounded-lg border border-dashed px-6 py-10 text-center${
         isHoverd ? ' border-indigo-600' : ' border-gray-900/25'
       }`}
+      hidden={image !== null}
     >
       {children}
     </div>
