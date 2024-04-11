@@ -12,6 +12,7 @@ const sawarabi = Sawarabi_Gothic({
 export const metadata: Metadata = {
   title: 'DCRS',
   description: '障がい者手帳登録システム',
+  metadataBase: new URL('https://openuplab-takizawa.com'),
 }
 
 export default function RootLayout({
