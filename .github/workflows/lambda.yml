@@ -48,12 +48,10 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
-          BASE_URL: ${{ secrets.BASE_URL }}
           POSTGRES_PRISMA_URL: ${{ secrets.POSTGRES_PRISMA_URL }}
           POSTGRES_URL_NON_POOLING: ${{ secrets.POSTGRES_URL_NON_POOLING }}
         run: |
           docker build \
-          --secret id=BASE_URL \
           --secret id=POSTGRES_PRISMA_URL \
           --secret id=POSTGRES_URL_NON_POOLING \
           -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .

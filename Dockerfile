@@ -1,6 +1,4 @@
 FROM node:21.7.2 as base
-RUN --mount=type=secret,id=BASE_URL \
-  cat /run/secrets/BASE_URL
 RUN --mount=type=secret,id=POSTGRES_PRISMA_URL \
   cat /run/secrets/POSTGRES_PRISMA_URL
 RUN --mount=type=secret,id=POSTGRES_URL_NON_POOLING \
