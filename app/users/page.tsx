@@ -1,7 +1,9 @@
 import type { User } from '@prisma/client'
 
 function getUsers() {
-  return fetch(`${process.env.URL}/api/user`, { next: { revalidate: 300 } })
+  return fetch(`${process.env.BASE_URL}/api/user`, {
+    next: { revalidate: 300 },
+  })
     .then((res) => {
       if (!res.ok) {
         return null

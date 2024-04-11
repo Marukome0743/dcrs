@@ -86,6 +86,7 @@ jobs:
           outputs: ${{ github.event_name == 'push' && 'type=image,name=target,annotation-index.org.opencontainers.image.description=dcrs multi-arch image' || 'type=docker' }}
           provenance: false
           secrets: |
+            "BASE_URL=https://dcrs.vercel.app"
             "POSTGRES_PRISMA_URL=${{ secrets.POSTGRES_PRISMA_URL }}"
             "POSTGRES_URL_NON_POOLING=${{ secrets.POSTGRES_URL_NON_POOLING }}"
 
