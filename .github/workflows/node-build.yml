@@ -25,6 +25,9 @@ on:
       - "*config.*"
   workflow_dispatch:
 
+env:
+  BASE_URL: https://dcrs.vercel.app
+
 jobs:
   build:
     runs-on: ubuntu-latest
