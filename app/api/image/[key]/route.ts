@@ -10,5 +10,12 @@ export async function GET(
     Key: params.key,
   })
   const response = await client.send(command)
-  return Response.json({ response })
+  const contentType = response.ContentType as string
+
+  return new Response(response.Body as BodyInit, {
+    status: 200,
+    headers: {
+      'Content-Type': contentType,
+    },
+  })
 }
