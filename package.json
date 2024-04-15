@@ -11,7 +11,7 @@
     "postinstall": "prisma generate"
   },
   "dependencies": {
-    "next": "canary",
+    "next": "latest",
     "react": "canary",
     "react-dom": "canary",
     "react-hook-form": "^7.51.3",
