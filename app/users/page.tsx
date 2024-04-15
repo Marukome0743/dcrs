@@ -1,4 +1,5 @@
 import type { User } from '@prisma/client'
+import Link from 'next/link'
 
 function getUsers() {
   return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
@@ -40,7 +41,14 @@ export default async function Users() {
                 <td>{user.employeeId}</td>
                 <td>{user.telephone}</td>
                 <td>{user.email}</td>
-                <td>{user.image}</td>
+                <td>
+                  <Link
+                    href={`/users/${user.image}`}
+                    className="link link-primary"
+                  >
+                    {user.image}
+                  </Link>
+                </td>
               </tr>
             ))
           ) : (
