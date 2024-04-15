@@ -3,6 +3,11 @@ RUN --mount=type=secret,id=POSTGRES_PRISMA_URL \
   cat /run/secrets/POSTGRES_PRISMA_URL
 RUN --mount=type=secret,id=POSTGRES_URL_NON_POOLING \
   cat /run/secrets/POSTGRES_URL_NON_POOLING
+RUN --mount=type=secret,id=S3_ACCESS_KEY_ID \
+  cat /run/secrets/S3_ACCESS_KEY_ID
+RUN --mount=type=secret,id=S3_SECRET_ACCESS_KEY \
+  cat /run/secrets/S3_SECRET_ACCESS_KEY
+
 WORKDIR /app
 RUN npm install -g bun
 
