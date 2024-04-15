@@ -10,7 +10,6 @@ on:
       - main
     paths:
       - "app/**"
-      - "components/**"
       - "public/**"
       - "bun.lockb"
       - "package.json"
