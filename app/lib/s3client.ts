@@ -6,6 +6,5 @@ export const client = new S3Client({
     secretAccessKey: process.env.S3_SECRET_ACCESS_KEY as string,
   },
   endpoint: process.env.S3_ENDPOINT,
-  region: process.env.S3_REGION,
   forcePathStyle: true,
 })
