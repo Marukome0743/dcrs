@@ -1,7 +1,5 @@
 export function getUsers() {
-  return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
-    next: { revalidate: 0 },
-  })
+  return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`)
     .then((res) => {
       if (!res.ok) {
         return null
