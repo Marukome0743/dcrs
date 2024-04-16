@@ -12,7 +12,7 @@ import type {
   UseFormUnregister,
 } from 'react-hook-form'
 
-const MAX_UPLOAD_FILE_SIZE = 1024 * 1024
+const MAX_UPLOAD_FILE_SIZE = 5 * 1024 * 1024
 
 export function ImageUploader({
   register,
@@ -74,7 +74,7 @@ export function ImageUploader({
           <p className="pl-1">又は、ドラッグ＆ドロップ</p>
         </div>
         <p className="text-gray-600 text-xs leading-5">
-          PNG, JPG, GIF, WEBP のファイルを 1MB まで
+          PNG, JPG, GIF, WEBP のファイルを 5MB まで
         </p>
       </DropImageZone>
       <button
@@ -140,7 +140,7 @@ function DropImageZone({
 
 function isFileTooLarge(size: number) {
   if (size > MAX_UPLOAD_FILE_SIZE) {
-    alert('1MB以下でアップロードして下さい')
+    alert('5MB以下でアップロードして下さい')
     return true
   }
   return false
