@@ -1,5 +1,7 @@
+import { getBaseUrl } from '@/app/lib/getBaseUrl'
+
 export function getImage(key: string) {
-  return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/image/${key}`, {
+  return fetch(`${getBaseUrl()}/api/image/${key}`, {
     next: { revalidate: 300 },
   })
     .then((res) => {
