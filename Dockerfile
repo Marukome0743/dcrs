@@ -27,6 +27,7 @@ COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.2 /lambda-adapter /opt
 
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
+COPY prisma ./prisma
 
 EXPOSE 3000
 ENV PORT 3000
