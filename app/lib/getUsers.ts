@@ -1,5 +1,9 @@
+import { getBaseUrl } from '@/app/lib/getBaseUrl'
+
 export function getUsers() {
-  return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
+  const baseUrl = getBaseUrl()
+
+  return fetch(`${baseUrl}/api/user`, {
     next: { revalidate: 0 },
   })
     .then((res) => {
