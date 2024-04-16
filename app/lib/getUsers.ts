@@ -1,6 +1,6 @@
 export function getUsers() {
   return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
-    next: { revalidate: 0 },
+    next: { tags: ['users'] },
   })
     .then((res) => {
       if (!res.ok) {

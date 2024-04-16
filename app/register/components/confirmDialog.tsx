@@ -5,6 +5,7 @@ import {
   ArrowUturnLeftIcon,
   PaperAirplaneIcon,
 } from '@heroicons/react/24/solid'
+import { revalidateTag } from 'next/cache'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import type React from 'react'
@@ -41,6 +42,7 @@ export function ConfirmDialog({
           alert(res.statusText)
           return
         }
+        revalidateTag('users')
         router.push('/register/success')
       })
       .catch((error) => {
