@@ -1,6 +1,8 @@
 import { client } from '@/app/lib/s3client'
 import { GetObjectCommand } from '@aws-sdk/client-s3'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(
   _request: Request,
   { params }: { params: { key: string } },
