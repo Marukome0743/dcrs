@@ -1,20 +1,6 @@
+import { getUsers } from '@/app/lib/getUsers'
 import type { User } from '@prisma/client'
 import Link from 'next/link'
-
-function getUsers() {
-  return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
-    next: { revalidate: 300 },
-  })
-    .then((res) => {
-      if (!res.ok) {
-        return null
-      }
-      return res.json()
-    })
-    .catch((error) => {
-      throw new Error(error)
-    })
-}
 
 export default async function Users() {
   const userData = await getUsers()
