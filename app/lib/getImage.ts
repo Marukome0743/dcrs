@@ -1,5 +1,10 @@
 export function getImage(key: string) {
-  return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/image/${key}`, {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_VERCEL_URL === '*.vercel.app'
+      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+      : process.env.NEXT_PUBLIC_API_URL
+
+  return fetch(`${baseUrl}/api/image/${key}`, {
     next: { revalidate: 300 },
   })
     .then((res) => {
