@@ -21,9 +21,8 @@ COPY . .
 RUN bun test
 RUN bun run build
 
-# FROM oven/bun:canary-distroless
-# WORKDIR /usr/src/app
-FROM base AS runner
+FROM oven/bun:canary-distroless
+WORKDIR /usr/src/app
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.2 /lambda-adapter /opt/extensions/lambda-adapter
 
 COPY --from=builder /app/.next/standalone ./
@@ -32,5 +31,4 @@ COPY prisma ./prisma
 
 EXPOSE 3000
 ENV PORT=3000 HOSTNAME=0.0.0.0
-# CMD ["run", "server.js"]
-CMD ["node", "server.js"]
+CMD ["run", "server.js"]
