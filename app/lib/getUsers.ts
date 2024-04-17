@@ -1,5 +1,9 @@
 export function getUsers() {
-  return fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user`, {
+  const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    : process.env.NEXT_PUBLIC_API_URL
+
+  return fetch(`${baseUrl}/api/user`, {
     next: { revalidate: 0 },
   })
     .then((res) => {
