@@ -1,6 +1,6 @@
 export function getImage(key: string) {
   const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_URL === '*.vercel.app'
+    process.env.NEXT_PUBLIC_VERCEL_URL === 'dcrs.vercel.app'
       ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
       : process.env.NEXT_PUBLIC_API_URL
 
