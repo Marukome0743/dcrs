@@ -18,8 +18,8 @@
     "sharp": "^0.33.3"
   },
   "devDependencies": {
-    "@aws-sdk/client-s3": "^3.554.0",
-    "@aws-sdk/s3-request-presigner": "^3.554.0",
+    "@aws-sdk/client-s3": "^3.556.0",
+    "@aws-sdk/s3-request-presigner": "^3.556.0",
     "@biomejs/biome": "^1.7.0",
     "@happy-dom/global-registrator": "^14.7.1",
     "@heroicons/react": "^2.1.3",
@@ -28,7 +28,7 @@
     "@types/bun": "^1.1.0",
     "@types/react": "^18.2.79",
     "@types/react-dom": "^18.2.25",
-    "daisyui": "^4.10.1",
+    "daisyui": "^4.10.2",
     "postcss": "^8.4.38",
     "prisma": "^5.12.0",
     "tailwindcss": "^3.4.3",
