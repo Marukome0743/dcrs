@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import { Tbody } from './components/tbody'
 
 export default function Users() {
@@ -8,9 +7,7 @@ export default function Users() {
         <thead>
           <TableIndex />
         </thead>
-        <Suspense fallback={<Loading />}>
-          <Tbody />
-        </Suspense>
+        <Tbody />
         <tfoot>
           <TableIndex />
         </tfoot>
@@ -42,15 +39,5 @@ function TableIndex() {
         <th key={index}>{index}</th>
       ))}
     </tr>
-  )
-}
-
-function Loading() {
-  return (
-    <tbody>
-      <tr className="text-center">
-        <th colSpan={9}>データ取得中・・・</th>
-      </tr>
-    </tbody>
   )
 }
