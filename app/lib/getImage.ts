@@ -1,7 +1,7 @@
 export function getImage(key: string) {
   const baseUrl =
-    process.env.NEXT_PUBLIC_VERCEL_URL === '*.vercel.app'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    process.env.VERCEL_URL === '*.vercel.app'
+      ? `https://${process.env.VERCEL_URL}`
       : process.env.NEXT_PUBLIC_API_URL
 
   return fetch(`${baseUrl}/api/image/${key}`, {
