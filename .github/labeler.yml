@@ -29,6 +29,9 @@ docker:
 🧰infrastructure:
 - changed-files:
   - any-glob-to-any-file: ['.devcontainer/*', '.editorconfig', '.env*', 'biome.json', 'bunfig.toml']
+🗼prisma:
+- changed-files:
+  - any-glob-to-any-file: 'prisma/**'
 ✅test:
 - changed-files:
   - any-glob-to-any-file: ['happydom.ts', 'app/**/*.test.tsx']
