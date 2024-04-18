@@ -1,13 +1,4 @@
 FROM node:21.7.3 as base
-RUN --mount=type=secret,id=POSTGRES_PRISMA_URL \
-  POSTGRES_PRISMA_URL=$(cat /run/secrets/POSTGRES_PRISMA_URL)
-RUN --mount=type=secret,id=POSTGRES_URL_NON_POOLING \
-  POSTGRES_URL_NON_POOLING=$(cat /run/secrets/POSTGRES_URL_NON_POOLING)
-RUN --mount=type=secret,id=S3_ACCESS_KEY_ID \
-  S3_ACCESS_KEY_ID=$(cat /run/secrets/S3_ACCESS_KEY_ID)
-RUN --mount=type=secret,id=S3_SECRET_ACCESS_KEY \
-  S3_SECRET_ACCESS_KEY=$(cat /run/secrets/S3_SECRET_ACCESS_KEY)
-
 WORKDIR /app
 RUN npm install -g bun
 
@@ -18,8 +9,17 @@ RUN bun i --frozen-lockfile
 FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+RUN --mount=type=secret,id=POSTGRES_PRISMA_URL \
+  echo POSTGRES_PRISMA_URL=$(cat /run/secrets/POSTGRES_PRISMA_URL) >> .env.production
+RUN --mount=type=secret,id=POSTGRES_URL_NON_POOLING \
+  echo POSTGREWS_URL_NON_POOLING=$(cat /run/secrets/POSTGRES_URL_NON_POOLING) >> .env.production
+RUN --mount=type=secret,id=S3_ACCESS_KEY_ID \
+  echo S3_ACCESS_KEY_ID=$(cat /run/secrets/S3_ACCESS_KEY_ID) >> .env.production
+RUN --mount=type=secret,id=S3_SECRET_ACCESS_KEY \
+  echo S3_SECRET_ACCESS_KEY=$(cat /run/secrets/S3_SECRET_ACCESS_KEY) >> .env.production
+
 RUN bun test
-RUN bun run build
+RUN  bun run build
 
 FROM oven/bun:canary-distroless
 WORKDIR /usr/src/app
