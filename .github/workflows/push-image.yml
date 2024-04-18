@@ -118,7 +118,7 @@ jobs:
         if: inputs.push || github.event_name == 'push' && github.ref_name == 'main' && github.repository_owner == env.REPOSITORY_OWNER
         run: |
           aws lambda update-function-code --function-name ${{ env.LAMBDA_FUNCTION_NAME }} --architectures arm64 \
-          --image-uri ${{ env.AWS_ACCOUNT_NUMBER }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ steps.meta.outputs.tags }}
+          --image-uri ${{ env.AWS_ACCOUNT_NUMBER }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ steps.meta.outputs.version }}
 
       - name: Docker Scout
         if: github.repository_owner == env.REPOSITORY_OWNER && github.event_name == 'pull_request_target'
