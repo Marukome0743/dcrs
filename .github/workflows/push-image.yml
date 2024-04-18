@@ -29,6 +29,9 @@ env:
   REPOSITORY: marukome0743/dcrs
   GHCR_REGISTRY: ghcr.io
   GHCR_REPOSITORY: openup-labtakizawa/dcrs
+  AWS_REGION: ap-northeast-1
+  ECR_REPOSITORY: dcrs
+  LAMBDA_FUNCTION_NAME: dcrs
 
 jobs:
   build:
