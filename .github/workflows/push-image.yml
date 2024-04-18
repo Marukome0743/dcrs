@@ -35,8 +35,8 @@ env:
   REPOSITORY: marukome0743/dcrs
   GHCR_REGISTRY: ghcr.io
   GHCR_REPOSITORY: openup-labtakizawa/dcrs
-  AWS_ACCOUNT_NUMBER: 544280698279
   AWS_REGION: ap-northeast-1
+  ECR_REGISTRY: 544280698279.dkr.ecr.ap-northeast-1.amazonaws.com
   ECR_REPOSITORY: dcrs
   LAMBDA_FUNCTION_NAME: dcrs
 
@@ -81,7 +81,7 @@ jobs:
         if: github.repository_owner == env.REPOSITORY_OWNER
         uses: docker/login-action@v3
         with:
-          registry: ${{ env.AWS_ACCOUNT_NUMBER }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com
+          registry: ${{ env.ECR_REGISTRY }}
 
       - name: Docker meta
         id: meta
@@ -90,7 +90,7 @@ jobs:
           images: |
             ${{ env.REPOSITORY }}
             ${{ env.GHCR_REGISTRY }}/${{ env.GHCR_REPOSITORY }}
-            ${{ env.AWS_ACCOUNT_NUMBER }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}
+            ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}
           tags: |
             type=ref,event=tag
             type=ref,event=pr,prefix=pr-
@@ -117,8 +117,8 @@ jobs:
       - name: Update lambda function
         if: inputs.push || github.event_name == 'push' && github.ref_name == 'main' && github.repository_owner == env.REPOSITORY_OWNER
         run: |
-          aws lambda update-function-code --function-name ${{ env.LAMBDA_FUNCTION_NAME }} --architectures arm64 \
-          --image-uri ${{ env.AWS_ACCOUNT_NUMBER }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPOSITORY }}:${{ steps.meta.outputs.version }}
+          aws lambda update-function-code --function-name ${{ env.LAMBDA_FUNCTION_NAME }} \
+          --image-uri ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ steps.meta.outputs.version }}
 
       - name: Docker Scout
         if: github.repository_owner == env.REPOSITORY_OWNER && github.event_name == 'pull_request_target'
