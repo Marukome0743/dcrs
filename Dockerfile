@@ -19,7 +19,7 @@ RUN --mount=type=secret,id=S3_SECRET_ACCESS_KEY \
   echo S3_SECRET_ACCESS_KEY=$(cat /run/secrets/S3_SECRET_ACCESS_KEY) >> .env.production
 
 RUN bun test
-RUN  bun run build
+RUN bun run build
 
 FROM oven/bun:canary-distroless
 WORKDIR /usr/src/app
