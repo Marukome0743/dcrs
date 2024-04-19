@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:labs
 FROM node:21.7.3 as base
 WORKDIR /app
 RUN npm install -g bun
