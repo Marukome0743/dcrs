@@ -22,7 +22,7 @@ RUN --mount=type=secret,id=S3_SECRET_ACCESS_KEY \
 RUN bun test
 RUN bun run build
 
-FROM oven/bun:canary-distroless
+FROM oven/bun:canary
 WORKDIR /usr/src/app
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.3 /lambda-adapter /opt/extensions/lambda-adapter
 
