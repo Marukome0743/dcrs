@@ -32,7 +32,7 @@ export function ConfirmDialog({
     const formElement = document.querySelector('form')
     const formData = new FormData(formElement as HTMLFormElement)
 
-    fetch('/api/user', {
+    fetch('/api/users', {
       method: 'POST',
       body: formData,
     })
