@@ -10,17 +10,16 @@ RUN bun i --frozen-lockfile
 FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN --mount=type=secret,id=POSTGRES_PRISMA_URL \
-  echo POSTGRES_PRISMA_URL=$(cat /run/secrets/POSTGRES_PRISMA_URL) >> .env.production
-RUN --mount=type=secret,id=POSTGRES_URL_NON_POOLING \
-  echo POSTGREWS_URL_NON_POOLING=$(cat /run/secrets/POSTGRES_URL_NON_POOLING) >> .env.production
-RUN --mount=type=secret,id=S3_ACCESS_KEY_ID \
-  echo S3_ACCESS_KEY_ID=$(cat /run/secrets/S3_ACCESS_KEY_ID) >> .env.production
-RUN --mount=type=secret,id=S3_SECRET_ACCESS_KEY \
-  echo S3_SECRET_ACCESS_KEY=$(cat /run/secrets/S3_SECRET_ACCESS_KEY) >> .env.production
-
 RUN bun test
-RUN bun run build
+RUN --mount=type=secret,id=POSTGRES_PRISMA_URL \
+  --mount=type=secret,id=POSTGRES_URL_NON_POOLING \
+  --mount=type=secret,id=S3_ACCESS_KEY_ID \
+  --mount=type=secret,id=S3_SECRET_ACCESS_KEY \
+  POSTGRES_PRISMA_URL=$(cat /run/secrets/POSTGRES_PRISMA_URL) \
+  POSTGREWS_URL_NON_POOLING=$(cat /run/secrets/POSTGRES_URL_NON_POOLING) \
+  S3_ACCESS_KEY_ID=$(cat /run/secrets/S3_ACCESS_KEY_ID) \
+  S3_SECRET_ACCESS_KEY=$(cat /run/secrets/S3_SECRET_ACCESS_KEY) \
+  bun run build
 
 FROM gcr.io/distroless/nodejs20-debian12:nonroot
 WORKDIR /app
@@ -31,5 +30,5 @@ COPY --from=builder /app/.next/static ./.next/static
 COPY prisma ./prisma
 
 EXPOSE 3000
-ENV PORT=3000 HOSTNAME=0.0.0.0
+ENV AWS_LWA_ENABLE_COMPRESSION=true HOSTNAME=0.0.0.0 PORT=3000
 CMD ["server.js"]
