@@ -30,5 +30,5 @@ COPY --from=builder /app/.next/static ./.next/static
 COPY prisma ./prisma
 
 EXPOSE 3000
-ENV AWS_LWA_ENABLE_COMPRESSION=true HOSTNAME=0.0.0.0 PORT=3000
+ENV AWS_LWA_ENABLE_COMPRESSION=true AWS_LWA_INVOKE_MODE=response_stream HOSTNAME=0.0.0.0 PORT=3000
 CMD ["server.js"]
