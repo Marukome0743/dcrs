@@ -11,15 +11,7 @@ FROM base AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 RUN bun test
-RUN --mount=type=secret,id=POSTGRES_PRISMA_URL \
-  --mount=type=secret,id=POSTGRES_URL_NON_POOLING \
-  --mount=type=secret,id=S3_ACCESS_KEY_ID \
-  --mount=type=secret,id=S3_SECRET_ACCESS_KEY \
-  POSTGRES_PRISMA_URL=$(cat /run/secrets/POSTGRES_PRISMA_URL) \
-  POSTGREWS_URL_NON_POOLING=$(cat /run/secrets/POSTGRES_URL_NON_POOLING) \
-  S3_ACCESS_KEY_ID=$(cat /run/secrets/S3_ACCESS_KEY_ID) \
-  S3_SECRET_ACCESS_KEY=$(cat /run/secrets/S3_SECRET_ACCESS_KEY) \
-  bun run build
+RUN bun run build
 
 FROM gcr.io/distroless/nodejs20-debian12:nonroot
 WORKDIR /app
