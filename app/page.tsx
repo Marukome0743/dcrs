@@ -1,3 +1,4 @@
+import { CameraIcon, TableCellsIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link'
 
 export default function Home() {
@@ -10,9 +11,11 @@ export default function Home() {
       </h1>
       <br />
       <Link href="/register" className="btn btn-primary">
+        <CameraIcon className="size-6" />
         障がい者手帳画像を提出
       </Link>
       <Link href="/users" className="btn btn-secondary">
+        <TableCellsIcon className="size-6" />
         登録データ一覧
       </Link>
     </>
