@@ -24,7 +24,7 @@ export default function Users() {
 function TableIndex() {
   const indexList = [
     'ID',
-    '作成日',
+    '作成日時',
     '氏名',
     '所属会社',
     '社員番号',
@@ -71,7 +71,7 @@ async function Tbody() {
               </label>
             </th>
             <td>{user.id}</td>
-            <td>{String(user.createdAt)}</td>
+            <td>{new Date(user.createdAt).toLocaleString('ja-JP')}</td>
             <td>{user.name}</td>
             <td>{user.company}</td>
             <td>{user.employeeId}</td>
