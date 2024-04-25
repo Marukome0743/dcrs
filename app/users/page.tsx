@@ -1,7 +1,18 @@
 import { getUsers } from '@/app/lib/getUsers'
+import {
+  BuildingOffice2Icon,
+  ClockIcon,
+  EnvelopeIcon,
+  IdentificationIcon,
+  PhoneIcon,
+  PhotoIcon,
+  TagIcon,
+  UserIcon,
+} from '@heroicons/react/24/outline'
 import type { User } from '@prisma/client'
 import Link from 'next/link'
 import { Suspense } from 'react'
+import type { Indexlist } from '../interfaces/indexlist'
 
 export default function Users() {
   return (
@@ -22,16 +33,40 @@ export default function Users() {
 }
 
 function TableIndex() {
-  const indexList = [
-    'ID',
-    '作成日時',
-    '氏名',
-    '所属会社',
-    '社員番号',
-    '電話番号',
-    'メールアドレス',
-    '障がい者手帳画像',
-  ]
+  const indexList: Indexlist[] = [
+    {
+      name: 'ID',
+      icon: TagIcon,
+    },
+    {
+      name: '作成日時',
+      icon: ClockIcon,
+    },
+    {
+      name: '氏名',
+      icon: UserIcon,
+    },
+    {
+      name: '所属会社',
+      icon: BuildingOffice2Icon,
+    },
+    {
+      name: '社員番号',
+      icon: IdentificationIcon,
+    },
+    {
+      name: '電話番号',
+      icon: PhoneIcon,
+    },
+    {
+      name: 'メールアドレス',
+      icon: EnvelopeIcon,
+    },
+    {
+      name: '障がい者手帳画像',
+      icon: PhotoIcon,
+    },
+  ] as const
 
   return (
     <tr>
@@ -41,7 +76,10 @@ function TableIndex() {
         </label>
       </th>
       {indexList.map((index) => (
-        <th key={index}>{index}</th>
+        <th key={index.name} className="text-center">
+          <index.icon className="inline mr-1 size-4" />
+          {index.name}
+        </th>
       ))}
     </tr>
   )
@@ -64,7 +102,7 @@ async function Tbody() {
     <tbody>
       {userData ? (
         userData.users.map((user: User) => (
-          <tr key={user.id}>
+          <tr key={user.id} className="text-center">
             <th>
               <label>
                 <input type="checkbox" className="checkbox" />
