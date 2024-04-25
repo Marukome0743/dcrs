@@ -113,8 +113,19 @@ async function Tbody() {
             <td>{user.name}</td>
             <td>{user.company}</td>
             <td>{user.employeeId}</td>
-            <td>{user.telephone}</td>
-            <td>{user.email}</td>
+            <td>
+              <Link
+                href={`tel:${user.telephone}`}
+                className="link link-primary"
+              >
+                {user.telephone}
+              </Link>
+            </td>
+            <td>
+              <Link href={`mailto:${user.email}`} className="link link-primary">
+                {user.email}
+              </Link>
+            </td>
             <td>
               <Link href={`/users/${user.image}`} className="link link-primary">
                 {user.image}
