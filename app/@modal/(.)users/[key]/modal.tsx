@@ -1,5 +1,6 @@
 'use client'
 
+import { DownloadBtn } from '@/app/components/downloadBtn'
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef } from 'react'
@@ -27,11 +28,13 @@ export function Modal({ children }: { children: React.ReactNode }) {
           type="button"
           onClick={onDismiss}
           className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+          aria-label="閉じる"
         >
           <XMarkIcon />
         </button>
         {children}
         <div className="modal-action">
+          <DownloadBtn />
           <button
             type="button"
             onClick={onDismiss}
