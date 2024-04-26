@@ -1,7 +1,9 @@
+import type React from 'react'
+
 export function Step({
   step,
   targetStep,
-}: { step: string[]; targetStep: number }) {
+}: { step: string[]; targetStep: number }): React.JSX.Element {
   return (
     <>
       <ul className="steps">

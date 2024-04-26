@@ -21,16 +21,18 @@ export function ConfirmDialog({
   dialog: React.RefObject<HTMLDialogElement>
   image: HTMLImageElement
   values: Profile
-}) {
+}): React.JSX.Element {
   const router = useRouter()
 
-  async function onSubmit(event: React.MouseEvent<HTMLButtonElement>) {
+  async function onSubmit(
+    event: React.MouseEvent<HTMLButtonElement>,
+  ): Promise<void> {
     event.currentTarget.disabled = true
     event.currentTarget.innerHTML =
       '<span class="loading loading-ring loading-lg"></span>送信中...'
 
-    const formElement = document.querySelector('form')
-    const formData = new FormData(formElement as HTMLFormElement)
+    const formElement = document.querySelector('form') as HTMLFormElement
+    const formData: FormData = new FormData(formElement)
 
     fetch('/api/users', {
       method: 'POST',

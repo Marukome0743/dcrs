@@ -11,10 +11,11 @@ import {
 } from '@heroicons/react/24/outline'
 import type { User } from '@prisma/client'
 import Link from 'next/link'
+import type React from 'react'
 import { Suspense } from 'react'
 import type { Indexlist } from '../interfaces/indexlist'
 
-export default function Users() {
+export default function Users(): React.JSX.Element {
   return (
     <div className="overflow-x-auto">
       <table className="table table-xs">
@@ -32,7 +33,7 @@ export default function Users() {
   )
 }
 
-function TableIndex() {
+function TableIndex(): React.JSX.Element {
   const indexList: Indexlist[] = [
     {
       name: 'ID',
@@ -85,7 +86,7 @@ function TableIndex() {
   )
 }
 
-function Loading() {
+function Loading(): React.JSX.Element {
   return (
     <tbody>
       <tr className="text-center">
@@ -95,8 +96,8 @@ function Loading() {
   )
 }
 
-async function Tbody() {
-  const userData = await getUsers()
+async function Tbody(): Promise<React.JSX.Element> {
+  const userData = (await getUsers()) as { users: User[] }
 
   return (
     <tbody>

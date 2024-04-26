@@ -1,6 +1,7 @@
 import { Step } from '@/app/components/step'
+import type React from 'react'
 import { STEP } from '../page'
 
-export default function Success() {
+export default function Success(): React.JSX.Element {
   return <Step step={STEP} targetStep={2} />
 }

@@ -1,10 +1,11 @@
 import { Footer } from '@/app/components/footer'
 import type { Metadata } from 'next'
+import type { NextFont } from 'next/dist/compiled/@next/font'
 import { Sawarabi_Gothic } from 'next/font/google'
 import type React from 'react'
 import './globals.css'
 
-const sawarabi = Sawarabi_Gothic({
+const sawarabi: NextFont = Sawarabi_Gothic({
   subsets: ['latin'],
   weight: '400',
 })
@@ -21,7 +22,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
   modal: React.ReactNode
-}) {
+}): React.JSX.Element {
   return (
     <html lang="ja">
       <body className={sawarabi.className}>
