@@ -6,7 +6,7 @@ export default function RegisterLayout({
   children,
 }: {
   children: React.ReactNode
-}) {
+}): React.JSX.Element {
   return (
     <>
       {children}

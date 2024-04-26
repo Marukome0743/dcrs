@@ -1,4 +1,6 @@
-export function Footer() {
+import type React from 'react'
+
+export function Footer(): React.JSX.Element {
   return (
     <footer className="footer footer-center bg-base-300 p-4 text-base-content">
       <aside>

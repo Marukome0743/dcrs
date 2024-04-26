@@ -6,7 +6,9 @@ import { useEffect, useRef } from 'react'
 import type React from 'react'
 import { createPortal } from 'react-dom'
 
-export function Modal({ children }: { children: React.ReactNode }) {
+export function Modal({
+  children,
+}: { children: React.ReactNode }): React.JSX.Element {
   const router = useRouter()
   const dialogRef = useRef<HTMLDialogElement>(null)
 
@@ -16,7 +18,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
     }
   })
 
-  function onDismiss() {
+  function onDismiss(): void {
     router.back()
   }
 
