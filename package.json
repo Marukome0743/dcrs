@@ -38,8 +38,5 @@
     "@prisma/engines",
     "prisma",
     "sharp"
-  ],
-  "optionalDependencies": {
-    "sharp": "^0.33.3"
-  }
+  ]
 }
