@@ -12,7 +12,7 @@ import type {
   UseFormUnregister,
 } from 'react-hook-form'
 
-const MAX_UPLOAD_FILE_SIZE = 5 * 1024 * 1024
+const MAX_UPLOAD_FILE_SIZE: number = 1024 * 1024 * 5
 
 export function ImageUploader({
   register,
@@ -22,18 +22,18 @@ export function ImageUploader({
   register: UseFormRegister<Profile>
   unregister: UseFormUnregister<Profile>
   setValue: UseFormSetValue<Profile>
-}) {
-  const [image, setImage] = useState<FileList | null>(null)
+}): React.JSX.Element {
+  const [image, setImage] = useState<FileList>()
 
-  function onClickUpload(e: React.ChangeEvent<HTMLInputElement>) {
+  function onClickUpload(e: React.ChangeEvent<HTMLInputElement>): void {
     if (isFileTooLarge(e.target.files?.[0].size as number)) {
       return
     }
-    setImage(e.target.files)
+    setImage(e.target.files as FileList)
   }
 
-  function onClickCancel() {
-    setImage(null)
+  function onClickCancel(): void {
+    setImage(undefined)
     unregister('image' as Path<Profile>)
 
     const imageInput = document.querySelector(
@@ -53,7 +53,11 @@ export function ImageUploader({
           className="w-full"
         />
       )}
-      <DropImageZone image={image} setImage={setImage} setValue={setValue}>
+      <DropImageZone
+        image={image as FileList}
+        setImage={setImage as React.Dispatch<React.SetStateAction<FileList>>}
+        setValue={setValue}
+      >
         <PhotoIcon
           className="mx-auto size-12 text-gray-300"
           aria-hidden="true"
@@ -81,7 +85,7 @@ export function ImageUploader({
         type="button"
         onClick={onClickCancel}
         className="btn btn-error w-max place-self-center"
-        disabled={image === null}
+        disabled={!image}
       >
         <XMarkIcon className="size-6" />
         アップロードキャンセル
@@ -97,13 +101,13 @@ function DropImageZone({
   setValue,
 }: {
   children: React.ReactNode
-  image: FileList | null
-  setImage: React.Dispatch<React.SetStateAction<FileList | null>>
+  image: FileList
+  setImage: React.Dispatch<React.SetStateAction<FileList>>
   setValue: UseFormSetValue<Profile>
-}) {
+}): React.JSX.Element {
   const [isHoverd, setIsHoverd] = useState<boolean>(false)
 
-  function onDragLeave(e: DragEvent<HTMLDivElement>) {
+  function onDragLeave(e: DragEvent<HTMLDivElement>): void {
     e.preventDefault()
     if (e.relatedTarget && e.currentTarget.contains(e.relatedTarget as Node)) {
       return
@@ -111,7 +115,7 @@ function DropImageZone({
     setIsHoverd(false)
   }
 
-  function onDrop(e: DragEvent<HTMLDivElement>) {
+  function onDrop(e: DragEvent<HTMLDivElement>): void {
     e.preventDefault()
     setIsHoverd(false)
 
@@ -131,14 +135,14 @@ function DropImageZone({
       className={`mt-2 justify-center rounded-lg border border-dashed px-6 py-10 text-center${
         isHoverd ? ' border-indigo-600' : ' border-gray-900/25'
       }`}
-      hidden={image !== null}
+      hidden={!!image}
     >
       {children}
     </div>
   )
 }
 
-function isFileTooLarge(size: number) {
+function isFileTooLarge(size: number): boolean {
   if (size > MAX_UPLOAD_FILE_SIZE) {
     alert('5MB以下でアップロードして下さい')
     return true

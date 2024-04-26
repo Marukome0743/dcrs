@@ -1,17 +1,18 @@
 import { getImage } from '@/app/lib/getImage'
 import Image from 'next/image'
+import type React from 'react'
 import { Modal } from './modal'
 
 export default async function ImageModal({
   params: { key },
 }: {
   params: { key: string }
-}) {
+}): Promise<React.JSX.Element> {
   const response = (await getImage(key)) as Response
-  const contentType = response.headers.get('Content-Type')
-  const arrayBuffer = await response.arrayBuffer()
-  const buffer = Buffer.from(arrayBuffer)
-  const base64 = buffer.toString('base64')
+  const contentType = response.headers.get('Content-Type') as string
+  const arrayBuffer: ArrayBuffer = await response.arrayBuffer()
+  const buffer: Buffer = Buffer.from(arrayBuffer)
+  const base64: string = buffer.toString('base64')
 
   return (
     <Modal>

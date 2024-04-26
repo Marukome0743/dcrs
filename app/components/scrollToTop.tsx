@@ -2,10 +2,11 @@
 
 import { ChevronDoubleUpIcon } from '@heroicons/react/24/solid'
 import { useState } from 'react'
+import type React from 'react'
 
-export function ScrollToTop() {
+export function ScrollToTop(): React.JSX.Element {
   const [scrollY, setScrollY] = useState<number>(0)
-  const scrollPoint = 200
+  const scrollPoint: number = 200
 
   if (typeof window !== 'undefined') {
     window.onscroll = () => setScrollY(window.scrollY)
