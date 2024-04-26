@@ -1,6 +1,6 @@
 import { Step } from '@/app/components/step'
-import { STEP } from '../page'
+import { STEPS } from '../page'
 
 export default function Success() {
-  return <Step step={STEP} targetStep={2} />
+  return <Step steps={STEPS} targetStep={2} />
 }
