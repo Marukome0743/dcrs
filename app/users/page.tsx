@@ -8,7 +8,7 @@ import {
   PhotoIcon,
   TagIcon,
   UserIcon,
-} from '@heroicons/react/24/outline'
+} from '@heroicons/react/24/solid'
 import type { User } from '@prisma/client'
 import Link from 'next/link'
 import type React from 'react'
@@ -18,7 +18,7 @@ import type { TableHeader } from '../interfaces/tableHeader'
 export default function Users(): React.JSX.Element {
   return (
     <div className="overflow-x-auto">
-      <table className="table table-xs">
+      <table className="table table-xs table-zebra">
         <thead>
           <TableIndex />
         </thead>
@@ -38,34 +38,42 @@ function TableIndex(): React.JSX.Element {
     {
       name: 'ID',
       icon: TagIcon,
+      color: 'text-warning',
     },
     {
       name: '作成日時',
       icon: ClockIcon,
+      color: 'text-primary',
     },
     {
       name: '氏名',
       icon: UserIcon,
+      color: 'text-error',
     },
     {
       name: '所属会社',
       icon: BuildingOffice2Icon,
+      color: 'text-accent',
     },
     {
       name: '社員番号',
       icon: IdentificationIcon,
+      color: 'text-success',
     },
     {
       name: '電話番号',
       icon: PhoneIcon,
+      color: 'text-warning',
     },
     {
       name: 'メールアドレス',
       icon: EnvelopeIcon,
+      color: 'text-info',
     },
     {
       name: '障がい者手帳画像',
       icon: PhotoIcon,
+      color: 'text-secondary',
     },
   ] as const
 
@@ -78,7 +86,7 @@ function TableIndex(): React.JSX.Element {
       </th>
       {indexList.map((index) => (
         <th key={index.name} className="text-center">
-          <index.icon className="inline mr-1 size-4" />
+          <index.icon className={`inline mr-1 size-4 ${index.color}`} />
           {index.name}
         </th>
       ))}
@@ -89,7 +97,7 @@ function TableIndex(): React.JSX.Element {
 function Loading(): React.JSX.Element {
   return (
     <tbody>
-      <tr className="text-center">
+      <tr className="text-center={true}">
         <th colSpan={9}>データ取得中・・・</th>
       </tr>
     </tbody>
@@ -103,7 +111,7 @@ async function Tbody(): Promise<React.JSX.Element> {
     <tbody>
       {userData ? (
         userData.users.map((user: User) => (
-          <tr key={user.id} className="text-center">
+          <tr key={user.id} className="hover text-center">
             <th>
               <label>
                 <input type="checkbox" className="checkbox" />
