@@ -13,7 +13,7 @@ import type { User } from '@prisma/client'
 import Link from 'next/link'
 import type React from 'react'
 import { Suspense } from 'react'
-import type { Indexlist } from '../interfaces/indexlist'
+import type { TableHeader } from '../interfaces/tableHeader'
 
 export default function Users(): React.JSX.Element {
   return (
@@ -34,7 +34,7 @@ export default function Users(): React.JSX.Element {
 }
 
 function TableIndex(): React.JSX.Element {
-  const indexList: Indexlist[] = [
+  const indexList: TableHeader[] = [
     {
       name: 'ID',
       icon: TagIcon,

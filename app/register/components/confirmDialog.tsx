@@ -1,5 +1,5 @@
-import { Step } from '@/app/components/step'
-import type { Checklist } from '@/app/interfaces/checklist'
+import { Stepper } from '@/app/components/stepper'
+import type { FormItem } from '@/app/interfaces/formItem'
 import type { Profile } from '@/app/interfaces/profile'
 import {
   ArrowUturnLeftIcon,
@@ -17,7 +17,7 @@ export function ConfirmDialog({
   image,
   values,
 }: {
-  checkList: Checklist[]
+  checkList: FormItem[]
   dialog: React.RefObject<HTMLDialogElement>
   image: HTMLImageElement
   values: Profile
@@ -53,7 +53,7 @@ export function ConfirmDialog({
   return (
     <dialog ref={dialog} className="modal modal-bottom sm:modal-middle">
       <div className="grid gap-4 modal-box text-center">
-        <Step steps={[...STEPS]} targetStep={1} />
+        <Stepper steps={[...STEPS]} targetStep={1} />
         <table className="table">
           <tbody>
             {checkList.map(({ name, value }) => (

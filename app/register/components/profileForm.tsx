@@ -1,6 +1,6 @@
 'use client'
 
-import type { Checklist } from '@/app/interfaces/checklist'
+import type { FormItem } from '@/app/interfaces/formItem'
 import type { Profile } from '@/app/interfaces/profile'
 import {
   CheckIcon,
@@ -15,7 +15,7 @@ import { type Path, type UseFormRegister, useForm } from 'react-hook-form'
 import { ConfirmDialog } from './confirmDialog'
 import { ImageUploader } from './imageUploader'
 
-const checklist: Checklist[] = [
+const checklist: FormItem[] = [
   {
     name: 'name',
     value: '氏名',
@@ -83,7 +83,7 @@ export function ProfileForm(): React.JSX.Element {
           は必須項目
         </p>
         <Input
-          item={checklist.find((item) => item.name === 'name') as Checklist}
+          item={checklist.find((item) => item.name === 'name') as FormItem}
           register={register}
         />
         <label className="form-control w-full">
@@ -110,18 +110,16 @@ export function ProfileForm(): React.JSX.Element {
         </label>
         <Input
           item={
-            checklist.find((item) => item.name === 'employeeId') as Checklist
+            checklist.find((item) => item.name === 'employeeId') as FormItem
           }
           register={register}
         />
         <Input
-          item={
-            checklist.find((item) => item.name === 'telephone') as Checklist
-          }
+          item={checklist.find((item) => item.name === 'telephone') as FormItem}
           register={register}
         />
         <Input
-          item={checklist.find((item) => item.name === 'email') as Checklist}
+          item={checklist.find((item) => item.name === 'email') as FormItem}
           register={register}
         />
         <div className="card bg-base-100 shadow-xl">
@@ -179,7 +177,7 @@ function Input({
   item,
   register,
 }: {
-  item: Checklist
+  item: FormItem
   register: UseFormRegister<Profile>
 }): React.JSX.Element {
   const Icon = item.icon as React.ElementType

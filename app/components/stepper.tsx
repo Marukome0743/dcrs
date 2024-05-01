@@ -1,7 +1,7 @@
 import type React from 'react'
 import type { Steps } from '../interfaces/steps'
 
-export function Step({
+export function Stepper({
   steps,
   targetStep,
 }: { steps: Steps; targetStep: number }): React.JSX.Element {

@@ -1,6 +1,6 @@
 import type React from 'react'
 
-export type Indexlist = {
+export type TableHeader = {
   name: string
   icon: React.ElementType
 }
