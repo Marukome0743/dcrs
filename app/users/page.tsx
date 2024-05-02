@@ -15,6 +15,49 @@ import type React from 'react'
 import { Suspense } from 'react'
 import type { TableHeader } from '../interfaces/tableHeader'
 
+const indexList: TableHeader[] = [
+  {
+    name: 'ID',
+    icon: TagIcon,
+    color: 'text-warning',
+  },
+  {
+    name: '作成日時',
+    icon: ClockIcon,
+    color: 'text-primary',
+  },
+  {
+    name: '氏名',
+    icon: UserIcon,
+    color: 'text-error',
+  },
+  {
+    name: '所属会社',
+    icon: BuildingOffice2Icon,
+    color: 'text-accent',
+  },
+  {
+    name: '社員番号',
+    icon: IdentificationIcon,
+    color: 'text-success',
+  },
+  {
+    name: '電話番号',
+    icon: PhoneIcon,
+    color: 'text-warning',
+  },
+  {
+    name: 'メールアドレス',
+    icon: EnvelopeIcon,
+    color: 'text-info',
+  },
+  {
+    name: '障がい者手帳画像',
+    icon: PhotoIcon,
+    color: 'text-secondary',
+  },
+] as const
+
 export default function Users(): React.JSX.Element {
   return (
     <div className="overflow-x-auto">
@@ -34,49 +77,6 @@ export default function Users(): React.JSX.Element {
 }
 
 function TableIndex(): React.JSX.Element {
-  const indexList: TableHeader[] = [
-    {
-      name: 'ID',
-      icon: TagIcon,
-      color: 'text-warning',
-    },
-    {
-      name: '作成日時',
-      icon: ClockIcon,
-      color: 'text-primary',
-    },
-    {
-      name: '氏名',
-      icon: UserIcon,
-      color: 'text-error',
-    },
-    {
-      name: '所属会社',
-      icon: BuildingOffice2Icon,
-      color: 'text-accent',
-    },
-    {
-      name: '社員番号',
-      icon: IdentificationIcon,
-      color: 'text-success',
-    },
-    {
-      name: '電話番号',
-      icon: PhoneIcon,
-      color: 'text-warning',
-    },
-    {
-      name: 'メールアドレス',
-      icon: EnvelopeIcon,
-      color: 'text-info',
-    },
-    {
-      name: '障がい者手帳画像',
-      icon: PhotoIcon,
-      color: 'text-secondary',
-    },
-  ] as const
-
   return (
     <tr>
       <th>
@@ -97,8 +97,17 @@ function TableIndex(): React.JSX.Element {
 function Loading(): React.JSX.Element {
   return (
     <tbody>
-      <tr className="text-center={true}">
-        <th colSpan={9}>データ取得中・・・</th>
+      <tr className="text-center">
+        <th>
+          <label>
+            <input type="checkbox" className="checkbox" />
+          </label>
+        </th>
+        {indexList.map((index) => (
+          <td key={index.name}>
+            <p className="skeleton h-4 w-full text-transparent" />
+          </td>
+        ))}
       </tr>
     </tbody>
   )
@@ -111,7 +120,7 @@ async function Tbody(): Promise<React.JSX.Element> {
     <tbody>
       {userData ? (
         userData.users.map((user: User) => (
-          <tr key={user.id} className="hover text-center">
+          <tr key={user.id} className="hover text-center gap-4">
             <th>
               <label>
                 <input type="checkbox" className="checkbox" />
