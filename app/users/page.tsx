@@ -23,7 +23,7 @@ const indexList: TableHeader[] = [
     color: 'text-warning',
   },
   {
-    name: '作成日時',
+    name: '登録日時',
     icon: ClockIcon,
     color: 'text-primary',
   },
