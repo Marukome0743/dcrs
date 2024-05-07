@@ -62,7 +62,7 @@ const indexList: TableHeader[] = [
 export default function Users(): React.JSX.Element {
   return (
     <>
-      <div className="max-w-full overflow-x-auto">
+      <div className="max-h-96 max-w-full overflow-x-auto">
         <table className="table table-xs table-pin-rows table-pin-cols table-zebra text-center">
           <thead>
             <TableIndex />
