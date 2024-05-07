@@ -12,7 +12,6 @@ export default function UserLayout({
       {children}
       <HomeBtn />
       <ScrollToTop />
-      <div id="modal-root" />
     </>
   )
 }

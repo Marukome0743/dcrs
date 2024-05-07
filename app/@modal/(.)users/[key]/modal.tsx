@@ -48,6 +48,6 @@ export function Modal({
         </div>
       </div>
     </dialog>,
-    document.getElementById('modal-root') as HTMLElement,
+    document.body,
   )
 }
