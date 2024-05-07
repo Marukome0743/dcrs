@@ -13,6 +13,7 @@ import type { User } from '@prisma/client'
 import Link from 'next/link'
 import type React from 'react'
 import { Suspense } from 'react'
+import { Pagination } from '../components/pagination'
 import type { TableHeader } from '../interfaces/tableHeader'
 
 const indexList: TableHeader[] = [
@@ -60,19 +61,22 @@ const indexList: TableHeader[] = [
 
 export default function Users(): React.JSX.Element {
   return (
-    <div className="overflow-x-auto">
-      <table className="table table-xs table-zebra">
-        <thead>
-          <TableIndex />
-        </thead>
-        <Suspense fallback={<Loading />}>
-          <Tbody />
-        </Suspense>
-        <tfoot>
-          <TableIndex />
-        </tfoot>
-      </table>
-    </div>
+    <>
+      <div>
+        <table className="table table-xs table-zebra text-center overflow-x-auto">
+          <thead>
+            <TableIndex />
+          </thead>
+          <Suspense fallback={<Loading />}>
+            <Tbody />
+          </Suspense>
+          <tfoot>
+            <TableIndex />
+          </tfoot>
+        </table>
+      </div>
+      <Pagination />
+    </>
   )
 }
 
@@ -85,7 +89,7 @@ function TableIndex(): React.JSX.Element {
         </label>
       </th>
       {indexList.map((index) => (
-        <th key={index.name} className="text-center">
+        <th key={index.name}>
           <index.icon className={`inline mr-1 size-4 ${index.color}`} />
           {index.name}
         </th>
@@ -97,7 +101,7 @@ function TableIndex(): React.JSX.Element {
 function Loading(): React.JSX.Element {
   return (
     <tbody>
-      <tr className="text-center">
+      <tr>
         <th>
           <label>
             <input type="checkbox" className="checkbox" />
@@ -120,7 +124,7 @@ async function Tbody(): Promise<React.JSX.Element> {
     <tbody>
       {userData ? (
         userData.users.map((user: User) => (
-          <tr key={user.id} className="hover text-center gap-4">
+          <tr key={user.id} className="hover gap-4">
             <th>
               <label>
                 <input type="checkbox" className="checkbox" />
@@ -152,7 +156,7 @@ async function Tbody(): Promise<React.JSX.Element> {
           </tr>
         ))
       ) : (
-        <tr className="text-center">
+        <tr>
           <th colSpan={9}>対応待ちデータなし</th>
         </tr>
       )}
