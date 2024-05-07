@@ -37,7 +37,7 @@ async function Badge(): Promise<React.JSX.Element> {
       {userData && userData.users.length > 0 && (
         <div className="badge badge-warning">
           <PlusIcon className="size-4" />
-          {userData.users.length}
+          {userData.users.length}件
         </div>
       )}
     </>
