@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type React from 'react'
-import githubMark from '../public/github-mark.svg'
 
 export function Footer(): React.JSX.Element {
   return (
@@ -11,7 +10,7 @@ export function Footer(): React.JSX.Element {
       </aside>
       <nav>
         <Link href="https://github.com/OpenUp-LabTakizawa/dcrs" target="_blank">
-          <Image src={githubMark} alt="GitHub" width={24} height={24} />
+          <Image src="/github-mark.svg" alt="GitHub" width={24} height={24} />
         </Link>
       </nav>
     </footer>
