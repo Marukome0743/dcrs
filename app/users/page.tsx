@@ -63,13 +63,15 @@ export default function Users(): React.JSX.Element {
   return (
     <>
       <div className="max-w-full overflow-x-auto">
-        <table className="table table-xs table-zebra text-center">
+        <table className="table table-xs table-pin-rows table-pin-cols table-zebra text-center">
           <thead>
             <TableIndex />
           </thead>
-          <Suspense fallback={<Loading />}>
-            <Tbody />
-          </Suspense>
+          <tbody>
+            <Suspense fallback={<Loading />}>
+              <Tbody />
+            </Suspense>
+          </tbody>
           <tfoot>
             <TableIndex />
           </tfoot>
@@ -83,37 +85,39 @@ export default function Users(): React.JSX.Element {
 function TableIndex(): React.JSX.Element {
   return (
     <tr>
-      <th>
-        <label>
-          <input type="checkbox" className="checkbox" />
-        </label>
-      </th>
+      <Checkbox />
       {indexList.map((index) => (
-        <th key={index.name}>
+        <td key={index.name}>
           <index.icon className={`inline mr-1 size-4 ${index.color}`} />
           {index.name}
-        </th>
+        </td>
       ))}
+      <Checkbox />
     </tr>
+  )
+}
+
+function Checkbox(): React.JSX.Element {
+  return (
+    <th>
+      <label>
+        <input type="checkbox" className="checkbox" />
+      </label>
+    </th>
   )
 }
 
 function Loading(): React.JSX.Element {
   return (
-    <tbody>
-      <tr>
-        <th>
-          <label>
-            <input type="checkbox" className="checkbox" />
-          </label>
-        </th>
-        {indexList.map((index) => (
-          <td key={index.name}>
-            <p className="skeleton h-4 w-full text-transparent" />
-          </td>
-        ))}
-      </tr>
-    </tbody>
+    <tr>
+      <Checkbox />
+      {indexList.map((index) => (
+        <td key={index.name}>
+          <p className="skeleton h-4 w-full text-transparent" />
+        </td>
+      ))}
+      <Checkbox />
+    </tr>
   )
 }
 
@@ -121,15 +125,11 @@ async function Tbody(): Promise<React.JSX.Element> {
   const userData = (await getUsers()) as { users: User[] }
 
   return (
-    <tbody>
+    <>
       {userData ? (
         userData.users.map((user: User) => (
-          <tr key={user.id} className="hover gap-4">
-            <th>
-              <label>
-                <input type="checkbox" className="checkbox" />
-              </label>
-            </th>
+          <tr key={user.id} className="hover">
+            <Checkbox />
             <td>{user.id}</td>
             <td>{new Date(user.createdAt).toLocaleString('ja-JP')}</td>
             <td>{user.name}</td>
@@ -153,6 +153,7 @@ async function Tbody(): Promise<React.JSX.Element> {
                 {user.image}
               </Link>
             </td>
+            <Checkbox />
           </tr>
         ))
       ) : (
@@ -160,6 +161,6 @@ async function Tbody(): Promise<React.JSX.Element> {
           <th colSpan={9}>対応待ちデータなし</th>
         </tr>
       )}
-    </tbody>
+    </>
   )
 }
