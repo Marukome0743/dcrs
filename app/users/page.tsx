@@ -68,7 +68,7 @@ export default function Users(): React.JSX.Element {
             <TableIndex />
           </thead>
           <tbody>
-            <Suspense fallback={<Loading />}>
+            <Suspense fallback={<Skeleton />}>
               <Tbody />
             </Suspense>
           </tbody>
@@ -107,7 +107,7 @@ function Checkbox(): React.JSX.Element {
   )
 }
 
-function Loading(): React.JSX.Element {
+function Skeleton(): React.JSX.Element {
   return (
     <tr>
       <Checkbox />
