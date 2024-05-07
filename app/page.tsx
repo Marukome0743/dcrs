@@ -4,6 +4,14 @@ import type { User } from '@prisma/client'
 import Link from 'next/link'
 import type React from 'react'
 import { Suspense } from 'react'
+import type { SiteLink } from './interfaces/siteLink'
+
+export const usersLink: SiteLink = {
+  name: '登録データ一覧',
+  href: '/users',
+  icon: TableCellsIcon,
+  color: 'text-secondary',
+}
 
 export default function Home(): React.JSX.Element {
   return (
@@ -18,9 +26,9 @@ export default function Home(): React.JSX.Element {
         <CameraIcon className="size-6" />
         障がい者手帳画像を提出
       </Link>
-      <Link href="/users" className="btn btn-secondary">
-        <TableCellsIcon className="size-6" />
-        登録データ一覧
+      <Link href={usersLink.href} className="btn btn-secondary">
+        <usersLink.icon className="size-6" />
+        {usersLink.name}
         <Suspense fallback={<div className="badge skeleton w-8" />}>
           <Badge />
         </Suspense>

@@ -1,5 +1,9 @@
+import { Breadcrumb } from '@/app/components/breadcrumb'
 import { DownloadBtn } from '@/app/components/downloadBtn'
+import type { SiteLink } from '@/app/interfaces/siteLink'
 import { getImage } from '@/app/lib/getImage'
+import { usersLink } from '@/app/page'
+import { PhotoIcon } from '@heroicons/react/24/solid'
 import { ArrowUturnLeftIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -10,6 +14,12 @@ export default async function ImagePage({
 }: {
   params: { key: string }
 }): Promise<React.JSX.Element> {
+  const imageLink: SiteLink = {
+    name: key,
+    href: '',
+    icon: PhotoIcon,
+    color: 'text-accent',
+  }
   const response = (await getImage(key)) as Response
   const contentType = response.headers.get('Content-Type') as string
   const arrayBuffer: ArrayBuffer = await response.arrayBuffer()
@@ -18,6 +28,7 @@ export default async function ImagePage({
 
   return (
     <>
+      <Breadcrumb crumbs={[usersLink, imageLink]} />
       <h1 className="font-semibold text-2xl">{key}</h1>
       <Image
         src={`data:${contentType};base64,${base64}`}
