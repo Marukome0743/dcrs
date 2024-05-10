@@ -1,29 +1,29 @@
-import { getImage } from '@/app/lib/getImage'
-import Image from 'next/image'
+import { DcrsImage } from '@/app/components/dcrsImage'
 import type React from 'react'
+import { Suspense } from 'react'
 import { Modal } from './modal'
 
-export default async function ImageModal({
+export default function ImageModal({
   params: { key },
 }: {
   params: { key: string }
-}): Promise<React.JSX.Element> {
-  const response = (await getImage(key)) as Response
-  const contentType = response.headers.get('Content-Type') as string
-  const arrayBuffer: ArrayBuffer = await response.arrayBuffer()
-  const buffer: Buffer = Buffer.from(arrayBuffer)
-  const base64: string = buffer.toString('base64')
-
+}): React.JSX.Element {
   return (
     <Modal>
-      <Image
-        src={`data:${contentType};base64,${base64}`}
-        id={key}
-        width={100}
-        height={100}
-        className="w-full"
-        alt="障がい者手帳画像"
-      />
+      <Suspense fallback={<Skelton />}>
+        <DcrsImage path={key} />
+      </Suspense>
     </Modal>
+  )
+}
+
+function Skelton(): React.JSX.Element {
+  return (
+    <>
+      <h1>
+        <p className="skeleton h-6 w-32" />
+      </h1>
+      <div className="skeleton h-64 w-full" />
+    </>
   )
 }

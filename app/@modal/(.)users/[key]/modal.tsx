@@ -5,7 +5,6 @@ import { XMarkIcon } from '@heroicons/react/24/solid'
 import { useRouter } from 'next/navigation'
 import { useEffect, useRef } from 'react'
 import type React from 'react'
-import { createPortal } from 'react-dom'
 
 export function Modal({
   children,
@@ -23,7 +22,7 @@ export function Modal({
     router.back()
   }
 
-  return createPortal(
+  return (
     <dialog ref={dialogRef} className="modal" onClose={onDismiss}>
       <div className="modal-box">
         <button
@@ -47,7 +46,6 @@ export function Modal({
           </button>
         </div>
       </div>
-    </dialog>,
-    document.body,
+    </dialog>
   )
 }
