@@ -44,7 +44,7 @@ export function ImageUploader({
 
   return (
     <>
-      {image && (
+      {image?.[0] && (
         <Image
           src={encodeURI(URL.createObjectURL(image[0]))}
           width={100}
