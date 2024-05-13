@@ -93,10 +93,10 @@ export function ProfileForm(): React.JSX.Element {
           <select
             className="select select-bordered"
             {...register('company', { required: true })}
-            defaultValue={''}
+            defaultValue=""
             required={true}
           >
-            <option value={''} disabled={true}>
+            <option value="" disabled={true}>
               以下から１つ選択
             </option>
             {COMPANIES.map((company) => (
