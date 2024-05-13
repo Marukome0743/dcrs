@@ -12,7 +12,7 @@ import type {
   UseFormUnregister,
 } from 'react-hook-form'
 
-const MAX_UPLOAD_FILE_SIZE: number = 1024 * 1024 * 5
+const MAX_UPLOAD_FILE_SIZE: number = 5 * 1024 * 1024
 
 export function ImageUploader({
   register,

@@ -8,19 +8,17 @@ import {
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import type React from 'react'
-import type { Path } from 'react-hook-form'
+import type { Path, UseFormWatch } from 'react-hook-form'
 import { STEPS } from '../page'
 
 export function ConfirmDialog({
   checkList,
   dialog,
-  image,
-  values,
+  watch,
 }: {
   checkList: FormItem[]
   dialog: React.RefObject<HTMLDialogElement>
-  image: HTMLImageElement
-  values: Profile
+  watch: UseFormWatch<Profile>
 }): React.JSX.Element {
   const router = useRouter()
 
@@ -61,16 +59,16 @@ export function ConfirmDialog({
                 <th>{value}</th>
                 <td>
                   {name === 'agreement' && '同意する'}
-                  {name === 'image' && image ? (
+                  {name === 'image' && watch(name as Path<Profile>) ? (
                     <Image
-                      src={image.src}
+                      src={document.getElementsByTagName('img')[0].src}
                       width={100}
                       height={100}
                       alt="Uploaded File"
                       className="w-full"
                     />
                   ) : (
-                    (values[name as Path<Profile>] as string)
+                    (watch(name as Path<Profile>) as string)
                   )}
                 </td>
               </tr>

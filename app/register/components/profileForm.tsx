@@ -10,7 +10,7 @@ import {
   UserIcon,
 } from '@heroicons/react/24/solid'
 import type React from 'react'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { type Path, type UseFormRegister, useForm } from 'react-hook-form'
 import { ConfirmDialog } from './confirmDialog'
 import { ImageUploader } from './imageUploader'
@@ -67,12 +67,10 @@ const COMPANIES: string[] = [
 ] as const
 
 export function ProfileForm(): React.JSX.Element {
-  const { handleSubmit, register, unregister, getValues, setValue } =
+  const { handleSubmit, register, unregister, setValue, watch } =
     useForm<Profile>()
   const dialog = useRef<HTMLDialogElement>(null)
-  const [image, setImage] = useState<HTMLImageElement>()
   const onSubmit: React.FormEventHandler<HTMLFormElement> = handleSubmit(() => {
-    setImage(document.getElementsByTagName('img')?.[0] as HTMLImageElement)
     dialog.current?.showModal()
   })
 
@@ -163,12 +161,7 @@ export function ProfileForm(): React.JSX.Element {
           確認画面へ
         </button>
       </form>
-      <ConfirmDialog
-        dialog={dialog}
-        checkList={checklist}
-        image={image as HTMLImageElement}
-        values={getValues()}
-      />
+      <ConfirmDialog dialog={dialog} checkList={[...checklist]} watch={watch} />
     </>
   )
 }
