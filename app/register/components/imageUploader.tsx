@@ -12,7 +12,13 @@ import type {
   UseFormUnregister,
 } from 'react-hook-form'
 
-const MAX_UPLOAD_FILE_SIZE: number = 5 * 1024 * 1024
+const MAX_UPLOAD_SIZE: number = 5 * 1024 * 1024
+const ACCEPTED_IMAGE_TYPES: string[] = [
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+  'image/webp',
+]
 
 export function ImageUploader({
   register,
@@ -26,7 +32,7 @@ export function ImageUploader({
   const [image, setImage] = useState<FileList>()
 
   function onClickUpload(e: React.ChangeEvent<HTMLInputElement>): void {
-    if (isFileTooLarge(e.target.files?.[0].size as number)) {
+    if (isValidFileType(e.target.files?.[0] as File)) {
       return
     }
     setImage(e.target.files as FileList)
@@ -78,7 +84,7 @@ export function ImageUploader({
           <p className="pl-1">又は、ドラッグ＆ドロップ</p>
         </div>
         <p className="text-gray-600 text-xs leading-5">
-          PNG, JPG, GIF, WEBP のファイルを 5MB まで
+          JPEG, JPG, PNG, WEBP のファイルを 5MB まで
         </p>
       </DropImageZone>
       <button
@@ -119,7 +125,7 @@ function DropImageZone({
     e.preventDefault()
     setIsHoverd(false)
 
-    if (isFileTooLarge(e.dataTransfer.files[0].size)) {
+    if (isValidFileType(e.dataTransfer.files[0])) {
       return
     }
     setValue('image', e.dataTransfer.files)
@@ -142,9 +148,13 @@ function DropImageZone({
   )
 }
 
-function isFileTooLarge(size: number): boolean {
-  if (size > MAX_UPLOAD_FILE_SIZE) {
+function isValidFileType(file: File): boolean {
+  if (file.size > MAX_UPLOAD_SIZE) {
     alert('5MB以下でアップロードして下さい')
+    return true
+  }
+  if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
+    alert('JPEG, JPG, PNG, WEBP 形式のファイルをアップロードして下さい')
     return true
   }
   return false
