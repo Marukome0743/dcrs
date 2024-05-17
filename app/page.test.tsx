@@ -19,7 +19,7 @@ test('Link test', () => {
   expect(link1?.textContent).toEqual('障がい者手帳画像を提出')
   expect(link1?.getAttribute('href')).toEqual('/register')
 
-  expect(link2?.getAttribute('class')).toEqual('btn btn-secondary')
+  expect(link2?.getAttribute('class')).toEqual('indicator btn btn-secondary')
   expect(link2?.textContent).toEqual('登録データ一覧')
   expect(link2?.getAttribute('href')).toEqual('/users')
 })
