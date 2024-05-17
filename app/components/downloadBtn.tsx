@@ -1,9 +1,10 @@
 'use client'
 
 import { FolderArrowDownIcon } from '@heroicons/react/24/solid'
+import type React from 'react'
 
-export function DownloadBtn() {
-  function download() {
+export function DownloadBtn(): React.JSX.Element {
+  function download(): void {
     const image = document.getElementsByTagName('img')?.[0]
     const link = document.createElement('a')
     link.href = image.src
