@@ -76,7 +76,11 @@ export function ConfirmDialog({
           </tbody>
         </table>
         <div className="modal-action justify-center gap-4">
-          <button type="submit" className="btn btn-info" onClick={onSubmit}>
+          <button
+            type="submit"
+            className="animate-bounce btn btn-info"
+            onClick={onSubmit}
+          >
             <PaperAirplaneIcon className="size-6" />
             送信
           </button>
