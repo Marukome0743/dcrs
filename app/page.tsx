@@ -18,10 +18,12 @@ export default function Home(): React.JSX.Element {
         <CameraIcon className="size-6" />
         障がい者手帳画像を提出
       </Link>
-      <Link href="/users" className="btn btn-secondary">
+      <Link href="/users" className="indicator btn btn-secondary">
         <TableCellsIcon className="size-6" />
         登録データ一覧
-        <Suspense fallback={<div className="badge skeleton w-8" />}>
+        <Suspense
+          fallback={<div className="indicator-item badge skeleton w-8" />}
+        >
           <Badge />
         </Suspense>
       </Link>
@@ -35,7 +37,7 @@ async function Badge(): Promise<React.JSX.Element> {
   return (
     <>
       {userData && userData.users.length > 0 && (
-        <div className="badge badge-warning">
+        <div className="indicator-item badge badge-warning">
           <PlusIcon className="size-4" />
           {userData.users.length}件
         </div>
