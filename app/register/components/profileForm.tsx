@@ -154,7 +154,7 @@ export function ProfileForm(): React.JSX.Element {
           setValue={setValue}
         />
         <button
-          className="btn btn-warning w-max place-self-center"
+          className="animate-bounce btn btn-warning w-max place-self-center"
           type="submit"
         >
           <CheckIcon className="size-6" />
