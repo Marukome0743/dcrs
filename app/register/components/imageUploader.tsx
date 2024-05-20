@@ -24,15 +24,18 @@ export function ImageUploader({
   register,
   unregister,
   setValue,
+  setError,
 }: {
   register: UseFormRegister<Profile>
   unregister: UseFormUnregister<Profile>
   setValue: UseFormSetValue<Profile>
+  setError: React.Dispatch<React.SetStateAction<string>>
 }): React.JSX.Element {
   const [image, setImage] = useState<FileList>()
 
   function onClickUpload(e: React.ChangeEvent<HTMLInputElement>): void {
-    if (isValidFileType(e.target.files?.[0] as File)) {
+    if (validateFile(e.target.files?.[0] as File)) {
+      setError(validateFile(e.target.files?.[0] as File))
       return
     }
     setImage(e.target.files as FileList)
@@ -63,6 +66,7 @@ export function ImageUploader({
         image={image as FileList}
         setImage={setImage as React.Dispatch<React.SetStateAction<FileList>>}
         setValue={setValue}
+        setError={setError}
       >
         <PhotoIcon
           className="mx-auto size-12 text-gray-300"
@@ -105,11 +109,13 @@ function DropImageZone({
   image,
   setImage,
   setValue,
+  setError,
 }: {
   children: React.ReactNode
   image: FileList
   setImage: React.Dispatch<React.SetStateAction<FileList>>
   setValue: UseFormSetValue<Profile>
+  setError: React.Dispatch<React.SetStateAction<string>>
 }): React.JSX.Element {
   const [isHoverd, setIsHoverd] = useState<boolean>(false)
 
@@ -125,7 +131,8 @@ function DropImageZone({
     e.preventDefault()
     setIsHoverd(false)
 
-    if (isValidFileType(e.dataTransfer.files[0])) {
+    if (validateFile(e.dataTransfer.files[0])) {
+      setError(validateFile(e.dataTransfer.files[0]))
       return
     }
     setValue('image', e.dataTransfer.files)
@@ -148,14 +155,12 @@ function DropImageZone({
   )
 }
 
-function isValidFileType(file: File): boolean {
+function validateFile(file: File): string {
   if (file.size > MAX_UPLOAD_SIZE) {
-    alert('5MB以下でアップロードして下さい')
-    return true
+    return 'ファイルサイズは最大5MBです'
   }
   if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
-    alert('JPEG, JPG, PNG, WEBP 形式のファイルをアップロードして下さい')
-    return true
+    return '不正なファイル形式です'
   }
-  return false
+  return ''
 }
