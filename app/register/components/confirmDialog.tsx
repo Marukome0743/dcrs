@@ -1,3 +1,4 @@
+import { PingAnimation } from '@/app/components/pingAnimation'
 import { Stepper } from '@/app/components/stepper'
 import type { FormItem } from '@/app/interfaces/formItem'
 import type { Profile } from '@/app/interfaces/profile'
@@ -8,6 +9,7 @@ import {
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import type React from 'react'
+import { useState } from 'react'
 import type { Path, UseFormWatch } from 'react-hook-form'
 import { STEPS } from '../page'
 
@@ -15,20 +17,18 @@ export function ConfirmDialog({
   checkList,
   dialog,
   watch,
+  setError,
 }: {
   checkList: FormItem[]
   dialog: React.RefObject<HTMLDialogElement>
   watch: UseFormWatch<Profile>
+  setError: React.Dispatch<React.SetStateAction<string>>
 }): React.JSX.Element {
+  const [isPending, setIsPending] = useState(false)
   const router = useRouter()
 
-  async function onSubmit(
-    event: React.MouseEvent<HTMLButtonElement>,
-  ): Promise<void> {
-    event.currentTarget.disabled = true
-    event.currentTarget.innerHTML =
-      '<span class="loading loading-ring loading-lg"></span>送信中...'
-
+  async function onSubmit(): Promise<void> {
+    setIsPending(true)
     const formElement = document.querySelector('form') as HTMLFormElement
     const formData: FormData = new FormData(formElement)
 
@@ -37,14 +37,18 @@ export function ConfirmDialog({
       body: formData,
     })
       .then((res) => {
+        dialog.current?.close()
         if (!res.ok) {
-          alert(res.statusText)
+          setError(res.statusText)
+          setIsPending(false)
           return
         }
         router.push('/register/success')
       })
       .catch((error) => {
-        alert(error)
+        dialog.current?.close()
+        setError(error)
+        setIsPending(false)
       })
   }
 
@@ -78,9 +82,13 @@ export function ConfirmDialog({
         <div className="modal-action justify-center gap-4">
           <button
             type="submit"
-            className="animate-bounce btn btn-info"
+            className={`btn btn-info ${
+              isPending ? 'indicator' : 'animate-bounce'
+            }`}
             onClick={onSubmit}
+            disabled={isPending}
           >
+            {isPending && <PingAnimation />}
             <PaperAirplaneIcon className="size-6" />
             送信
           </button>
@@ -95,7 +103,11 @@ export function ConfirmDialog({
         </div>
       </div>
       <div className="modal-backdrop">
-        <button type="button" onClick={() => dialog.current?.close()} />
+        <button
+          type="button"
+          onClick={() => dialog.current?.close()}
+          aria-label="戻る"
+        />
       </div>
     </dialog>
   )
