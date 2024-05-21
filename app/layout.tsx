@@ -19,10 +19,10 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
   modal,
-}: {
+}: Readonly<{
   children: React.ReactNode
   modal: React.ReactNode
-}): React.JSX.Element {
+}>): React.JSX.Element {
   return (
     <html lang="ja">
       <body className={sawarabi.className}>

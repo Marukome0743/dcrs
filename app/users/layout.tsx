@@ -4,9 +4,9 @@ import type React from 'react'
 
 export default function UserLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}): React.JSX.Element {
+}>): React.JSX.Element {
   return (
     <>
       {children}
