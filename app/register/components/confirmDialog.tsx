@@ -17,12 +17,14 @@ export function ConfirmDialog({
   checkList,
   dialog,
   watch,
-  setError,
+  setAlert,
 }: {
   checkList: FormItem[]
   dialog: React.RefObject<HTMLDialogElement>
   watch: UseFormWatch<Profile>
-  setError: React.Dispatch<React.SetStateAction<string>>
+  setAlert: React.Dispatch<
+    React.SetStateAction<{ eventType: string; message: string }>
+  >
 }): React.JSX.Element {
   const [isPending, setIsPending] = useState(false)
   const router = useRouter()
@@ -39,15 +41,16 @@ export function ConfirmDialog({
       .then((res) => {
         dialog.current?.close()
         if (!res.ok) {
-          setError(res.statusText)
+          setAlert({ eventType: 'error', message: res.statusText })
           setIsPending(false)
           return
         }
+        setAlert({ eventType: 'success', message: '送信に成功しました' })
         router.push('/register/success')
       })
       .catch((error) => {
         dialog.current?.close()
-        setError(error)
+        setAlert({ eventType: 'error', message: error })
         setIsPending(false)
       })
   }
