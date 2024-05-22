@@ -68,8 +68,7 @@ const COMPANIES: string[] = [
 ] as const
 
 export function ProfileForm(): React.JSX.Element {
-  const { handleSubmit, register, unregister, setValue, watch } =
-    useForm<Profile>()
+  const { handleSubmit, register, unregister, watch } = useForm<Profile>()
   const [error, setError] = useState<string>('')
   const dialog = useRef<HTMLDialogElement>(null)
   const onSubmit: React.FormEventHandler<HTMLFormElement> = handleSubmit(() => {
@@ -154,7 +153,6 @@ export function ProfileForm(): React.JSX.Element {
         <ImageUploader
           register={register}
           unregister={unregister}
-          setValue={setValue}
           setError={setError}
         />
         <button
