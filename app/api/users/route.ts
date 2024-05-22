@@ -6,8 +6,6 @@ import {
 } from '@aws-sdk/client-s3'
 import type { User } from '@prisma/client'
 
-export const dynamic = 'force-dynamic'
-
 export async function GET(): Promise<Response> {
   const users: User[] = await prisma.user.findMany()
   return Response.json({ users })
