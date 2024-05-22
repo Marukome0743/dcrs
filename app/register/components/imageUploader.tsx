@@ -18,11 +18,13 @@ const ACCEPTED_IMAGE_TYPES: string[] = [
 export function ImageUploader({
   register,
   unregister,
-  setError,
+  setAlert,
 }: {
   register: UseFormRegister<Profile>
   unregister: UseFormUnregister<Profile>
-  setError: React.Dispatch<React.SetStateAction<string>>
+  setAlert: React.Dispatch<
+    React.SetStateAction<{ eventType: string; message: string }>
+  >
 }): React.JSX.Element {
   const inputRef = useRef<HTMLInputElement>()
   const [image, setImage] = useState<FileList>()
@@ -41,22 +43,23 @@ export function ImageUploader({
   }
 
   function onUpload(e: React.ChangeEvent<HTMLInputElement>): void {
-    if (validateFile(e.target.files?.[0] as File)) {
-      const ref = inputRef as React.MutableRefObject<HTMLInputElement>
-      ref.current.value = ''
-      setImage(undefined)
-      unregister('image' as Path<Profile>)
-      setError(validateFile(e.target.files?.[0] as File))
+    const result = validateFile(e.target.files?.[0] as File)
+    if (result) {
+      onUploadCancel('error', result)
       return
     }
     setImage(e.target.files as FileList)
   }
 
-  function onUploadCancel(): void {
+  function onUploadCancel(eventType: string, message: string): void {
     const ref = inputRef as React.MutableRefObject<HTMLInputElement>
     ref.current.value = ''
     setImage(undefined)
     unregister('image' as Path<Profile>)
+    setAlert({
+      eventType: eventType,
+      message: message,
+    })
   }
 
   return (
@@ -86,8 +89,10 @@ export function ImageUploader({
               className="sr-only"
               accept="image/*"
               onChange={(e) => {
-                onChange(e)
-                onUpload(e)
+                if (e.target.files?.[0]) {
+                  onChange(e)
+                  onUpload(e)
+                }
               }}
               ref={(element) => {
                 ref(element)
@@ -106,7 +111,7 @@ export function ImageUploader({
       </DropImageZone>
       <button
         type="button"
-        onClick={onUploadCancel}
+        onClick={() => onUploadCancel('success', 'キャンセルしました')}
         className="btn btn-error w-max place-self-center"
         disabled={!image}
       >

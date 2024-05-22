@@ -69,7 +69,10 @@ const COMPANIES: string[] = [
 
 export function ProfileForm(): React.JSX.Element {
   const { handleSubmit, register, unregister, watch } = useForm<Profile>()
-  const [error, setError] = useState<string>('')
+  const [alert, setAlert] = useState<{ eventType: string; message: string }>({
+    eventType: '',
+    message: '',
+  })
   const dialog = useRef<HTMLDialogElement>(null)
   const onSubmit: React.FormEventHandler<HTMLFormElement> = handleSubmit(() => {
     dialog.current?.showModal()
@@ -77,7 +80,13 @@ export function ProfileForm(): React.JSX.Element {
 
   return (
     <>
-      {error && <Alert message={error} setMessage={setError} />}
+      {alert.eventType && alert.message && (
+        <Alert
+          eventType={alert.eventType}
+          message={alert.message}
+          setMessage={setAlert}
+        />
+      )}
       <form onSubmit={onSubmit} className="flex flex-col gap-6 max-w-xs">
         <p className="text-center before:ml-0.5 before:text-red-500 before:content-['*']">
           は必須項目
@@ -153,7 +162,7 @@ export function ProfileForm(): React.JSX.Element {
         <ImageUploader
           register={register}
           unregister={unregister}
-          setError={setError}
+          setAlert={setAlert}
         />
         <button
           className="animate-bounce btn btn-warning w-max place-self-center"
@@ -167,7 +176,7 @@ export function ProfileForm(): React.JSX.Element {
         dialog={dialog}
         checkList={[...checklist]}
         watch={watch}
-        setError={setError}
+        setAlert={setAlert}
       />
     </>
   )
