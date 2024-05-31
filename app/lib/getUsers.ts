@@ -6,7 +6,7 @@ export function getUsers(): Promise<{ users: User[] } | null> {
       ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
       : process.env.NEXT_PUBLIC_API_URL
 
-  return fetch(`${baseUrl}/api/users`)
+  return fetch(`${baseUrl}/api/users`, { cache: 'no-store' })
     .then((res) => {
       if (!res.ok) {
         return null
