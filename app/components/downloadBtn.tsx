@@ -16,7 +16,7 @@ export function DownloadBtn(): React.JSX.Element {
     <button
       type="button"
       onClick={download}
-      className="btn btn-secondary justify-self-end"
+      className="animate-bounce btn btn-secondary justify-self-end"
     >
       <FolderArrowDownIcon className="size-6" />
       ダウンロード
