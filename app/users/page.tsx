@@ -20,6 +20,8 @@ import { Pagination } from '../components/pagination'
 import type { SiteLink } from '../interfaces/siteLink'
 import type { TableHeader } from '../interfaces/tableHeader'
 
+export const dynamic = 'force-dynamic'
+
 export const usersLink: SiteLink = {
   name: '登録データ一覧',
   href: '/users',

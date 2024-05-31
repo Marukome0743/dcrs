@@ -5,6 +5,8 @@ import Link from 'next/link'
 import type React from 'react'
 import { Suspense } from 'react'
 
+export const dynamic = 'force-dynamic'
+
 export default function Home(): React.JSX.Element {
   return (
     <>
