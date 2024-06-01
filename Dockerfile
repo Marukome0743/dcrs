@@ -1,5 +1,5 @@
-# syntax=docker/dockerfile:labs
-FROM node:22.2.0 as base
+# syntax=docker.io/docker/dockerfile-upstream:1.8.0-rc1
+FROM node:22.2.0 AS base
 WORKDIR /app
 RUN npm install -g bun
 
