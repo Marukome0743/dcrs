@@ -112,7 +112,7 @@ export function ImageUploader({
       <button
         type="button"
         onClick={() => onUploadCancel('success', 'キャンセルしました')}
-        className="btn btn-error w-max place-self-center"
+        className="btn btn-error w-max place-self-center hover:scale-110"
         disabled={!image}
       >
         <XMarkIcon className="size-6" />

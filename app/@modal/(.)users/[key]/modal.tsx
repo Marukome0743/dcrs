@@ -28,7 +28,7 @@ export function Modal({
         <button
           type="button"
           onClick={onDismiss}
-          className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+          className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 hover:scale-110"
           aria-label="閉じる"
         >
           <XMarkIcon />
@@ -39,7 +39,7 @@ export function Modal({
           <button
             type="button"
             onClick={onDismiss}
-            className="btn justify-self-end"
+            className="btn justify-self-end hover:scale-110"
           >
             <XMarkIcon className="size-6" />
             閉じる

@@ -165,7 +165,7 @@ export function ProfileForm(): React.JSX.Element {
           setAlert={setAlert}
         />
         <button
-          className="animate-bounce btn btn-warning w-max place-self-center"
+          className="[&:not(:hover)]:animate-bounce btn btn-warning w-max place-self-center"
           type="submit"
         >
           <CheckIcon className="size-6" />
