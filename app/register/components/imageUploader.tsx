@@ -1,9 +1,10 @@
 'use client'
 
+import { AlertContext } from '@/app/components/alertBox'
 import type { Profile } from '@/app/interfaces/profile'
 import { PhotoIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
-import { type DragEvent, useRef, useState } from 'react'
+import { type DragEvent, useContext, useRef, useState } from 'react'
 import type React from 'react'
 import type { Path, UseFormRegister, UseFormUnregister } from 'react-hook-form'
 
@@ -18,19 +19,16 @@ const ACCEPTED_IMAGE_TYPES: string[] = [
 export function ImageUploader({
   register,
   unregister,
-  setAlert,
 }: {
   register: UseFormRegister<Profile>
   unregister: UseFormUnregister<Profile>
-  setAlert: React.Dispatch<
-    React.SetStateAction<{ eventType: string; message: string }>
-  >
 }): React.JSX.Element {
-  const inputRef = useRef<HTMLInputElement>()
-  const [image, setImage] = useState<FileList>()
   const { ref, onChange, ...rest } = register('image' as Path<Profile>, {
     required: true,
   })
+  const setAlert = useContext(AlertContext)
+  const inputRef = useRef<HTMLInputElement>()
+  const [image, setImage] = useState<FileList>()
 
   function validateFile(file: File): string {
     if (file.size > MAX_UPLOAD_SIZE) {

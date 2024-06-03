@@ -18,7 +18,7 @@ export async function POST(request: Request): Promise<Response> {
     return response
   }
 
-  const image = body.get('image') as File
+  const image: File = body.get('image') as File
   const user: User = await prisma.user.create({
     data: {
       name: body.get('name') as string,
@@ -33,7 +33,7 @@ export async function POST(request: Request): Promise<Response> {
 }
 
 async function postImage(body: FormData): Promise<Response> {
-  const image = body.get('image') as File
+  const image: File = body.get('image') as File
   const arrayBuffer: ArrayBuffer = await image.arrayBuffer()
   const buffer: Buffer = Buffer.from(arrayBuffer)
 

@@ -1,3 +1,4 @@
+import { AlertBox } from '@/app/components/alertBox'
 import { Footer } from '@/app/components/footer'
 import type { Metadata } from 'next'
 import type { NextFont } from 'next/dist/compiled/@next/font'
@@ -27,8 +28,10 @@ export default function RootLayout({
     <html lang="ja">
       <body className={sawarabi.className}>
         <main className="flex flex-col gap-6 min-h-svh items-center justify-center bg-gray-50 px-4 py-6 lg:px-8 sm:px-6">
-          {children}
-          {modal}
+          <AlertBox>
+            {children}
+            {modal}
+          </AlertBox>
         </main>
         <Footer />
       </body>

@@ -1,4 +1,4 @@
-export function getImage(path: string): Promise<Response | null> {
+export function getImage(path: string): Promise<Response> {
   const baseUrl =
     process.env.NEXT_PUBLIC_VERCEL_URL === 'dcrs.vercel.app'
       ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
@@ -7,7 +7,7 @@ export function getImage(path: string): Promise<Response | null> {
   return fetch(`${baseUrl}/api/image/${path}`)
     .then((res) => {
       if (!res.ok) {
-        return null
+        return new Response(null)
       }
       return res
     })

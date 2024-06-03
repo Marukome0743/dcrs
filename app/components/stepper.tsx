@@ -1,5 +1,5 @@
+import type { Steps } from '@/app/interfaces/steps'
 import type React from 'react'
-import type { Steps } from '../interfaces/steps'
 
 export function Stepper({
   steps,

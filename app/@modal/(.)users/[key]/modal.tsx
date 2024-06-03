@@ -10,7 +10,8 @@ export function Modal({
   children,
 }: { children: React.ReactNode }): React.JSX.Element {
   const router = useRouter()
-  const dialogRef = useRef<HTMLDialogElement>(null)
+  const dialogRef: React.RefObject<HTMLDialogElement> =
+    useRef<HTMLDialogElement>(null)
 
   useEffect(() => {
     if (!dialogRef.current?.open) {

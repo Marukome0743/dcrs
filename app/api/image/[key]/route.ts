@@ -13,7 +13,7 @@ export async function GET(
     Key: params.key,
   })
   const response: GetObjectCommandOutput = await client.send(command)
-  const contentType = response.ContentType as string
+  const contentType: string = response.ContentType as string
 
   return new Response(response.Body as BodyInit, {
     status: 200,

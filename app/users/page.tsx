@@ -1,3 +1,7 @@
+import { Breadcrumb } from '@/app/components/breadcrumb'
+import { Pagination } from '@/app/components/pagination'
+import type { SiteLink } from '@/app/interfaces/siteLink'
+import type { TableHeader } from '@/app/interfaces/tableHeader'
 import { getUsers } from '@/app/lib/getUsers'
 import {
   ArrowTopRightOnSquareIcon,
@@ -15,10 +19,6 @@ import type { User } from '@prisma/client'
 import Link from 'next/link'
 import type React from 'react'
 import { Suspense } from 'react'
-import { Breadcrumb } from '../components/breadcrumb'
-import { Pagination } from '../components/pagination'
-import type { SiteLink } from '../interfaces/siteLink'
-import type { TableHeader } from '../interfaces/tableHeader'
 
 export const dynamic = 'force-dynamic'
 
@@ -137,7 +137,7 @@ function Skeleton(): React.JSX.Element {
 }
 
 async function Tbody(): Promise<React.JSX.Element> {
-  const userData = (await getUsers()) as { users: User[] }
+  const userData: { users: User[] } = await getUsers()
 
   return (
     <>

@@ -1,5 +1,7 @@
+import { AlertContext } from '@/app/components/alertBox'
 import { PingAnimation } from '@/app/components/pingAnimation'
 import { Stepper } from '@/app/components/stepper'
+import type { Alert } from '@/app/interfaces/alert'
 import type { FormItem } from '@/app/interfaces/formItem'
 import type { Profile } from '@/app/interfaces/profile'
 import {
@@ -10,7 +12,7 @@ import {
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import type React from 'react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import type { Path, UseFormWatch } from 'react-hook-form'
 import { STEPS } from '../page'
 
@@ -18,21 +20,21 @@ export function ConfirmDialog({
   checkList,
   dialog,
   watch,
-  setAlert,
 }: {
   checkList: FormItem[]
   dialog: React.RefObject<HTMLDialogElement>
   watch: UseFormWatch<Profile>
-  setAlert: React.Dispatch<
-    React.SetStateAction<{ eventType: string; message: string }>
-  >
 }): React.JSX.Element {
-  const [isPending, setIsPending] = useState(false)
+  const setAlert: React.Dispatch<React.SetStateAction<Alert>> =
+    useContext(AlertContext)
   const router = useRouter()
+  const [isPending, setIsPending] = useState<boolean>(false)
 
   async function onSubmit(): Promise<void> {
     setIsPending(true)
-    const formElement = document.querySelector('form') as HTMLFormElement
+    const formElement: HTMLFormElement = document.querySelector(
+      'form',
+    ) as HTMLFormElement
     const formData: FormData = new FormData(formElement)
 
     fetch('/api/users', {

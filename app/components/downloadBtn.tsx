@@ -5,8 +5,8 @@ import type React from 'react'
 
 export function DownloadBtn(): React.JSX.Element {
   function download(): void {
-    const image = document.getElementsByTagName('img')?.[0]
-    const link = document.createElement('a')
+    const image: HTMLImageElement = document.getElementsByTagName('img')?.[0]
+    const link: HTMLAnchorElement = document.createElement('a')
     link.href = image.src
     link.download = image.id
     link.click()

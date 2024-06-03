@@ -37,7 +37,7 @@ export default function Home(): React.JSX.Element {
 }
 
 async function Badge(): Promise<React.JSX.Element> {
-  const userData = (await getUsers()) as { users: User[] }
+  const userData: { users: User[] } = await getUsers()
 
   return (
     <>

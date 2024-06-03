@@ -1,6 +1,6 @@
 import type { User } from '@prisma/client'
 
-export function getUsers(): Promise<{ users: User[] } | null> {
+export function getUsers(): Promise<{ users: User[] }> {
   const baseUrl =
     process.env.NEXT_PUBLIC_VERCEL_URL === 'dcrs.vercel.app'
       ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
@@ -9,7 +9,7 @@ export function getUsers(): Promise<{ users: User[] } | null> {
   return fetch(`${baseUrl}/api/users`)
     .then((res) => {
       if (!res.ok) {
-        return null
+        return { users: [] }
       }
       return res.json()
     })
