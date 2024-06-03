@@ -1,44 +1,57 @@
+'use client'
+
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import type React from 'react'
+import { createContext, useState } from 'react'
+type Alert = { eventType: string; message: string }
+export const AlertContext = createContext<
+  React.Dispatch<React.SetStateAction<Alert>>
+>(() => {
+  return
+})
 
 export function Alert({
-  eventType,
-  message,
-  setMessage,
+  children,
 }: {
-  eventType: string
-  message: string
-  setMessage: React.Dispatch<
-    React.SetStateAction<{ eventType: string; message: string }>
-  >
+  children: React.ReactNode
 }): React.JSX.Element {
+  const [alert, setAlert] = useState<Alert>({
+    eventType: '',
+    message: '',
+  })
+
   return (
-    <div className="toast toast-top toast-center z-10">
-      <div
-        role="alert"
-        className={`alert shadow-lg ${
-          eventType === 'error' ? 'alert-error' : 'alert-info'
-        }`}
-      >
-        {eventType === 'error' ? (
-          <ExclamationCircleIcon className="size-6 text-info" />
-        ) : (
-          <CheckCircleIcon className="size-6 text-warning" />
-        )}
-        <span>{message}</span>
-        <button
-          type="button"
-          className="btn btn-sm flex-nowrap"
-          onClick={() => setMessage({ eventType: '', message: '' })}
-        >
-          <XMarkIcon className="size-6" />
-          閉じる
-        </button>
-      </div>
-    </div>
+    <AlertContext.Provider value={setAlert}>
+      {alert.eventType && alert.message && (
+        <div className="toast toast-top toast-center z-10">
+          <div
+            role="alert"
+            className={`alert shadow-lg ${
+              alert.eventType === 'error' ? 'alert-error' : 'alert-info'
+            }`}
+          >
+            {alert.eventType === 'error' ? (
+              <ExclamationCircleIcon className="size-6 text-info" />
+            ) : (
+              <CheckCircleIcon className="size-6 text-warning" />
+            )}
+            <span>{alert.message}</span>
+            <button
+              type="button"
+              className="btn btn-sm flex-nowrap"
+              onClick={() => setAlert({ eventType: '', message: '' })}
+            >
+              <XMarkIcon className="size-6" />
+              閉じる
+            </button>
+          </div>
+        </div>
+      )}
+      {children}
+    </AlertContext.Provider>
   )
 }
