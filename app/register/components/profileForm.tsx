@@ -1,6 +1,5 @@
 'use client'
 
-import { Alert } from '@/app/components/alert'
 import type { FormItem } from '@/app/interfaces/formItem'
 import type { Profile } from '@/app/interfaces/profile'
 import {
@@ -11,7 +10,7 @@ import {
   UserIcon,
 } from '@heroicons/react/24/solid'
 import type React from 'react'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { type Path, type UseFormRegister, useForm } from 'react-hook-form'
 import { ConfirmDialog } from './confirmDialog'
 import { ImageUploader } from './imageUploader'
@@ -69,10 +68,6 @@ const COMPANIES: string[] = [
 
 export function ProfileForm(): React.JSX.Element {
   const { handleSubmit, register, unregister, watch } = useForm<Profile>()
-  const [alert, setAlert] = useState<{ eventType: string; message: string }>({
-    eventType: '',
-    message: '',
-  })
   const dialog = useRef<HTMLDialogElement>(null)
   const onSubmit: React.FormEventHandler<HTMLFormElement> = handleSubmit(() => {
     dialog.current?.showModal()
@@ -80,13 +75,6 @@ export function ProfileForm(): React.JSX.Element {
 
   return (
     <>
-      {alert.eventType && alert.message && (
-        <Alert
-          eventType={alert.eventType}
-          message={alert.message}
-          setMessage={setAlert}
-        />
-      )}
       <form onSubmit={onSubmit} className="flex flex-col gap-6 max-w-xs">
         <p className="text-center before:ml-0.5 before:text-red-500 before:content-['*']">
           は必須項目
@@ -159,11 +147,7 @@ export function ProfileForm(): React.JSX.Element {
         <p className="after:ml-0.5 after:text-red-500 after:content-['*']">
           {checklist.find((item) => item.name === 'image')?.value}
         </p>
-        <ImageUploader
-          register={register}
-          unregister={unregister}
-          setAlert={setAlert}
-        />
+        <ImageUploader register={register} unregister={unregister} />
         <button
           className="[&:not(:hover)]:animate-bounce btn btn-warning w-max place-self-center"
           type="submit"
@@ -172,12 +156,7 @@ export function ProfileForm(): React.JSX.Element {
           確認画面へ
         </button>
       </form>
-      <ConfirmDialog
-        dialog={dialog}
-        checkList={[...checklist]}
-        watch={watch}
-        setAlert={setAlert}
-      />
+      <ConfirmDialog dialog={dialog} checkList={[...checklist]} watch={watch} />
     </>
   )
 }
