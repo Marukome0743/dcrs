@@ -5,6 +5,7 @@ import type { Profile } from '@/app/interfaces/profile'
 import {
   ArrowUturnLeftIcon,
   PaperAirplaneIcon,
+  XMarkIcon,
 } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
@@ -58,6 +59,14 @@ export function ConfirmDialog({
   return (
     <dialog ref={dialog} className="modal modal-bottom sm:modal-middle">
       <div className="grid gap-4 modal-box text-center">
+        <button
+          type="button"
+          onClick={() => dialog.current?.close()}
+          className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 hover:scale-110"
+          aria-label="閉じる"
+        >
+          <XMarkIcon />
+        </button>
         <Stepper steps={[...STEPS]} targetStep={1} />
         <table className="table">
           <tbody>
