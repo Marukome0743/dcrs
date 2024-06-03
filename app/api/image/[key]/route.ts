@@ -9,7 +9,7 @@ export async function GET(
   { params }: { params: { key: string } },
 ): Promise<Response> {
   const command: GetObjectCommand = new GetObjectCommand({
-    Bucket: process.env.S3_BUCKET,
+    Bucket: process.env.S3_BUCKET || 'dcrs-test',
     Key: params.key,
   })
   const response: GetObjectCommandOutput = await client.send(command)
