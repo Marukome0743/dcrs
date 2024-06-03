@@ -86,7 +86,7 @@ export function ConfirmDialog({
           <button
             type="submit"
             className={`btn btn-info ${
-              isPending ? 'indicator' : 'animate-bounce'
+              isPending ? 'indicator' : '[&:not(:hover)]:animate-bounce'
             }`}
             onClick={onSubmit}
             disabled={isPending}
@@ -97,7 +97,7 @@ export function ConfirmDialog({
           </button>
           <button
             type="button"
-            className="btn btn-error"
+            className="btn btn-error hover:scale-110"
             onClick={() => dialog.current?.close()}
           >
             <ArrowUturnLeftIcon className="size-6" />

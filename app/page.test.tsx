@@ -15,7 +15,9 @@ test('h1 test', () => {
 test('Link test', () => {
   const link1 = document.querySelectorAll('a')[0]
   const link2 = document.querySelectorAll('a')[1]
-  expect(link1?.getAttribute('class')).toEqual('btn btn-primary')
+  expect(link1?.getAttribute('class')).toEqual(
+    'btn btn-primary hover:scale-110',
+  )
   expect(link1?.textContent).toEqual('障がい者手帳画像を提出')
   expect(link1?.getAttribute('href')).toEqual('/register')
 

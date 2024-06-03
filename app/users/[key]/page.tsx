@@ -27,7 +27,7 @@ export default function ImagePage({
         <DcrsImage path={key} />
       </Suspense>
       <DownloadBtn />
-      <Link href="/users" className="btn">
+      <Link href="/users" className="btn hover:scale-110">
         <ArrowUturnLeftIcon className="size-6" />
         表に戻る
       </Link>
