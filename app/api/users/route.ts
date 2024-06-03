@@ -39,7 +39,7 @@ async function postImage(body: FormData): Promise<Response> {
 
   const command: PutObjectCommand = new PutObjectCommand({
     ACL: 'private',
-    Bucket: process.env.S3_BUCKET,
+    Bucket: process.env.S3_BUCKET || 'dcrs-test',
     ContentType: image.type,
     Key: `${body.get('employeeId')}.${image.name.split('.').pop()}`,
     Body: buffer,
