@@ -20,7 +20,7 @@ export function ScrollToTop(): React.JSX.Element {
       }`}
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
     >
-      <ChevronDoubleUpIcon className="size-8" />
+      <ChevronDoubleUpIcon className="size-8 scroll-up" />
       TOP
     </button>
   )
