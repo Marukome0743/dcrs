@@ -1,4 +1,5 @@
 import { getImage } from '@/app/lib/getImage'
+import { PhotoIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import type React from 'react'
 
@@ -13,7 +14,10 @@ export async function DcrsImage({
 
   return (
     <>
-      <h1 className="font-semibold text-2xl">{path}</h1>
+      <h1 className="flex font-semibold items-center text-2xl">
+        <PhotoIcon className="mr-2 size-8 text-accent" />
+        {path}
+      </h1>
       <Image
         src={`data:${contentType};base64,${base64}`}
         id={path}

@@ -48,12 +48,12 @@ const indexList: TableHeader[] = [
   {
     name: '所属会社',
     icon: BuildingOffice2Icon,
-    color: 'text-accent',
+    color: 'text-success',
   },
   {
     name: '社員番号',
     icon: IdentificationIcon,
-    color: 'text-success',
+    color: 'text-secondary',
   },
   {
     name: '電話番号',
@@ -68,7 +68,7 @@ const indexList: TableHeader[] = [
   {
     name: '障がい者手帳画像',
     icon: PhotoIcon,
-    color: 'text-secondary',
+    color: 'text-accent',
   },
 ] as const
 
@@ -76,7 +76,10 @@ export default function Users(): React.JSX.Element {
   return (
     <>
       <Breadcrumb crumbs={[usersLink]} />
-      <h1 className="font-semibold text-2xl">{usersLink.name}</h1>
+      <h1 className="flex font-semibold items-center text-2xl">
+        <usersLink.icon className={`mr-2 size-8 ${usersLink.color}`} />
+        {usersLink.name}
+      </h1>
       <div className="max-h-96 max-w-full overflow-x-auto">
         <table className="table table-xs table-pin-rows table-pin-cols table-zebra text-center">
           <thead>
