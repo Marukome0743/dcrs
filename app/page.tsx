@@ -10,7 +10,7 @@ export const dynamic = 'force-dynamic'
 export default function Home(): React.JSX.Element {
   return (
     <>
-      <h1 className="text-center font-extrabold text-3xl leading-normal">
+      <h1 className="text-center font-bold text-3xl leading-normal">
         障がい者手帳
         <br />
         登録システム

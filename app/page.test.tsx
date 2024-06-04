@@ -7,7 +7,7 @@ render(<Home />)
 test('h1 test', () => {
   const h1 = document.querySelector('h1')
   expect(h1?.getAttribute('class')).toEqual(
-    'text-center font-extrabold text-3xl leading-normal',
+    'text-center font-bold text-3xl leading-normal',
   )
   expect(h1?.textContent).toEqual('障がい者手帳登録システム')
 })

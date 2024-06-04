@@ -76,7 +76,10 @@ export default function Users(): React.JSX.Element {
   return (
     <>
       <Breadcrumb crumbs={[usersLink]} />
-      <h1 className="font-semibold text-2xl">{usersLink.name}</h1>
+      <h1 className="flex font-semibold items-center text-2xl">
+        <usersLink.icon className={`mr-2 size-8 ${usersLink.color}`} />
+        {usersLink.name}
+      </h1>
       <div className="max-h-96 max-w-full overflow-x-auto">
         <table className="table table-xs table-pin-rows table-pin-cols table-zebra text-center">
           <thead>
