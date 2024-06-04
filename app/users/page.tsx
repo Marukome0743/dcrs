@@ -48,12 +48,12 @@ const indexList: TableHeader[] = [
   {
     name: '所属会社',
     icon: BuildingOffice2Icon,
-    color: 'text-accent',
+    color: 'text-success',
   },
   {
     name: '社員番号',
     icon: IdentificationIcon,
-    color: 'text-success',
+    color: 'text-secondary',
   },
   {
     name: '電話番号',
@@ -68,7 +68,7 @@ const indexList: TableHeader[] = [
   {
     name: '障がい者手帳画像',
     icon: PhotoIcon,
-    color: 'text-secondary',
+    color: 'text-accent',
   },
 ] as const
 
