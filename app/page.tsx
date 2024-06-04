@@ -25,9 +25,9 @@ export default function Home(): React.JSX.Element {
       </h1>
       <section>
         <h2 className="flex font-semibold items-center mb-2 mx-auto text-center text-2xl w-fit">
-          <ForwardIcon className="mr-2 size-8 text-info" />
+          <ForwardIcon className="move-right mr-2 size-8 text-info" />
           登録手順
-          <ForwardIcon className="mx-2 size-8 text-info" />
+          <ForwardIcon className="move-right mx-2 size-8 text-info" />
         </h2>
         <ul className="timeline timeline-vertical lg:timeline-horizontal">
           <li>

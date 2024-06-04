@@ -6,6 +6,10 @@
   animation: fadeDown 1.5s;
 }
 
+.move-right {
+  animation: move-right 1.5s infinite;
+}
+
 .scroll-up {
   animation: scroll-up 1.5s infinite;
 }
@@ -23,6 +27,12 @@
     opacity: 1;
     transform: translateX(-50%) translateY(0);
   }
+}
+
+@keyframes move-right {
+  0% { transform: translate(0); }
+  20% { transform: translateX(8px); }
+  40% { transform: translate(0); }
 }
 
 @keyframes scroll-up {
