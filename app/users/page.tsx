@@ -103,7 +103,7 @@ function TableIndex(): React.JSX.Element {
       <Checkbox />
       {indexList.map((index) => (
         <td key={index.name}>
-          <index.icon className={`inline mr-1 size-4 ${index.color}`} />
+          <index.icon className={`inline mb-0.5 mr-1 size-4 ${index.color}`} />
           {index.name}
         </td>
       ))}
