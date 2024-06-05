@@ -1,8 +1,8 @@
-import { Breadcrumb } from '@/app/components/breadcrumb'
-import { Pagination } from '@/app/components/pagination'
-import type { SiteLink } from '@/app/interfaces/siteLink'
-import type { TableHeader } from '@/app/interfaces/tableHeader'
-import { getUsers } from '@/app/lib/getUsers'
+import { Breadcrumb } from "@/app/components/breadcrumb"
+import { Pagination } from "@/app/components/pagination"
+import type { SiteLink } from "@/app/interfaces/siteLink"
+import type { TableHeader } from "@/app/interfaces/tableHeader"
+import { getUsers } from "@/app/lib/getUsers"
 import {
   ArrowTopRightOnSquareIcon,
   BuildingOffice2Icon,
@@ -14,61 +14,61 @@ import {
   TableCellsIcon,
   TagIcon,
   UserIcon,
-} from '@heroicons/react/24/solid'
-import type { User } from '@prisma/client'
-import Link from 'next/link'
-import type React from 'react'
-import { Suspense } from 'react'
+} from "@heroicons/react/24/solid"
+import type { User } from "@prisma/client"
+import Link from "next/link"
+import type React from "react"
+import { Suspense } from "react"
 
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic"
 
 export const usersLink: SiteLink = {
-  name: '登録データ一覧',
-  href: '/users',
+  name: "登録データ一覧",
+  href: "/users",
   icon: TableCellsIcon,
-  color: 'text-secondary',
+  color: "text-secondary",
 } as const
 
 const indexList: TableHeader[] = [
   {
-    name: 'ID',
+    name: "ID",
     icon: TagIcon,
-    color: 'text-warning',
+    color: "text-warning",
   },
   {
-    name: '登録日時',
+    name: "登録日時",
     icon: ClockIcon,
-    color: 'text-primary',
+    color: "text-primary",
   },
   {
-    name: '氏名',
+    name: "氏名",
     icon: UserIcon,
-    color: 'text-error',
+    color: "text-error",
   },
   {
-    name: '所属会社',
+    name: "所属会社",
     icon: BuildingOffice2Icon,
-    color: 'text-success',
+    color: "text-success",
   },
   {
-    name: '社員番号',
+    name: "社員番号",
     icon: IdentificationIcon,
-    color: 'text-secondary',
+    color: "text-secondary",
   },
   {
-    name: '電話番号',
+    name: "電話番号",
     icon: PhoneIcon,
-    color: 'text-warning',
+    color: "text-warning",
   },
   {
-    name: 'メールアドレス',
+    name: "メールアドレス",
     icon: EnvelopeIcon,
-    color: 'text-info',
+    color: "text-info",
   },
   {
-    name: '障がい者手帳画像',
+    name: "障がい者手帳画像",
     icon: PhotoIcon,
-    color: 'text-accent',
+    color: "text-accent",
   },
 ] as const
 
@@ -149,7 +149,7 @@ async function Tbody(): Promise<React.JSX.Element> {
           <tr key={user.id} className="hover">
             <Checkbox />
             <td>{user.id}</td>
-            <td>{new Date(user.createdAt).toLocaleString('ja-JP')}</td>
+            <td>{new Date(user.createdAt).toLocaleString("ja-JP")}</td>
             <td>{user.name}</td>
             <td>{user.company}</td>
             <td>{user.employeeId}</td>

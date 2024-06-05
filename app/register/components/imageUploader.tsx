@@ -1,19 +1,19 @@
-'use client'
+"use client"
 
-import { AlertContext } from '@/app/components/alertBox'
-import type { Profile } from '@/app/interfaces/profile'
-import { PhotoIcon, XMarkIcon } from '@heroicons/react/24/solid'
-import Image from 'next/image'
-import { type DragEvent, useContext, useRef, useState } from 'react'
-import type React from 'react'
-import type { Path, UseFormRegister, UseFormUnregister } from 'react-hook-form'
+import { AlertContext } from "@/app/components/alertBox"
+import type { Profile } from "@/app/interfaces/profile"
+import { PhotoIcon, XMarkIcon } from "@heroicons/react/24/solid"
+import Image from "next/image"
+import { type DragEvent, useContext, useRef, useState } from "react"
+import type React from "react"
+import type { Path, UseFormRegister, UseFormUnregister } from "react-hook-form"
 
 const MAX_UPLOAD_SIZE: number = 5 * 1024 * 1024
 const ACCEPTED_IMAGE_TYPES: string[] = [
-  'image/jpeg',
-  'image/jpg',
-  'image/png',
-  'image/webp',
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
 ]
 
 export function ImageUploader({
@@ -23,7 +23,7 @@ export function ImageUploader({
   register: UseFormRegister<Profile>
   unregister: UseFormUnregister<Profile>
 }): React.JSX.Element {
-  const { ref, onChange, ...rest } = register('image' as Path<Profile>, {
+  const { ref, onChange, ...rest } = register("image" as Path<Profile>, {
     required: true,
   })
   const setAlert = useContext(AlertContext)
@@ -32,18 +32,18 @@ export function ImageUploader({
 
   function validateFile(file: File): string {
     if (file.size > MAX_UPLOAD_SIZE) {
-      return 'ファイルサイズは最大5MBです'
+      return "ファイルサイズは最大5MBです"
     }
     if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
-      return '不正なファイル形式です'
+      return "不正なファイル形式です"
     }
-    return ''
+    return ""
   }
 
   function onUpload(e: React.ChangeEvent<HTMLInputElement>): void {
     const result = validateFile(e.target.files?.[0] as File)
     if (result) {
-      onUploadCancel('error', result)
+      onUploadCancel("error", result)
       return
     }
     setImage(e.target.files as FileList)
@@ -51,9 +51,9 @@ export function ImageUploader({
 
   function onUploadCancel(eventType: string, message: string): void {
     const ref = inputRef as React.MutableRefObject<HTMLInputElement>
-    ref.current.value = ''
+    ref.current.value = ""
     setImage(undefined)
-    unregister('image' as Path<Profile>)
+    unregister("image" as Path<Profile>)
     setAlert({
       eventType: eventType,
       message: message,
@@ -109,7 +109,7 @@ export function ImageUploader({
       </DropImageZone>
       <button
         type="button"
-        onClick={() => onUploadCancel('success', 'キャンセルしました')}
+        onClick={() => onUploadCancel("success", "キャンセルしました")}
         className="btn btn-error w-max place-self-center hover:scale-110"
         disabled={!image}
       >
@@ -144,7 +144,7 @@ function DropImageZone({
     setIsHoverd(false)
 
     inputRef.current.files = e.dataTransfer.files
-    inputRef.current.dispatchEvent(new Event('change', { bubbles: true }))
+    inputRef.current.dispatchEvent(new Event("change", { bubbles: true }))
   }
 
   return (
@@ -154,7 +154,7 @@ function DropImageZone({
       onDragOver={(e) => e.preventDefault()}
       onDrop={(e) => onDrop(e)}
       className={`mt-2 justify-center rounded-lg border border-dashed px-6 py-10 text-center${
-        isHoverd ? ' border-indigo-600' : ' border-gray-900/25'
+        isHoverd ? " border-indigo-600" : " border-gray-900/25"
       }`}
       hidden={!!image}
     >

@@ -1,12 +1,12 @@
-import { Breadcrumb } from '@/app/components/breadcrumb'
-import { DcrsImage } from '@/app/components/dcrsImage'
-import { DownloadBtn } from '@/app/components/downloadBtn'
-import type { SiteLink } from '@/app/interfaces/siteLink'
-import { ArrowUturnLeftIcon, PhotoIcon } from '@heroicons/react/24/solid'
-import Link from 'next/link'
-import type React from 'react'
-import { Suspense } from 'react'
-import { usersLink } from '../page'
+import { Breadcrumb } from "@/app/components/breadcrumb"
+import { DcrsImage } from "@/app/components/dcrsImage"
+import { DownloadBtn } from "@/app/components/downloadBtn"
+import type { SiteLink } from "@/app/interfaces/siteLink"
+import { ArrowUturnLeftIcon, PhotoIcon } from "@heroicons/react/24/solid"
+import Link from "next/link"
+import type React from "react"
+import { Suspense } from "react"
+import { usersLink } from "../page"
 
 export default function ImagePage({
   params: { key },
@@ -15,9 +15,9 @@ export default function ImagePage({
 }): React.JSX.Element {
   const imageLink: SiteLink = {
     name: key,
-    href: '',
+    href: "",
     icon: PhotoIcon,
-    color: 'text-accent',
+    color: "text-accent",
   }
 
   return (

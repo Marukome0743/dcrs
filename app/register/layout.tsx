@@ -1,6 +1,6 @@
-import { HomeBtn } from '@/app/components/homeBtn'
-import { ScrollToTop } from '@/app/components/scrollToTop'
-import type React from 'react'
+import { HomeBtn } from "@/app/components/homeBtn"
+import { ScrollToTop } from "@/app/components/scrollToTop"
+import type React from "react"
 
 export default function RegisterLayout({
   children,

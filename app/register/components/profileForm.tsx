@@ -1,69 +1,69 @@
-'use client'
+"use client"
 
-import type { FormItem } from '@/app/interfaces/formItem'
-import type { Profile } from '@/app/interfaces/profile'
+import type { FormItem } from "@/app/interfaces/formItem"
+import type { Profile } from "@/app/interfaces/profile"
 import {
   CheckIcon,
   EnvelopeIcon,
   IdentificationIcon,
   PhoneIcon,
   UserIcon,
-} from '@heroicons/react/24/solid'
-import type React from 'react'
-import { useRef } from 'react'
-import { type Path, type UseFormRegister, useForm } from 'react-hook-form'
-import { ConfirmDialog } from './confirmDialog'
-import { ImageUploader } from './imageUploader'
+} from "@heroicons/react/24/solid"
+import type React from "react"
+import { useRef } from "react"
+import { type Path, type UseFormRegister, useForm } from "react-hook-form"
+import { ConfirmDialog } from "./confirmDialog"
+import { ImageUploader } from "./imageUploader"
 
 const checklist: FormItem[] = [
   {
-    name: 'name',
-    value: '氏名',
-    type: 'text',
+    name: "name",
+    value: "氏名",
+    type: "text",
     icon: UserIcon,
-    placeholder: 'オープン太郎',
+    placeholder: "オープン太郎",
   },
   {
-    name: 'company',
-    value: '所属会社',
-    type: 'select',
+    name: "company",
+    value: "所属会社",
+    type: "select",
   },
   {
-    name: 'employeeId',
-    value: '社員番号',
-    type: 'number',
+    name: "employeeId",
+    value: "社員番号",
+    type: "number",
     icon: IdentificationIcon,
-    placeholder: '123456',
+    placeholder: "123456",
   },
   {
-    name: 'telephone',
-    value: '電話番号',
-    type: 'tel',
+    name: "telephone",
+    value: "電話番号",
+    type: "tel",
     icon: PhoneIcon,
-    placeholder: '09012345678',
+    placeholder: "09012345678",
   },
   {
-    name: 'email',
-    value: 'Eメール',
-    type: 'email',
+    name: "email",
+    value: "Eメール",
+    type: "email",
     icon: EnvelopeIcon,
-    placeholder: 'example@mail.com',
+    placeholder: "example@mail.com",
   },
   {
-    name: 'agreement',
-    value: '個人情報提供への同意',
-    type: 'checkbox',
+    name: "agreement",
+    value: "個人情報提供への同意",
+    type: "checkbox",
   },
   {
-    name: 'image',
-    value: '障がい者手帳の画像・写真',
-    type: 'file',
+    name: "image",
+    value: "障がい者手帳の画像・写真",
+    type: "file",
   },
 ] as const
 
 const COMPANIES: string[] = [
-  'オープンアップグループ',
-  'ビーネックステクノロジーズ',
+  "オープンアップグループ",
+  "ビーネックステクノロジーズ",
 ] as const
 
 export function ProfileForm(): React.JSX.Element {
@@ -79,18 +79,18 @@ export function ProfileForm(): React.JSX.Element {
         は必須項目
       </p>
       <Input
-        item={checklist.find((item) => item.name === 'name') as FormItem}
+        item={checklist.find((item) => item.name === "name") as FormItem}
         register={register}
       />
       <label className="form-control w-full">
         <div className="label">
           <p className="label-text after:ml-0.5 after:text-red-500 after:content-['*']">
-            {checklist.find((item) => item.name === 'company')?.value}
+            {checklist.find((item) => item.name === "company")?.value}
           </p>
         </div>
         <select
           className="select select-bordered"
-          {...register('company', { required: true })}
+          {...register("company", { required: true })}
           defaultValue=""
           required={true}
         >
@@ -105,21 +105,21 @@ export function ProfileForm(): React.JSX.Element {
         </select>
       </label>
       <Input
-        item={checklist.find((item) => item.name === 'employeeId') as FormItem}
+        item={checklist.find((item) => item.name === "employeeId") as FormItem}
         register={register}
       />
       <Input
-        item={checklist.find((item) => item.name === 'telephone') as FormItem}
+        item={checklist.find((item) => item.name === "telephone") as FormItem}
         register={register}
       />
       <Input
-        item={checklist.find((item) => item.name === 'email') as FormItem}
+        item={checklist.find((item) => item.name === "email") as FormItem}
         register={register}
       />
       <div className="card bg-base-100 shadow-xl">
         <div className="card-body overflow-y-auto max-h-72">
           <p className="mb-2 after:ml-0.5 after:text-red-500 after:content-['*']">
-            {checklist.find((item) => item.name === 'agreement')?.value}
+            {checklist.find((item) => item.name === "agreement")?.value}
           </p>
           <p className="text-sm">
             お預かりした個人情報は、株式会社オープンアップグループ（以下「当社」）が業務に利用するほか、
@@ -142,7 +142,7 @@ export function ProfileForm(): React.JSX.Element {
         </div>
       </div>
       <p className="after:ml-0.5 after:text-red-500 after:content-['*']">
-        {checklist.find((item) => item.name === 'image')?.value}
+        {checklist.find((item) => item.name === "image")?.value}
       </p>
       <ImageUploader register={register} unregister={unregister} />
       <button

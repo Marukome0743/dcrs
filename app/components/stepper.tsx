@@ -1,5 +1,5 @@
-import type { Steps } from '@/app/interfaces/steps'
-import type React from 'react'
+import type { Steps } from "@/app/interfaces/steps"
+import type React from "react"
 
 export function Stepper({
   steps,
@@ -11,7 +11,7 @@ export function Stepper({
         {steps.map((step, index) => (
           <li
             key={step}
-            className={`step${index <= targetStep ? ' step-primary' : ''}`}
+            className={`step${index <= targetStep ? " step-primary" : ""}`}
           >
             {step}
           </li>

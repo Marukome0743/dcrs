@@ -1,13 +1,13 @@
-'use client'
+"use client"
 
-import type { Alert } from '@/app/interfaces/alert'
+import type { Alert } from "@/app/interfaces/alert"
 import {
   CheckCircleIcon,
   ExclamationCircleIcon,
   XMarkIcon,
-} from '@heroicons/react/24/outline'
-import type React from 'react'
-import { createContext, useState } from 'react'
+} from "@heroicons/react/24/outline"
+import type React from "react"
+import { createContext, useState } from "react"
 
 export const AlertContext = createContext<
   React.Dispatch<React.SetStateAction<Alert>>
@@ -21,8 +21,8 @@ export function AlertBox({
   children: React.ReactNode
 }): React.JSX.Element {
   const [alert, setAlert] = useState<Alert>({
-    eventType: '',
-    message: '',
+    eventType: "",
+    message: "",
   })
 
   return (
@@ -32,10 +32,10 @@ export function AlertBox({
           <div
             role="alert"
             className={`alert shadow-lg ${
-              alert.eventType === 'error' ? 'alert-error' : 'alert-info'
+              alert.eventType === "error" ? "alert-error" : "alert-info"
             }`}
           >
-            {alert.eventType === 'error' ? (
+            {alert.eventType === "error" ? (
               <ExclamationCircleIcon className="size-6 text-info" />
             ) : (
               <CheckCircleIcon className="size-6 text-warning" />
@@ -44,7 +44,7 @@ export function AlertBox({
             <button
               type="button"
               className="btn btn-sm flex-nowrap"
-              onClick={() => setAlert({ eventType: '', message: '' })}
+              onClick={() => setAlert({ eventType: "", message: "" })}
             >
               <XMarkIcon className="size-6" />
               閉じる

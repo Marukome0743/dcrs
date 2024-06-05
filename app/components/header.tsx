@@ -2,9 +2,9 @@ import {
   ArrowRightEndOnRectangleIcon,
   MoonIcon,
   SunIcon,
-} from '@heroicons/react/24/outline'
-import Link from 'next/link'
-import type React from 'react'
+} from "@heroicons/react/24/outline"
+import Link from "next/link"
+import type React from "react"
 
 export function Header(): React.JSX.Element {
   return (

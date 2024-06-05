@@ -1,10 +1,10 @@
-'use client'
+"use client"
 
-import { DownloadBtn } from '@/app/components/downloadBtn'
-import { XMarkIcon } from '@heroicons/react/24/solid'
-import { useRouter } from 'next/navigation'
-import { useEffect, useRef } from 'react'
-import type React from 'react'
+import { DownloadBtn } from "@/app/components/downloadBtn"
+import { XMarkIcon } from "@heroicons/react/24/solid"
+import { useRouter } from "next/navigation"
+import { useEffect, useRef } from "react"
+import type React from "react"
 
 export function Modal({
   children,

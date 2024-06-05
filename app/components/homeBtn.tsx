@@ -1,6 +1,6 @@
-import { HomeIcon } from '@heroicons/react/24/solid'
-import Link from 'next/link'
-import type React from 'react'
+import { HomeIcon } from "@heroicons/react/24/solid"
+import Link from "next/link"
+import type React from "react"
 
 export function HomeBtn(): React.JSX.Element {
   return (

@@ -1,15 +1,15 @@
-import { client } from '@/app/lib/s3client'
+import { client } from "@/app/lib/s3client"
 import {
   GetObjectCommand,
   type GetObjectCommandOutput,
-} from '@aws-sdk/client-s3'
+} from "@aws-sdk/client-s3"
 
 export async function GET(
   _request: Request,
   { params }: { params: { key: string } },
 ): Promise<Response> {
   const command: GetObjectCommand = new GetObjectCommand({
-    Bucket: process.env.S3_BUCKET || 'dcrs-test',
+    Bucket: process.env.S3_BUCKET || "dcrs-test",
     Key: params.key,
   })
   const response: GetObjectCommandOutput = await client.send(command)
@@ -18,7 +18,7 @@ export async function GET(
   return new Response(response.Body as BodyInit, {
     status: 200,
     headers: {
-      'Content-Type': contentType,
+      "Content-Type": contentType,
     },
   })
 }

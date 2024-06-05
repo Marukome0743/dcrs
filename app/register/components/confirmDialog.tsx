@@ -1,20 +1,20 @@
-import { AlertContext } from '@/app/components/alertBox'
-import { PingAnimation } from '@/app/components/pingAnimation'
-import { Stepper } from '@/app/components/stepper'
-import type { Alert } from '@/app/interfaces/alert'
-import type { FormItem } from '@/app/interfaces/formItem'
-import type { Profile } from '@/app/interfaces/profile'
+import { AlertContext } from "@/app/components/alertBox"
+import { PingAnimation } from "@/app/components/pingAnimation"
+import { Stepper } from "@/app/components/stepper"
+import type { Alert } from "@/app/interfaces/alert"
+import type { FormItem } from "@/app/interfaces/formItem"
+import type { Profile } from "@/app/interfaces/profile"
 import {
   ArrowUturnLeftIcon,
   PaperAirplaneIcon,
   XMarkIcon,
-} from '@heroicons/react/24/solid'
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import type React from 'react'
-import { useContext, useState } from 'react'
-import type { Path, UseFormWatch } from 'react-hook-form'
-import { STEPS } from '../page'
+} from "@heroicons/react/24/solid"
+import Image from "next/image"
+import { useRouter } from "next/navigation"
+import type React from "react"
+import { useContext, useState } from "react"
+import type { Path, UseFormWatch } from "react-hook-form"
+import { STEPS } from "../page"
 
 export function ConfirmDialog({
   checkList,
@@ -33,27 +33,27 @@ export function ConfirmDialog({
   async function onSubmit(): Promise<void> {
     setIsPending(true)
     const formElement: HTMLFormElement = document.querySelector(
-      'form',
+      "form",
     ) as HTMLFormElement
     const formData: FormData = new FormData(formElement)
 
-    fetch('/api/users', {
-      method: 'POST',
+    fetch("/api/users", {
+      method: "POST",
       body: formData,
     })
       .then((res) => {
         dialog.current?.close()
         if (!res.ok) {
-          setAlert({ eventType: 'error', message: res.statusText })
+          setAlert({ eventType: "error", message: res.statusText })
           setIsPending(false)
           return
         }
-        setAlert({ eventType: 'success', message: '送信に成功しました' })
-        router.push('/register/success')
+        setAlert({ eventType: "success", message: "送信に成功しました" })
+        router.push("/register/success")
       })
       .catch((error) => {
         dialog.current?.close()
-        setAlert({ eventType: 'error', message: error })
+        setAlert({ eventType: "error", message: error })
         setIsPending(false)
       })
   }
@@ -76,10 +76,10 @@ export function ConfirmDialog({
               <tr key={name}>
                 <th>{value}</th>
                 <td>
-                  {name === 'agreement' && '同意する'}
-                  {name === 'image' && watch(name as Path<Profile>) ? (
+                  {name === "agreement" && "同意する"}
+                  {name === "image" && watch(name as Path<Profile>) ? (
                     <Image
-                      src={document.getElementsByTagName('img')[0].src}
+                      src={document.getElementsByTagName("img")[0].src}
                       width={100}
                       height={100}
                       alt="Uploaded File"
@@ -97,7 +97,7 @@ export function ConfirmDialog({
           <button
             type="submit"
             className={`btn btn-info ${
-              isPending ? 'indicator' : '[&:not(:hover)]:animate-bounce'
+              isPending ? "indicator" : "[&:not(:hover)]:animate-bounce"
             }`}
             onClick={onSubmit}
             disabled={isPending}

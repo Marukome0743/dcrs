@@ -1,5 +1,5 @@
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
-import type React from 'react'
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline"
+import type React from "react"
 
 export function Pagination(): React.JSX.Element {
   return (

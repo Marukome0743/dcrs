@@ -1,7 +1,7 @@
-import { DcrsImage } from '@/app/components/dcrsImage'
-import type React from 'react'
-import { Suspense } from 'react'
-import { Modal } from './modal'
+import { DcrsImage } from "@/app/components/dcrsImage"
+import type React from "react"
+import { Suspense } from "react"
+import { Modal } from "./modal"
 
 export default function ImageModal({
   params: { key },

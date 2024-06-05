@@ -1,4 +1,4 @@
-import { getUsers } from '@/app/lib/getUsers'
+import { getUsers } from "@/app/lib/getUsers"
 import {
   CameraIcon,
   CheckCircleIcon,
@@ -7,13 +7,13 @@ import {
   PencilSquareIcon,
   PlusIcon,
   TableCellsIcon,
-} from '@heroicons/react/24/solid'
-import type { User } from '@prisma/client'
-import Link from 'next/link'
-import type React from 'react'
-import { Suspense } from 'react'
+} from "@heroicons/react/24/solid"
+import type { User } from "@prisma/client"
+import Link from "next/link"
+import type React from "react"
+import { Suspense } from "react"
 
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic"
 
 export default function Home(): React.JSX.Element {
   return (

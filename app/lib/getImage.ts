@@ -1,5 +1,5 @@
 export function getImage(path: string): Promise<Response> {
-  const baseUrl = process.env.API_URL || 'http://localhost:3000'
+  const baseUrl = process.env.API_URL || "http://localhost:3000"
 
   return fetch(`${baseUrl}/api/image/${path}`)
     .then((res) => {
