@@ -1,6 +1,7 @@
 import { AlertBox } from "@/app/components/alertBox"
 import { Footer } from "@/app/components/footer"
 import { Header } from "@/app/components/header"
+import { ScrollToTop } from "@/app/components/scrollToTop"
 import type { Metadata } from "next"
 import type { NextFont } from "next/dist/compiled/@next/font"
 import { Sawarabi_Gothic } from "next/font/google"
@@ -34,6 +35,7 @@ export default function RootLayout({
             {children}
             {modal}
           </AlertBox>
+          <ScrollToTop />
         </main>
         <Footer />
       </body>

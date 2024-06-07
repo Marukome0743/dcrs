@@ -1,5 +1,4 @@
 import { HomeBtn } from "@/app/components/homeBtn"
-import { ScrollToTop } from "@/app/components/scrollToTop"
 import type React from "react"
 
 export default function UserLayout({
@@ -11,7 +10,6 @@ export default function UserLayout({
     <>
       {children}
       <HomeBtn />
-      <ScrollToTop />
     </>
   )
 }
