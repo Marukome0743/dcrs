@@ -2,75 +2,90 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.fade-down {
-animation: fadedown 1.5s;
+.fade-in-alert {
+  animation: fade-in-alert 1.5s;
+}
+
+.fade-in-up {
+  animation: fade-in-up 1.5s;
 }
 
 .move-right {
-animation: move-right 1.5s infinite;
+  animation: move-right 1.5s infinite;
 }
 
 .scroll-up {
-animation: scroll-up 1.5s infinite;
+  animation: scroll-up 1.5s infinite;
 }
 
 .rotate-y:hover {
-animation: rotate-y 2s;
+  animation: rotate-y 2s;
 }
 
 .rotate-z {
-animation: rotate-z 2s infinite;
+  animation: rotate-z 2s infinite;
 }
 
-@keyframes fadeDown {
-from {
-opacity: 0;
-transform: translatex(-50%) translatey(-20px);
+@keyframes fade-in-alert {
+  from {
+    opacity: 0;
+    transform: translatex(-50%) translatey(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translatex(-50%) translatey(0);
+  }
 }
-to {
-opacity: 1;
-transform: translatex(-50%) translatey(0);
-}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translatey(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translatey(0);
+  }
 }
 
 @keyframes move-right {
-0% {
-transform: translate(0);
-}
-20% {
-transform: translatex(8px);
-}
-40% {
-transform: translate(0);
-}
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translatex(8px);
+  }
+  40% {
+    transform: translate(0);
+  }
 }
 
 @keyframes scroll-up {
-0% {
-transform: translate(0);
-}
-20% {
-transform: translatey(-8px);
-}
-40% {
-transform: translate(0);
-}
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translatey(-8px);
+  }
+  40% {
+    transform: translate(0);
+  }
 }
 
 @keyframes rotate-y {
-0% {
-transform: rotatey(0deg);
-}
-100% {
-transform: rotatey(360deg);
-}
+  0% {
+    transform: rotatey(0deg);
+  }
+  100% {
+    transform: rotatey(360deg);
+  }
 }
 
 @keyframes rotate-z {
-0% {
-transform: rotatez(0deg);
-}
-100% {
-transform: rotatez(-360deg);
-}
+  0% {
+    transform: rotatez(0deg);
+  }
+  100% {
+    transform: rotatez(-360deg);
+  }
 }

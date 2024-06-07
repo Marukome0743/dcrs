@@ -28,7 +28,7 @@ export function AlertBox({
   return (
     <AlertContext.Provider value={setAlert}>
       {alert.eventType && alert.message && (
-        <div className="fade-down toast toast-top toast-center z-10">
+        <div className="fade-in-alert toast toast-top toast-center z-10">
           <div
             role="alert"
             className={`alert shadow-lg ${
