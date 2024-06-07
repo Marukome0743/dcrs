@@ -2,11 +2,11 @@ import { Breadcrumb } from "@/app/components/breadcrumb"
 import { DcrsImage } from "@/app/components/dcrsImage"
 import { DownloadBtn } from "@/app/components/downloadBtn"
 import type { SiteLink } from "@/app/interfaces/siteLink"
+import { usersLink } from "@/app/users/page"
 import { ArrowUturnLeftIcon, PhotoIcon } from "@heroicons/react/24/solid"
 import Link from "next/link"
 import type React from "react"
 import { Suspense } from "react"
-import { usersLink } from "../page"
 
 export default function ImagePage({
   params: { key },

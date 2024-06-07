@@ -4,6 +4,7 @@ import { Stepper } from "@/app/components/stepper"
 import type { Alert } from "@/app/interfaces/alert"
 import type { FormItem } from "@/app/interfaces/formItem"
 import type { Profile } from "@/app/interfaces/profile"
+import { STEPS } from "@/app/register/page"
 import {
   ArrowUturnLeftIcon,
   PaperAirplaneIcon,
@@ -14,7 +15,6 @@ import { useRouter } from "next/navigation"
 import type React from "react"
 import { useContext, useState } from "react"
 import type { Path, UseFormWatch } from "react-hook-form"
-import { STEPS } from "../page"
 
 export function ConfirmDialog({
   checkList,

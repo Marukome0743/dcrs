@@ -1,7 +1,7 @@
+import type { SiteLink } from "@/app/interfaces/siteLink"
 import { HomeIcon } from "@heroicons/react/24/solid"
 import Link from "next/link"
 import type React from "react"
-import type { SiteLink } from "../interfaces/siteLink"
 
 export function Breadcrumb({
   crumbs,
