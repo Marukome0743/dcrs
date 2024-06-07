@@ -1,3 +1,5 @@
+"use client"
+
 import {
   ArrowRightEndOnRectangleIcon,
   MoonIcon,
@@ -5,10 +7,32 @@ import {
 } from "@heroicons/react/24/outline"
 import Link from "next/link"
 import type React from "react"
+import { useState } from "react"
 
 export function Header(): React.JSX.Element {
+  const [scrollState, setScrollState] = useState<{
+    scrollY: number
+    isScrollDown: boolean
+  }>({ scrollY: 0, isScrollDown: false })
+  const headerHeight: number = 100
+
+  if (typeof window !== "undefined") {
+    window.addEventListener("scroll", () => {
+      setScrollState({
+        scrollY: window.scrollY,
+        isScrollDown: scrollState.scrollY < window.scrollY,
+      })
+    })
+  }
+
   return (
-    <header className="navbar bg-base-100 sticky top-0 z-10">
+    <header
+      className={`transition duration-400 ease bg-base-100 navbar sticky top-0 z-10${
+        headerHeight < scrollState.scrollY && scrollState.isScrollDown
+          ? " -translate-y-20"
+          : " translate-y-0"
+      }`}
+    >
       <div className="flex-1">
         <Link href="/" className="btn btn-ghost h-fit text-xl">
           障がい者手帳
