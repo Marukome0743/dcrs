@@ -10,7 +10,7 @@ import type React from "react"
 import { useState } from "react"
 
 export function Header(): React.JSX.Element {
-  const [scrollState, setScrollState] = useState<{
+  const [scrollY, setScrollY] = useState<{
     scrollY: number
     isScrollDown: boolean
   }>({ scrollY: 0, isScrollDown: false })
@@ -18,9 +18,9 @@ export function Header(): React.JSX.Element {
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {
-      setScrollState({
+      setScrollY({
         scrollY: window.scrollY,
-        isScrollDown: scrollState.scrollY < window.scrollY,
+        isScrollDown: scrollY.scrollY < window.scrollY,
       })
     })
   }
@@ -28,7 +28,7 @@ export function Header(): React.JSX.Element {
   return (
     <header
       className={`transition duration-400 ease bg-base-100 navbar sticky top-0 z-10 ${
-        headerHeight < scrollState.scrollY && scrollState.isScrollDown
+        headerHeight < scrollY.scrollY && scrollY.isScrollDown
           ? "-translate-y-20"
           : "translate-y-0"
       }`}
