@@ -15,8 +15,9 @@ export function ScrollToTop(): React.JSX.Element {
   return (
     <button
       type="button"
+      id="scroll-to-top"
       className={`btn btn-square btn-primary fixed right-10 bottom-10 gap-0 hover:scale-110 ${
-        scrollY < scrollPoint ? "hidden" : "fade-in-up"
+        scrollY < scrollPoint ? "fade-out-down" : "fade-in-up"
       }`}
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
     >

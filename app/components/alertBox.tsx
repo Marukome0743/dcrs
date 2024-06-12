@@ -25,6 +25,18 @@ export function AlertBox({
     message: "",
   })
 
+  function CloseAlert() {
+    const timeout = setTimeout(() => {
+      setAlert({ eventType: "", message: "" })
+    }, 1500)
+    const alert: HTMLDivElement = document.querySelector(
+      ".fade-in-alert",
+    ) as HTMLDivElement
+    alert.classList.remove("fade-in-alert")
+    alert.classList.add("fade-out-alert")
+    return () => window.clearTimeout(timeout)
+  }
+
   return (
     <AlertContext.Provider value={setAlert}>
       <div
@@ -47,7 +59,7 @@ export function AlertBox({
           <button
             type="button"
             className="btn btn-sm flex-nowrap"
-            onClick={() => setAlert({ eventType: "", message: "" })}
+            onClick={() => CloseAlert()}
           >
             <XMarkIcon className="size-6" />
             閉じる
