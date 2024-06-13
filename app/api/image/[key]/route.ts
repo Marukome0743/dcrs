@@ -1,3 +1,4 @@
+import { TEST_BUCKET } from "@/app/lib/constant"
 import { client } from "@/app/lib/s3client"
 import {
   GetObjectCommand,
@@ -9,7 +10,7 @@ export async function GET(
   { params }: { params: { key: string } },
 ): Promise<Response> {
   const command: GetObjectCommand = new GetObjectCommand({
-    Bucket: process.env.S3_BUCKET || "dcrs-test",
+    Bucket: process.env.S3_BUCKET || TEST_BUCKET,
     Key: params.key,
   })
   const response: GetObjectCommandOutput = await client.send(command)

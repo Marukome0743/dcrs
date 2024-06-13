@@ -1,3 +1,4 @@
+import { TEST_BUCKET } from "@/app/lib/constant"
 import { prisma } from "@/app/lib/prisma"
 import { client } from "@/app/lib/s3client"
 import {
@@ -39,7 +40,7 @@ async function postImage(body: FormData): Promise<Response> {
 
   const command: PutObjectCommand = new PutObjectCommand({
     ACL: "private",
-    Bucket: process.env.S3_BUCKET || "dcrs-test",
+    Bucket: process.env.S3_BUCKET || TEST_BUCKET,
     ContentType: image.type,
     Key: `${body.get("employeeId")}.${image.name.split(".").pop()}`,
     Body: buffer,

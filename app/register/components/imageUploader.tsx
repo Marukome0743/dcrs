@@ -1,6 +1,6 @@
 "use client"
 
-import { AlertContext } from "@/app/components/alertBox"
+import { AlertContext } from "@/app/components/layout/alertBox"
 import type { Profile } from "@/app/interfaces/profile"
 import { PhotoIcon, XMarkIcon } from "@heroicons/react/24/solid"
 import Image from "next/image"

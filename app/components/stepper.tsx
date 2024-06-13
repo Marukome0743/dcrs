@@ -1,23 +1,22 @@
-import type { Steps } from "@/app/interfaces/steps"
+import { STEPS } from "@/app/lib/constant"
 import type React from "react"
 
 export function Stepper({
-  steps,
   targetStep,
-}: { steps: Steps; targetStep: number }): React.JSX.Element {
+}: { targetStep: number }): React.JSX.Element {
   return (
     <>
       <ul className="steps">
-        {steps.map((step, index) => (
+        {STEPS.map((step, index) => (
           <li
-            key={step}
+            key={step.name}
             className={`step${index <= targetStep ? " step-primary" : ""}`}
           >
-            {step}
+            {step.name}
           </li>
         ))}
       </ul>
-      <h1 className="font-semibold text-2xl">{steps[targetStep]}</h1>
+      <h1 className="font-semibold text-2xl">{STEPS[targetStep].name}</h1>
     </>
   )
 }
