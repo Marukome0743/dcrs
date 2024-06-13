@@ -4,7 +4,7 @@ import { Stepper } from "@/app/components/stepper"
 import type { Alert } from "@/app/interfaces/alert"
 import type { FormItem } from "@/app/interfaces/formItem"
 import type { Profile } from "@/app/interfaces/profile"
-import { STEPS } from "@/app/register/page"
+import { STEPS } from "@/app/lib/constant"
 import {
   ArrowUturnLeftIcon,
   PaperAirplaneIcon,
