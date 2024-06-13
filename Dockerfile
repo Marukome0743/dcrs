@@ -1,14 +1,13 @@
 # syntax=docker.io/docker/dockerfile-upstream:1.8.0
-FROM node:22.3.0 AS base
-WORKDIR /app
-RUN npm install -g bun
+FROM oven/bun:canary AS base
+WORKDIR /usr/src/app
 
 FROM base AS deps
 COPY package.json bun.lockb prisma/schema.prisma ./
 RUN bun i --frozen-lockfile
 
 FROM base AS builder
-COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY . .
 RUN bun test
 RUN bun run build
@@ -17,9 +16,9 @@ FROM gcr.io/distroless/nodejs22-debian12:nonroot
 WORKDIR /app
 COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.3 /lambda-adapter /opt/extensions/lambda-adapter
 
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /usr/src/app/public ./public
+COPY --from=builder /usr/src/app/.next/standalone ./
+COPY --from=builder /usr/src/app/.next/static ./.next/static
 COPY prisma ./prisma
 
 EXPOSE 3000
