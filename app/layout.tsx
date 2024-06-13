@@ -2,6 +2,7 @@ import { AlertBox } from "@/app/components/alertBox"
 import { Footer } from "@/app/components/footer"
 import { Header } from "@/app/components/header"
 import { ScrollToTop } from "@/app/components/scrollToTop"
+import { SITE_TITLE } from "@/app/lib/constant"
 import type { Metadata } from "next"
 import type { NextFont } from "next/dist/compiled/@next/font"
 import { Sawarabi_Gothic } from "next/font/google"
@@ -15,7 +16,7 @@ const sawarabi: NextFont = Sawarabi_Gothic({
 
 export const metadata: Metadata = {
   title: "DCRS",
-  description: "障がい者手帳登録システム",
+  description: SITE_TITLE,
   metadataBase: new URL("https://openuplab-takizawa.com"),
 }
 
