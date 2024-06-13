@@ -80,7 +80,7 @@ export default function Users(): React.JSX.Element {
         <usersLink.icon className={`mr-2 size-8 ${usersLink.color}`} />
         {usersLink.name}
       </h1>
-      <div className="max-h-96 max-w-full overflow-x-auto">
+      <section className="max-h-96 max-w-full overflow-x-auto">
         <table className="table table-xs table-pin-rows table-pin-cols table-zebra text-center">
           <thead>
             <TableIndex />
@@ -94,7 +94,7 @@ export default function Users(): React.JSX.Element {
             <TableIndex />
           </tfoot>
         </table>
-      </div>
+      </section>
       <Pagination />
     </>
   )

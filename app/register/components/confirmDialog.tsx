@@ -2,9 +2,8 @@ import { AlertContext } from "@/app/components/alertBox"
 import { PingAnimation } from "@/app/components/pingAnimation"
 import { Stepper } from "@/app/components/stepper"
 import type { Alert } from "@/app/interfaces/alert"
-import type { FormItem } from "@/app/interfaces/formItem"
 import type { Profile } from "@/app/interfaces/profile"
-import { STEPS } from "@/app/lib/constant"
+import { checklist } from "@/app/lib/constant"
 import {
   ArrowUturnLeftIcon,
   PaperAirplaneIcon,
@@ -17,11 +16,9 @@ import { useContext, useState } from "react"
 import type { Path, UseFormWatch } from "react-hook-form"
 
 export function ConfirmDialog({
-  checkList,
   dialog,
   watch,
 }: {
-  checkList: FormItem[]
   dialog: React.RefObject<HTMLDialogElement>
   watch: UseFormWatch<Profile>
 }): React.JSX.Element {
@@ -69,10 +66,10 @@ export function ConfirmDialog({
         >
           <XMarkIcon />
         </button>
-        <Stepper steps={[...STEPS]} targetStep={1} />
+        <Stepper targetStep={1} />
         <table className="table">
           <tbody>
-            {checkList.map(({ name, value }) => (
+            {checklist.map(({ name, value }) => (
               <tr key={name}>
                 <th>{value}</th>
                 <td>
