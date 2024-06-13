@@ -1,10 +1,8 @@
+import { STEPS } from "@/app/lib/constant"
 import { getUsers } from "@/app/lib/getUsers"
 import {
   CameraIcon,
-  CheckCircleIcon,
   ForwardIcon,
-  HandThumbUpIcon,
-  PencilSquareIcon,
   PlusIcon,
   TableCellsIcon,
 } from "@heroicons/react/24/solid"
@@ -24,31 +22,17 @@ export default function Home(): React.JSX.Element {
         <ForwardIcon className="move-right mx-2 size-8 text-info" />
       </h1>
       <ul className="timeline timeline-vertical lg:timeline-horizontal">
-        <li>
-          <div className="timeline-start">1</div>
-          <div className="timeline-middle">
-            <PencilSquareIcon className="size-5 text-info" />
-          </div>
-          <div className="timeline-end timeline-box">必要情報の入力</div>
-          <hr />
-        </li>
-        <li>
-          <hr />
-          <div className="timeline-start">2</div>
-          <div className="timeline-middle">
-            <CheckCircleIcon className="size-5 text-warning" />
-          </div>
-          <div className="timeline-end timeline-box">入力確認</div>
-          <hr />
-        </li>
-        <li>
-          <hr />
-          <div className="timeline-start">3</div>
-          <div className="timeline-middle">
-            <HandThumbUpIcon className="size-5 text-success" />
-          </div>
-          <div className="timeline-end timeline-box">完了</div>
-        </li>
+        {STEPS.map((step, index) => (
+          <li key={step.name}>
+            {0 < index && <hr />}
+            <div className="timeline-start">{index + 1}</div>
+            <div className="timeline-middle">
+              <step.icon className={`size-5 ${step.color}`} />
+            </div>
+            <div className="timeline-end timeline-box">{step.name}</div>
+            {index < STEPS.length - 1 && <hr />}
+          </li>
+        ))}
       </ul>
       <Link href="/register" className="btn btn-primary hover:scale-110">
         <CameraIcon className="size-6" />

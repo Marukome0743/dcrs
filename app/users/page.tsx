@@ -1,5 +1,5 @@
-import { Breadcrumb } from "@/app/components/breadcrumb"
-import { Pagination } from "@/app/components/pagination"
+import { Pagination } from "@/app/components/button/pagination"
+import { Breadcrumb } from "@/app/components/layout/breadcrumb"
 import type { SiteLink } from "@/app/interfaces/siteLink"
 import type { TableHeader } from "@/app/interfaces/tableHeader"
 import { getUsers } from "@/app/lib/getUsers"
@@ -80,7 +80,7 @@ export default function Users(): React.JSX.Element {
         <usersLink.icon className={`mr-2 size-8 ${usersLink.color}`} />
         {usersLink.name}
       </h1>
-      <div className="max-h-96 max-w-full overflow-x-auto">
+      <section className="max-h-96 max-w-full overflow-x-auto">
         <table className="table table-xs table-pin-rows table-pin-cols table-zebra text-center">
           <thead>
             <TableIndex />
@@ -94,7 +94,7 @@ export default function Users(): React.JSX.Element {
             <TableIndex />
           </tfoot>
         </table>
-      </div>
+      </section>
       <Pagination />
     </>
   )

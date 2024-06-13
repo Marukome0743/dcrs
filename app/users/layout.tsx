@@ -1,4 +1,4 @@
-import { HomeBtn } from "@/app/components/homeBtn"
+import { HomeBtn } from "@/app/components/button/homeBtn"
 import type React from "react"
 
 export default function UserLayout({

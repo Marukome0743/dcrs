@@ -1,6 +1,6 @@
-import { Breadcrumb } from "@/app/components/breadcrumb"
+import { DownloadBtn } from "@/app/components/button/downloadBtn"
 import { DcrsImage } from "@/app/components/dcrsImage"
-import { DownloadBtn } from "@/app/components/downloadBtn"
+import { Breadcrumb } from "@/app/components/layout/breadcrumb"
 import type { SiteLink } from "@/app/interfaces/siteLink"
 import { usersLink } from "@/app/users/page"
 import { ArrowUturnLeftIcon, PhotoIcon } from "@heroicons/react/24/solid"
