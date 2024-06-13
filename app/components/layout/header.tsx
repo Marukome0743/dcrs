@@ -1,5 +1,6 @@
 "use client"
 
+import { SITE_TITLE } from "@/app/lib/constant"
 import {
   ArrowRightEndOnRectangleIcon,
   MoonIcon,
@@ -35,9 +36,7 @@ export function Header(): React.JSX.Element {
     >
       <div className="flex-1">
         <Link href="/" className="btn btn-ghost h-fit text-xl">
-          障がい者手帳
-          <br />
-          登録システム
+          {SITE_TITLE}
         </Link>
       </div>
       <div className="flex-none gap-4">
