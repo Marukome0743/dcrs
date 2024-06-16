@@ -8,13 +8,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "bunx biome check --write",
-    "postinstall": "prisma generate"
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate",
+    "studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.598.0",
     "@heroicons/react": "^2.1.3",
-    "@prisma/client": "^5.15.0",
+    "drizzle-orm": "^0.31.2",
     "next": "canary",
+    "postgres": "^3.4.4",
     "react": "canary",
     "react-dom": "canary",
     "react-hook-form": "^7.52.0"
@@ -28,16 +31,10 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "daisyui": "^4.12.2",
+    "drizzle-kit": "^0.22.7",
     "postcss": "^8.4.38",
-    "prisma": "^5.15.0",
     "tailwindcss": "^3.4.4",
     "typescript": "rc"
   },
-  "trustedDependencies": [
-    "@biomejs/biome",
-    "@prisma/client",
-    "@prisma/engines",
-    "prisma",
-    "sharp"
-  ]
+  "trustedDependencies": ["@biomejs/biome", "esbuild", "sharp"]
 }

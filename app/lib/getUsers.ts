@@ -1,4 +1,4 @@
-import type { User } from "@prisma/client"
+import type { User } from "@/app/lib/schema"
 
 export function getUsers(): Promise<{ users: User[] }> {
   const baseUrl = process.env.API_URL || "http://localhost:3000"
