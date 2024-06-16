@@ -1,14 +1,14 @@
 import { TEST_BUCKET } from "@/app/lib/constant"
 import { client } from "@/app/lib/s3client"
-import { type NewUser, type User, db, user } from "@/app/lib/schema"
+import { type NewUser, type User, db, users } from "@/app/lib/schema"
 import {
   PutObjectCommand,
   type PutObjectCommandOutput,
 } from "@aws-sdk/client-s3"
 
 export async function GET(): Promise<Response> {
-  const users: User[] = await db.select().from(user)
-  return Response.json({ users })
+  const getUser: User[] = await db.select().from(users)
+  return Response.json({ getUser })
 }
 
 export async function POST(request: Request): Promise<Response> {
@@ -27,7 +27,7 @@ export async function POST(request: Request): Promise<Response> {
     email: body.get("email") as string,
     image: `${body.get("employeeId")}.${image.name.split(".").pop()}`,
   }
-  const insertUser: User[] = await db.insert(user).values(newUser).returning()
+  const insertUser: User[] = await db.insert(users).values(newUser).returning()
   return Response.json({ insertUser })
 }
 
