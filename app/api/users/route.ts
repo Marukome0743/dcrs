@@ -7,8 +7,8 @@ import {
 } from "@aws-sdk/client-s3"
 
 export async function GET(): Promise<Response> {
-  const getUser: User[] = await db.select().from(users)
-  return Response.json({ getUser })
+  const getUsers: User[] = await db.select().from(users)
+  return Response.json({ getUsers })
 }
 
 export async function POST(request: Request): Promise<Response> {

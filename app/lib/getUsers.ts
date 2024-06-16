@@ -1,12 +1,12 @@
 import type { User } from "@/app/lib/schema"
 
-export function getUsers(): Promise<{ users: User[] }> {
+export function getUsers(): Promise<{ getUsers: User[] }> {
   const baseUrl = process.env.API_URL || "http://localhost:3000"
 
   return fetch(`${baseUrl}/api/users`)
     .then((res) => {
       if (!res.ok) {
-        return { users: [] }
+        return { getUsers: [] }
       }
       return res.json()
     })

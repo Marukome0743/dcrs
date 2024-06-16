@@ -140,12 +140,12 @@ function Skeleton(): React.JSX.Element {
 }
 
 async function Tbody(): Promise<React.JSX.Element> {
-  const userData: { users: User[] } = await getUsers()
+  const userData: { getUsers: User[] } = await getUsers()
 
   return (
     <>
       {userData ? (
-        userData.users.map((user: User) => (
+        userData.getUsers.map((user: User) => (
           <tr key={user.id} className="hover">
             <Checkbox />
             <td>{user.id}</td>

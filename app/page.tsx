@@ -55,14 +55,14 @@ export default function Home(): React.JSX.Element {
 }
 
 async function Badge(): Promise<React.JSX.Element> {
-  const userData: { users: User[] } = await getUsers()
+  const userData: { getUsers: User[] } = await getUsers()
 
   return (
     <>
-      {userData && userData.users.length > 0 && (
+      {userData && userData.getUsers.length > 0 && (
         <div className="indicator-item badge badge-warning">
           <PlusIcon className="size-4" />
-          {userData.users.length}件
+          {userData.getUsers.length}件
         </div>
       )}
     </>
