@@ -3,6 +3,7 @@ import { Breadcrumb } from "@/app/components/layout/breadcrumb"
 import type { SiteLink } from "@/app/interfaces/siteLink"
 import type { TableHeader } from "@/app/interfaces/tableHeader"
 import { getUsers } from "@/app/lib/getUsers"
+import type { User } from "@/app/lib/schema"
 import {
   ArrowTopRightOnSquareIcon,
   BuildingOffice2Icon,
@@ -15,7 +16,6 @@ import {
   TagIcon,
   UserIcon,
 } from "@heroicons/react/24/solid"
-import type { User } from "@prisma/client"
 import Link from "next/link"
 import type React from "react"
 import { Suspense } from "react"
