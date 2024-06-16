@@ -1,12 +1,12 @@
 import { STEPS } from "@/app/lib/constant"
 import { getUsers } from "@/app/lib/getUsers"
+import type { User } from "@/app/lib/schema"
 import {
   CameraIcon,
   ForwardIcon,
   PlusIcon,
   TableCellsIcon,
 } from "@heroicons/react/24/solid"
-import type { User } from "@prisma/client"
 import Link from "next/link"
 import type React from "react"
 import { Suspense } from "react"

@@ -1,14 +1,13 @@
 import { TEST_BUCKET } from "@/app/lib/constant"
-import { prisma } from "@/app/lib/prisma"
 import { client } from "@/app/lib/s3client"
+import { type NewUser, type User, db, user } from "@/app/lib/schema"
 import {
   PutObjectCommand,
   type PutObjectCommandOutput,
 } from "@aws-sdk/client-s3"
-import type { User } from "@prisma/client"
 
 export async function GET(): Promise<Response> {
-  const users: User[] = await prisma.user.findMany()
+  const users: User[] = await db.select().from(user)
   return Response.json({ users })
 }
 
@@ -20,17 +19,16 @@ export async function POST(request: Request): Promise<Response> {
   }
 
   const image: File = body.get("image") as File
-  const user: User = await prisma.user.create({
-    data: {
-      name: body.get("name") as string,
-      company: body.get("company") as string,
-      employeeId: body.get("employeeId") as string,
-      telephone: body.get("telephone") as string,
-      email: body.get("email") as string,
-      image: `${body.get("employeeId")}.${image.name.split(".").pop()}`,
-    },
-  })
-  return Response.json({ user })
+  const newUser: NewUser = {
+    name: body.get("name") as string,
+    company: body.get("company") as string,
+    employeeId: body.get("employeeId") as string,
+    telephone: body.get("telephone") as string,
+    email: body.get("email") as string,
+    image: `${body.get("employeeId")}.${image.name.split(".").pop()}`,
+  }
+  const insertUser: User[] = await db.insert(user).values(newUser).returning()
+  return Response.json({ insertUser })
 }
 
 async function postImage(body: FormData): Promise<Response> {
