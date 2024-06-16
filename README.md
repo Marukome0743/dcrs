@@ -6,11 +6,17 @@
   <a aria-label="bun" href="https://bun.sh/">
     <img src="https://img.shields.io/badge/-Bun-FBF0DF.svg?logo=bun&style=for-the-badge&labelColor=000000" alt="bun">
   </a>
+  <a aria-label="drizzle" href="https://orm.drizzle.team/">
+    <img src="https://img.shields.io/badge/-drizzle-C5F74F.svg?logo=drizzle&style=for-the-badge&labelColor=000000" alt="drizzle">
+  </a>
   <a aria-label="next.js" href="https://nextjs.org/">
     <img src="https://img.shields.io/badge/-next.js-000000.svg?logo=next.js&style=for-the-badge&labelColor=000000" alt="next.js">
   </a>
   <a aria-label="react" href="https://react.dev/">
     <img src="https://img.shields.io/badge/-react-61DAFB.svg?logo=react&style=for-the-badge&labelColor=000000" alt="react">
+  </a>
+  <a aria-label="React Hook Form" href="https://react-hook-form.com/">
+    <img src="https://img.shields.io/badge/-react hook form-EC5990.svg?logo=reacthookform&style=for-the-badge&labelColor=000000" alt="React Hook Form">
   </a>
   <a aria-label="tailwindcss" href="https://tailwindcss.com/">
     <img src="https://img.shields.io/badge/-tailwind css-06B6D4.svg?logo=tailwindcss&style=for-the-badge&labelColor=000000" alt="tailwindcss">
@@ -22,7 +28,7 @@
     <img src="https://img.shields.io/badge/-visual studio code-007ACC.svg?logo=visualstudiocode&style=for-the-badge&labelColor=000000" alt="vscode">
   </a>
   <a aria-label="devcontainer" href="https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/OpenUp-LabTakizawa/dcrs">
-    <img src="https://img.shields.io/badge/-open-007ACC.svg?label=dev%20containers&logo=visualstudiocode&style=for-the-badge&labelColor=000000" alt="vscode">
+    <img src="https://img.shields.io/badge/-open-007ACC.svg?label=dev%20containers&logo=visualstudiocode&style=for-the-badge&labelColor=000000" alt="devcontainer">
   </a>
   <a aria-label="License" href="https://github.com/OpenUp-LabTakizawa/dcrs/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/OpenUp-LabTakizawa/dcrs?style=for-the-badge&labelColor=000000" alt="License">
@@ -121,10 +127,12 @@ This software uses the following open source packages:
 - [Biome](https://biomejs.dev/)
 - [Bun](https://bun.sh/)
 - [daisyUI](https://daisyui.com/)
+- [Drizzle](https://orm.drizzle.team/)
 - [HAPPY DOM](https://github.com/capricorn86/happy-dom)
 - [Next.js](https://nextjs.org/)
 - [Node.js](https://nodejs.org/)
 - [React](https://react.dev/)
+- [React Hook Form](https://react-hook-form.com/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [TypeScript](https://www.typescriptlang.org/)
 
