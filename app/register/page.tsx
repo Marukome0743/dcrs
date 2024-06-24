@@ -16,10 +16,9 @@ import {
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import type React from "react"
-import { useContext, useRef } from "react"
+import { useActionState, useContext, useRef } from "react"
 import {
   type Path,
-  type SubmitHandler,
   type UseFormRegister,
   type UseFormWatch,
   useForm,
@@ -33,22 +32,24 @@ const COMPANIES: string[] = [
 
 export default function Register(): React.JSX.Element {
   const {
-    formState: { isDirty, isSubmitting, isValid },
-    handleSubmit,
+    formState: { isValid },
     register,
     unregister,
     watch,
   } = useForm<Profile>()
   const dialogRef = useRef<HTMLDialogElement>(null)
-  const formRef = useRef<HTMLFormElement>(null)
   const setAlert: React.Dispatch<React.SetStateAction<Alert>> =
     useContext(AlertContext)
   const router = useRouter()
+  const [_state, formAction, isPending] = useActionState(
+    sendData,
+    new FormData(),
+  )
 
-  const onSubmit: SubmitHandler<Profile> = async () => {
-    const formElement: HTMLFormElement = formRef.current as HTMLFormElement
-    const formData: FormData = new FormData(formElement)
-
+  async function sendData(
+    _prevState: FormData,
+    formData: FormData,
+  ): Promise<FormData> {
     fetch("/api/users", {
       method: "POST",
       body: formData,
@@ -57,25 +58,22 @@ export default function Register(): React.JSX.Element {
         if (!res.ok) {
           dialogRef.current?.close()
           setAlert({ eventType: "error", message: res.statusText })
-          return
+          return formData
         }
-        setAlert({ eventType: "success", message: "送信に成功しました" })
         router.push("/register/success")
+        setAlert({ eventType: "success", message: "送信に成功しました" })
       })
       .catch((error) => {
         dialogRef.current?.close()
         setAlert({ eventType: "error", message: error })
       })
+    return formData
   }
 
   return (
     <>
       <Stepper targetStep={0} />
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        ref={formRef}
-        className="flex flex-col gap-6 max-w-xs"
-      >
+      <form action={formAction} className="flex flex-col gap-6 max-w-xs">
         <p className="text-center before:ml-0.5 before:text-red-500 before:content-['*']">
           は必須項目
         </p>
@@ -150,11 +148,7 @@ export default function Register(): React.JSX.Element {
           <CheckIcon className="size-6" />
           確認画面へ
         </button>
-        <ConfirmDialog
-          ref={dialogRef}
-          watch={watch}
-          isSubmitting={isSubmitting}
-        />
+        <ConfirmDialog ref={dialogRef} watch={watch} isPending={isPending} />
       </form>
     </>
   )
@@ -188,11 +182,11 @@ function Input({
 function ConfirmDialog({
   ref,
   watch,
-  isSubmitting,
+  isPending,
 }: Readonly<{
   ref: React.RefObject<HTMLDialogElement>
   watch: UseFormWatch<Profile>
-  isSubmitting: boolean
+  isPending: boolean
 }>): React.JSX.Element {
   return (
     <dialog ref={ref} className="modal modal-bottom sm:modal-middle">
@@ -233,11 +227,11 @@ function ConfirmDialog({
           <button
             type="submit"
             className={`btn btn-info ${
-              isSubmitting ? "indicator" : "[&:not(:hover)]:animate-bounce"
+              isPending ? "indicator" : "[&:not(:hover)]:animate-bounce"
             }`}
-            disabled={isSubmitting}
+            disabled={isPending}
           >
-            {isSubmitting && <PingAnimation />}
+            {isPending && <PingAnimation />}
             <PaperAirplaneIcon className="size-6" />
             送信
           </button>

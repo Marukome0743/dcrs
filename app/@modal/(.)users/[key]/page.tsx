@@ -20,7 +20,7 @@ export default function ImageModal({
 function Skelton(): React.JSX.Element {
   return (
     <>
-      <h1>
+      <h1 className="mx-auto">
         <p className="skeleton h-6 w-32" />
       </h1>
       <div className="skeleton h-64 w-full" />
