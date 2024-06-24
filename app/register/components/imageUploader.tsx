@@ -19,10 +19,10 @@ const ACCEPTED_IMAGE_TYPES: string[] = [
 export function ImageUploader({
   register,
   unregister,
-}: {
+}: Readonly<{
   register: UseFormRegister<Profile>
   unregister: UseFormUnregister<Profile>
-}): React.JSX.Element {
+}>): React.JSX.Element {
   const { ref, onChange, ...rest } = register("image" as Path<Profile>, {
     required: true,
   })

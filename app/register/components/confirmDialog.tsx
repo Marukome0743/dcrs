@@ -18,10 +18,10 @@ import type { Path, UseFormWatch } from "react-hook-form"
 export function ConfirmDialog({
   dialog,
   watch,
-}: {
+}: Readonly<{
   dialog: React.RefObject<HTMLDialogElement>
   watch: UseFormWatch<Profile>
-}): React.JSX.Element {
+}>): React.JSX.Element {
   const setAlert: React.Dispatch<React.SetStateAction<Alert>> =
     useContext(AlertContext)
   const router = useRouter()
