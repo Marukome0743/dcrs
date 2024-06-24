@@ -10,9 +10,9 @@ import { Suspense } from "react"
 
 export default function ImagePage({
   params: { key },
-}: {
+}: Readonly<{
   params: { key: string }
-}): React.JSX.Element {
+}>): React.JSX.Element {
   const imageLink: SiteLink = {
     name: key,
     href: "",

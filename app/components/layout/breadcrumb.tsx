@@ -5,7 +5,7 @@ import type React from "react"
 
 export function Breadcrumb({
   crumbs,
-}: { crumbs: SiteLink[] }): React.JSX.Element {
+}: Readonly<{ crumbs: SiteLink[] }>): React.JSX.Element {
   return (
     <div className="text-sm breadcrumbs">
       <ul>

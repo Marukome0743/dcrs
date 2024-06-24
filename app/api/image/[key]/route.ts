@@ -5,10 +5,9 @@ import {
   type GetObjectCommandOutput,
 } from "@aws-sdk/client-s3"
 
-export async function GET(
-  _request: Request,
-  { params }: { params: { key: string } },
-): Promise<Response> {
+export async function GET({
+  params,
+}: Readonly<{ params: { key: string } }>): Promise<Response> {
   const command: GetObjectCommand = new GetObjectCommand({
     Bucket: process.env.S3_BUCKET || TEST_BUCKET,
     Key: params.key,

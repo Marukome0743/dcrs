@@ -5,9 +5,9 @@ import { Modal } from "./modal"
 
 export default function ImageModal({
   params: { key },
-}: {
+}: Readonly<{
   params: { key: string }
-}): React.JSX.Element {
+}>): React.JSX.Element {
   return (
     <Modal>
       <Suspense fallback={<Skelton />}>

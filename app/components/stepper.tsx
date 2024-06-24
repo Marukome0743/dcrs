@@ -3,7 +3,7 @@ import type React from "react"
 
 export function Stepper({
   targetStep,
-}: { targetStep: number }): React.JSX.Element {
+}: Readonly<{ targetStep: number }>): React.JSX.Element {
   return (
     <>
       <ul className="steps">
