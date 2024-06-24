@@ -1,7 +1,5 @@
 import { PingAnimation } from "@/app/components/animation/pingAnimation"
-import { AlertContext } from "@/app/components/layout/alertBox"
 import { Stepper } from "@/app/components/stepper"
-import type { Alert } from "@/app/interfaces/alert"
 import type { Profile } from "@/app/interfaces/profile"
 import { CHECKLIST } from "@/app/lib/constant"
 import {
@@ -10,57 +8,24 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/solid"
 import Image from "next/image"
-import { useRouter } from "next/navigation"
 import type React from "react"
-import { useContext, useState } from "react"
 import type { Path, UseFormWatch } from "react-hook-form"
 
 export function ConfirmDialog({
-  dialog,
+  ref,
   watch,
+  isSubmitting,
 }: Readonly<{
-  dialog: React.RefObject<HTMLDialogElement>
+  ref: React.RefObject<HTMLDialogElement>
   watch: UseFormWatch<Profile>
+  isSubmitting: boolean
 }>): React.JSX.Element {
-  const setAlert: React.Dispatch<React.SetStateAction<Alert>> =
-    useContext(AlertContext)
-  const router = useRouter()
-  const [isPending, setIsPending] = useState<boolean>(false)
-
-  async function onSubmit(): Promise<void> {
-    setIsPending(true)
-    const formElement: HTMLFormElement = document.querySelector(
-      "form",
-    ) as HTMLFormElement
-    const formData: FormData = new FormData(formElement)
-
-    fetch("/api/users", {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => {
-        dialog.current?.close()
-        if (!res.ok) {
-          setAlert({ eventType: "error", message: res.statusText })
-          setIsPending(false)
-          return
-        }
-        setAlert({ eventType: "success", message: "送信に成功しました" })
-        router.push("/register/success")
-      })
-      .catch((error) => {
-        dialog.current?.close()
-        setAlert({ eventType: "error", message: error })
-        setIsPending(false)
-      })
-  }
-
   return (
-    <dialog ref={dialog} className="modal modal-bottom sm:modal-middle">
+    <dialog ref={ref} className="modal modal-bottom sm:modal-middle">
       <div className="grid gap-4 modal-box text-center">
         <button
           type="button"
-          onClick={() => dialog.current?.close()}
+          onClick={() => ref.current?.close()}
           className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 hover:scale-110"
           aria-label="閉じる"
         >
@@ -94,19 +59,17 @@ export function ConfirmDialog({
           <button
             type="submit"
             className={`btn btn-info ${
-              isPending ? "indicator" : "[&:not(:hover)]:animate-bounce"
+              isSubmitting ? "indicator" : "[&:not(:hover)]:animate-bounce"
             }`}
-            onClick={onSubmit}
-            disabled={isPending}
           >
-            {isPending && <PingAnimation />}
+            {isSubmitting && <PingAnimation />}
             <PaperAirplaneIcon className="size-6" />
             送信
           </button>
           <button
             type="button"
             className="btn btn-error hover:scale-110"
-            onClick={() => dialog.current?.close()}
+            onClick={() => ref.current?.close()}
           >
             <ArrowUturnLeftIcon className="size-6" />
             戻る
@@ -116,7 +79,7 @@ export function ConfirmDialog({
       <div className="modal-backdrop">
         <button
           type="button"
-          onClick={() => dialog.current?.close()}
+          onClick={() => ref.current?.close()}
           aria-label="戻る"
         />
       </div>
