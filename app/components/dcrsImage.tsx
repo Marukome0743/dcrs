@@ -5,7 +5,7 @@ import type React from "react"
 
 export async function DcrsImage({
   path,
-}: { path: string }): Promise<React.JSX.Element> {
+}: Readonly<{ path: string }>): Promise<React.JSX.Element> {
   const response: Response = await getImage(path)
   const contentType: string = response.headers.get("Content-Type") as string
   const arrayBuffer: ArrayBuffer = await response.arrayBuffer()
@@ -14,7 +14,7 @@ export async function DcrsImage({
 
   return (
     <>
-      <h1 className="flex font-semibold items-center text-2xl">
+      <h1 className="flex font-semibold items-center mx-auto text-2xl">
         <PhotoIcon className="mr-2 size-8 text-accent" />
         {path}
       </h1>

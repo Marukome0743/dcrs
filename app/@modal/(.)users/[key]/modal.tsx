@@ -8,7 +8,7 @@ import type React from "react"
 
 export function Modal({
   children,
-}: { children: React.ReactNode }): React.JSX.Element {
+}: Readonly<{ children: React.ReactNode }>): React.JSX.Element {
   const router = useRouter()
   const dialogRef: React.RefObject<HTMLDialogElement> =
     useRef<HTMLDialogElement>(null)
@@ -34,7 +34,7 @@ export function Modal({
         >
           <XMarkIcon />
         </button>
-        {children}
+        <div className="grid gap-4 text-center">{children}</div>
         <div className="modal-action">
           <DownloadBtn />
           <button

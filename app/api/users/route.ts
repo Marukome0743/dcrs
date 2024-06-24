@@ -11,7 +11,7 @@ export async function GET(): Promise<Response> {
   return Response.json({ getUsers })
 }
 
-export async function POST(request: Request): Promise<Response> {
+export async function POST(request: Readonly<Request>): Promise<Response> {
   const body: FormData = await request.formData()
   const response: Response = await postImage(body)
   if (response.status !== 200) {
@@ -31,7 +31,7 @@ export async function POST(request: Request): Promise<Response> {
   return Response.json({ insertUser })
 }
 
-async function postImage(body: FormData): Promise<Response> {
+async function postImage(body: Readonly<FormData>): Promise<Response> {
   const image: File = body.get("image") as File
   const arrayBuffer: ArrayBuffer = await image.arrayBuffer()
   const buffer: Buffer = Buffer.from(arrayBuffer)

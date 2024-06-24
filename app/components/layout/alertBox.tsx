@@ -17,9 +17,9 @@ export const AlertContext = createContext<
 
 export function AlertBox({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}): React.JSX.Element {
+}>): React.JSX.Element {
   const [alert, setAlert] = useState<Alert>({
     eventType: "",
     message: "",
