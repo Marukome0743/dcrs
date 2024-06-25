@@ -55,8 +55,8 @@ export default function Register(): React.JSX.Element {
       body: formData,
     })
       .then((res) => {
+        dialogRef.current?.close()
         if (!res.ok) {
-          dialogRef.current?.close()
           setAlert({ eventType: "error", message: res.statusText })
           return formData
         }
