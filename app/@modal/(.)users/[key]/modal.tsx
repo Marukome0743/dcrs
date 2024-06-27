@@ -36,15 +36,17 @@ export function Modal({
         </button>
         <div className="grid gap-4 text-center">{children}</div>
         <div className="modal-action">
-          <DownloadBtn />
-          <button
-            type="button"
-            onClick={onDismiss}
-            className="btn justify-self-end hover:scale-110"
-          >
-            <XMarkIcon className="size-6" />
-            閉じる
-          </button>
+          <div className="flex gap-4 justify-end">
+            <DownloadBtn />
+            <button
+              type="button"
+              onClick={onDismiss}
+              className="btn hover:scale-110"
+            >
+              <XMarkIcon className="size-6" />
+              閉じる
+            </button>
+          </div>
         </div>
       </div>
     </dialog>

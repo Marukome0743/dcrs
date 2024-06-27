@@ -7,7 +7,7 @@ export function Breadcrumb({
   crumbs,
 }: Readonly<{ crumbs: SiteLink[] }>): React.JSX.Element {
   return (
-    <div className="text-sm breadcrumbs">
+    <div className="breadcrumbs text-sm mx-auto">
       <ul>
         <li>
           <Link href="/">

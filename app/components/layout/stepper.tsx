@@ -16,7 +16,9 @@ export function Stepper({
           </li>
         ))}
       </ul>
-      <h1 className="font-semibold text-2xl">{STEPS[targetStep].name}</h1>
+      <h1 className="font-semibold mx-auto text-2xl">
+        {STEPS[targetStep].name}
+      </h1>
     </>
   )
 }

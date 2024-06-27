@@ -3,7 +3,7 @@ import { PhotoIcon } from "@heroicons/react/24/solid"
 import Image from "next/image"
 import type React from "react"
 
-export async function DcrsImage({
+export async function ImagePreview({
   path,
 }: Readonly<{ path: string }>): Promise<React.JSX.Element> {
   const response: Response = await getImage(path)

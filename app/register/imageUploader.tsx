@@ -1,6 +1,7 @@
 "use client"
 
 import { AlertContext } from "@/app/components/layout/alertBox"
+import type { Alert } from "@/app/interfaces/alert"
 import type { Profile } from "@/app/interfaces/profile"
 import { PhotoIcon, XMarkIcon } from "@heroicons/react/24/solid"
 import Image from "next/image"
@@ -14,7 +15,7 @@ const ACCEPTED_IMAGE_TYPES: string[] = [
   "image/jpg",
   "image/png",
   "image/webp",
-]
+] as const
 
 export function ImageUploader({
   register,
@@ -26,11 +27,13 @@ export function ImageUploader({
   const { ref, onChange, ...rest } = register("image" as Path<Profile>, {
     required: true,
   })
-  const setAlert = useContext(AlertContext)
-  const inputRef = useRef<HTMLInputElement>()
+  const setAlert: React.Dispatch<React.SetStateAction<Alert>> =
+    useContext(AlertContext)
+  const inputRef: React.MutableRefObject<HTMLInputElement> =
+    useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>
   const [image, setImage] = useState<FileList>()
 
-  function validateFile(file: File): string {
+  function validateFile(file: Readonly<File>): string {
     if (file.size > MAX_UPLOAD_SIZE) {
       return "ファイルサイズは最大5MBです"
     }
@@ -50,8 +53,7 @@ export function ImageUploader({
   }
 
   function onUploadCancel(eventType: string, message: string): void {
-    const ref = inputRef as React.MutableRefObject<HTMLInputElement>
-    ref.current.value = ""
+    inputRef.current.value = ""
     setImage(undefined)
     unregister("image" as Path<Profile>)
     setAlert({
@@ -71,10 +73,7 @@ export function ImageUploader({
           className="w-full"
         />
       )}
-      <DropImageZone
-        image={image as FileList}
-        inputRef={inputRef as React.MutableRefObject<HTMLInputElement>}
-      >
+      <DropImageZone image={image as FileList} inputRef={inputRef}>
         <PhotoIcon
           className="mx-auto size-12 text-gray-300"
           aria-hidden="true"
@@ -124,11 +123,11 @@ function DropImageZone({
   children,
   image,
   inputRef,
-}: {
+}: Readonly<{
   children: React.ReactNode
   image: FileList
   inputRef: React.MutableRefObject<HTMLInputElement>
-}): React.JSX.Element {
+}>): React.JSX.Element {
   const [isHoverd, setIsHoverd] = useState<boolean>(false)
 
   function onDragLeave(e: DragEvent<HTMLDivElement>): void {

@@ -2,7 +2,7 @@
 
 import { PingAnimation } from "@/app/components/animation/pingAnimation"
 import { AlertContext } from "@/app/components/layout/alertBox"
-import { Stepper } from "@/app/components/stepper"
+import { Stepper } from "@/app/components/layout/stepper"
 import type { Alert } from "@/app/interfaces/alert"
 import type { FormItem } from "@/app/interfaces/formItem"
 import type { Profile } from "@/app/interfaces/profile"
@@ -37,7 +37,8 @@ export default function Register(): React.JSX.Element {
     unregister,
     watch,
   } = useForm<Profile>()
-  const dialogRef = useRef<HTMLDialogElement>(null)
+  const dialogRef: React.RefObject<HTMLDialogElement> =
+    useRef<HTMLDialogElement>(null)
   const setAlert: React.Dispatch<React.SetStateAction<Alert>> =
     useContext(AlertContext)
   const router = useRouter()
@@ -157,10 +158,10 @@ export default function Register(): React.JSX.Element {
 function Input({
   item,
   register,
-}: {
+}: Readonly<{
   item: FormItem
   register: UseFormRegister<Profile>
-}): React.JSX.Element {
+}>): React.JSX.Element {
   const Icon = item.icon as React.ElementType
 
   return (

@@ -3,7 +3,7 @@ import type React from "react"
 
 export function Pagination(): React.JSX.Element {
   return (
-    <div className="join">
+    <div className="join mx-auto">
       <button type="button" className="join-item btn btn-disabled">
         <ChevronLeftIcon className="size-4" />
       </button>
