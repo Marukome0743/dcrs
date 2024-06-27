@@ -1,7 +1,7 @@
 import { Pagination } from "@/app/components/button/pagination"
 import { Breadcrumb } from "@/app/components/layout/breadcrumb"
-import type { SiteLink } from "@/app/interfaces/siteLink"
 import type { TableHeader } from "@/app/interfaces/tableHeader"
+import { USERS_LINK } from "@/app/lib/constant"
 import { getUsers } from "@/app/lib/getUsers"
 import type { User } from "@/app/lib/schema"
 import {
@@ -12,7 +12,6 @@ import {
   IdentificationIcon,
   PhoneIcon,
   PhotoIcon,
-  TableCellsIcon,
   TagIcon,
   UserIcon,
 } from "@heroicons/react/24/solid"
@@ -21,13 +20,6 @@ import type React from "react"
 import { Suspense } from "react"
 
 export const dynamic = "force-dynamic"
-
-export const usersLink: SiteLink = {
-  name: "登録データ一覧",
-  href: "/users",
-  icon: TableCellsIcon,
-  color: "text-secondary",
-} as const
 
 const indexList: TableHeader[] = [
   {
@@ -75,10 +67,10 @@ const indexList: TableHeader[] = [
 export default function Users(): React.JSX.Element {
   return (
     <>
-      <Breadcrumb crumbs={[usersLink]} />
-      <h1 className="flex font-semibold items-center text-2xl">
-        <usersLink.icon className={`mr-2 size-8 ${usersLink.color}`} />
-        {usersLink.name}
+      <Breadcrumb crumbs={[USERS_LINK]} />
+      <h1 className="flex font-semibold items-center mx-auto text-2xl">
+        <USERS_LINK.icon className={`mr-2 size-8 ${USERS_LINK.color}`} />
+        {USERS_LINK.name}
       </h1>
       <section className="max-h-96 max-w-full overflow-x-auto">
         <table className="table table-xs table-pin-rows table-pin-cols table-zebra text-center">

@@ -24,7 +24,7 @@ export function DownloadBtn(): React.JSX.Element {
     <button
       type="button"
       onClick={download}
-      className="[&:not(:hover)]:animate-bounce btn btn-secondary justify-self-end"
+      className="[&:not(:hover)]:animate-bounce btn btn-secondary max-w-fit mx-auto"
     >
       <FolderArrowDownIcon className="size-6" />
       ダウンロード

@@ -1,8 +1,8 @@
 import { DownloadBtn } from "@/app/components/button/downloadBtn"
-import { DcrsImage } from "@/app/components/dcrsImage"
 import { Breadcrumb } from "@/app/components/layout/breadcrumb"
+import { ImagePreview } from "@/app/components/layout/imagePreview"
 import type { SiteLink } from "@/app/interfaces/siteLink"
-import { usersLink } from "@/app/users/page"
+import { USERS_LINK } from "@/app/lib/constant"
 import { ArrowUturnLeftIcon, PhotoIcon } from "@heroicons/react/24/solid"
 import Link from "next/link"
 import type React from "react"
@@ -22,12 +22,12 @@ export default function ImagePage({
 
   return (
     <>
-      <Breadcrumb crumbs={[usersLink, imageLink]} />
+      <Breadcrumb crumbs={[USERS_LINK, imageLink]} />
       <Suspense fallback={<Skelton />}>
-        <DcrsImage path={key} />
+        <ImagePreview path={key} />
       </Suspense>
       <DownloadBtn />
-      <Link href="/users" className="btn hover:scale-110">
+      <Link href="/users" className="btn max-w-fit mx-auto hover:scale-110">
         <ArrowUturnLeftIcon className="size-6 rotate-z" />
         表に戻る
       </Link>

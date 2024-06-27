@@ -1,4 +1,4 @@
-import { DcrsImage } from "@/app/components/dcrsImage"
+import { ImagePreview } from "@/app/components/layout/imagePreview"
 import type React from "react"
 import { Suspense } from "react"
 import { Modal } from "./modal"
@@ -11,7 +11,7 @@ export default function ImageModal({
   return (
     <Modal>
       <Suspense fallback={<Skelton />}>
-        <DcrsImage path={key} />
+        <ImagePreview path={key} />
       </Suspense>
     </Modal>
   )

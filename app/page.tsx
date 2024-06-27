@@ -34,13 +34,16 @@ export default function Home(): React.JSX.Element {
           </li>
         ))}
       </ul>
-      <Link href="/register" className="btn btn-primary hover:scale-110">
+      <Link
+        href="/register"
+        className="btn btn-primary max-w-fit mx-auto hover:scale-110"
+      >
         <CameraIcon className="size-6" />
         障がい者手帳画像を提出
       </Link>
       <Link
         href="/users"
-        className="indicator btn btn-secondary hover:scale-110"
+        className="btn btn-secondary indicator mx-auto hover:scale-110"
       >
         <TableCellsIcon className="size-6" />
         登録データ一覧

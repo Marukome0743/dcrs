@@ -1,4 +1,4 @@
-import { Stepper } from "@/app/components/stepper"
+import { Stepper } from "@/app/components/layout/stepper"
 import type React from "react"
 
 export default function Success(): React.JSX.Element {

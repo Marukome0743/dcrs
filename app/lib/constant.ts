@@ -1,4 +1,5 @@
 import type { FormItem } from "@/app/interfaces/formItem"
+import type { SiteLink } from "@/app/interfaces/siteLink"
 import type { Step } from "@/app/interfaces/step"
 import {
   CheckCircleIcon,
@@ -7,6 +8,7 @@ import {
   IdentificationIcon,
   PencilSquareIcon,
   PhoneIcon,
+  TableCellsIcon,
   UserIcon,
 } from "@heroicons/react/24/solid"
 
@@ -73,3 +75,10 @@ export const STEPS: Step[] = [
 ] as const
 
 export const TEST_BUCKET: string = "dcrs-test"
+
+export const USERS_LINK: SiteLink = {
+  name: "登録データ一覧",
+  href: "/users",
+  icon: TableCellsIcon,
+  color: "text-secondary",
+} as const

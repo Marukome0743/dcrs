@@ -7,7 +7,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline"
 import type React from "react"
-import { createContext, useState } from "react"
+import { createContext, useRef, useState } from "react"
 
 export const AlertContext = createContext<
   React.Dispatch<React.SetStateAction<Alert>>
@@ -20,6 +20,8 @@ export function AlertBox({
 }: Readonly<{
   children: React.ReactNode
 }>): React.JSX.Element {
+  const ref: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
+  const alertBox: HTMLDivElement = ref.current as HTMLDivElement
   const [alert, setAlert] = useState<Alert>({
     eventType: "",
     message: "",
@@ -29,17 +31,15 @@ export function AlertBox({
     const timeout = setTimeout(() => {
       setAlert({ eventType: "", message: "" })
     }, 1500)
-    const alert: HTMLDivElement = document.querySelector(
-      ".fade-in-alert",
-    ) as HTMLDivElement
-    alert.classList.remove("fade-in-alert")
-    alert.classList.add("fade-out-alert")
+    alertBox.classList.remove("fade-in-alert")
+    alertBox.classList.add("fade-out-alert")
     return () => window.clearTimeout(timeout)
   }
 
   return (
     <AlertContext.Provider value={setAlert}>
       <div
+        ref={ref}
         className={`toast toast-top toast-center z-10 ${
           alert.eventType && alert.message ? "fade-in-alert" : "hidden"
         }`}
