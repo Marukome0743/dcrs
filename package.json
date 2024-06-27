@@ -15,7 +15,7 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.600.0",
     "@heroicons/react": "^2.1.4",
-    "drizzle-orm": "^0.31.2",
+    "drizzle-orm": "generated",
     "next": "canary",
     "postgres": "^3.4.4",
     "react": "canary",
@@ -23,7 +23,7 @@
     "react-hook-form": "^7.52.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.8.2",
+    "@biomejs/biome": "^1.8.3",
     "@happy-dom/global-registrator": "^14.12.3",
     "@testing-library/dom": "^10.2.0",
     "@testing-library/react": "^16.0.0",
@@ -31,7 +31,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "daisyui": "^4.12.10",
-    "drizzle-kit": "^0.22.7",
+    "drizzle-kit": "generated",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.5.2"
