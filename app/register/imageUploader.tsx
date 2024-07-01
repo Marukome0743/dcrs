@@ -2,12 +2,12 @@
 
 import { AlertContext } from "@/app/components/layout/alertBox"
 import type { Alert } from "@/app/interfaces/alert"
-import type { Profile } from "@/app/interfaces/profile"
+import type { Form } from "@/app/interfaces/form"
 import { PhotoIcon, XMarkIcon } from "@heroicons/react/24/solid"
 import Image from "next/image"
 import { type DragEvent, useContext, useRef, useState } from "react"
 import type React from "react"
-import type { Path, UseFormRegister, UseFormUnregister } from "react-hook-form"
+import type { UseFormRegister, UseFormUnregister } from "react-hook-form"
 
 const MAX_UPLOAD_SIZE: number = 5 * 1024 * 1024
 const ACCEPTED_IMAGE_TYPES: string[] = [
@@ -21,10 +21,10 @@ export function ImageUploader({
   register,
   unregister,
 }: Readonly<{
-  register: UseFormRegister<Profile>
-  unregister: UseFormUnregister<Profile>
+  register: UseFormRegister<Form>
+  unregister: UseFormUnregister<Form>
 }>): React.JSX.Element {
-  const { ref, onChange, ...rest } = register("image" as Path<Profile>, {
+  const { ref, onChange, ...rest } = register("image", {
     required: true,
   })
   const setAlert: React.Dispatch<React.SetStateAction<Alert>> =
@@ -55,7 +55,7 @@ export function ImageUploader({
   function onUploadCancel(eventType: string, message: string): void {
     inputRef.current.value = ""
     setImage(undefined)
-    unregister("image" as Path<Profile>)
+    unregister("image")
     setAlert({
       eventType: eventType,
       message: message,
