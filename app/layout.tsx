@@ -31,7 +31,7 @@ export default function RootLayout({
     <html lang="ja">
       <body className={sawarabi.className}>
         <Header />
-        <main className="bg-gray-50 grid gap-6 items-center justify-center px-4 py-6 lg:px-8 sm:px-6">
+        <main className="bg-gray-50 grid gap-6 items-center justify-center px-4 py-6 sm:px-6 lg:px-8">
           <AlertBox>
             {children}
             {modal}
