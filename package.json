@@ -20,7 +20,7 @@
     "postgres": "^3.4.4",
     "react": "canary",
     "react-dom": "canary",
-    "react-hook-form": "^7.52.0"
+    "react-hook-form": "^7.52.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
