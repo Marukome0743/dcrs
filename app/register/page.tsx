@@ -66,8 +66,8 @@ export default function Register(): React.JSX.Element {
           setAlert({ eventType: "error", message: res.statusText })
           return formData
         }
-        router.push("/register/success")
         setAlert({ eventType: "success", message: "送信に成功しました" })
+        router.push("/register/success")
       })
       .catch((error) => {
         dialogRef.current?.close()
@@ -125,6 +125,7 @@ export default function Register(): React.JSX.Element {
                 type="checkbox"
                 className="checkbox"
                 {...register("agreement", { required: true })}
+                value="同意する"
                 required={true}
               />
             </label>
@@ -213,9 +214,7 @@ function ConfirmDialog({
               <tr key={item.name} className="grid grid-cols-2">
                 <th>{item.value}</th>
                 <td className="text-center">
-                  {item.name === "agreement" ? (
-                    "同意する"
-                  ) : item.name === "image" && watch(item.name) ? (
+                  {item.name === "image" && watch(item.name) ? (
                     <Image
                       src={document.getElementsByTagName("img")[0].src}
                       width={100}
