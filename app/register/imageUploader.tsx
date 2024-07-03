@@ -9,14 +9,6 @@ import { type DragEvent, useContext, useRef, useState } from "react"
 import type React from "react"
 import type { UseFormRegister, UseFormUnregister } from "react-hook-form"
 
-const MAX_UPLOAD_SIZE: number = 5 * 1024 * 1024
-const ACCEPTED_IMAGE_TYPES: string[] = [
-  "image/jpeg",
-  "image/jpg",
-  "image/png",
-  "image/webp",
-] as const
-
 export function ImageUploader({
   register,
   unregister,
@@ -27,6 +19,13 @@ export function ImageUploader({
   const { ref, onChange, ...rest } = register("image", {
     required: true,
   })
+  const maxUploadSize: number = 5 * 1024 * 1024
+  const acceptedImages: { name: string; mimeType: string }[] = [
+    { name: "AVIF", mimeType: "image/avif" },
+    { name: "JPG", mimeType: "image/jpeg" },
+    { name: "PNG", mimeType: "image/png" },
+    { name: "WEBP", mimeType: "image/webp" },
+  ] as const
   const setAlert: React.Dispatch<React.SetStateAction<Alert>> =
     useContext(AlertContext)
   const inputRef: React.MutableRefObject<HTMLInputElement> =
@@ -34,10 +33,10 @@ export function ImageUploader({
   const [image, setImage] = useState<FileList>()
 
   function validateFile(file: Readonly<File>): string {
-    if (file.size > MAX_UPLOAD_SIZE) {
+    if (file.size > maxUploadSize) {
       return "ファイルサイズは最大5MBです"
     }
-    if (!ACCEPTED_IMAGE_TYPES.includes(file.type)) {
+    if (!acceptedImages.some((image) => image.mimeType === file.type)) {
       return "不正なファイル形式です"
     }
     return ""
@@ -103,7 +102,8 @@ export function ImageUploader({
           <p className="pl-1">又は、ドラッグ＆ドロップ</p>
         </div>
         <p className="text-gray-600 text-xs leading-5">
-          JPEG, JPG, PNG, WEBP のファイルを 5MB まで
+          {acceptedImages.map((image) => image.name).join(", ")} のファイルを
+          5MB まで
         </p>
       </DropImageZone>
       <button
