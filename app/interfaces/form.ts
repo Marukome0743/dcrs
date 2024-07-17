@@ -13,8 +13,8 @@ export type Form = {
 
 export type FormItem = {
   name: Path<Form>
-  value: string
+  label: string
   type: string
-  icon?: React.ElementType
+  icon: React.ElementType
   placeholder?: string
 }

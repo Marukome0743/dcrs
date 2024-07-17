@@ -8,9 +8,11 @@ import {
 } from "@heroicons/react/24/outline"
 import Link from "next/link"
 import type React from "react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { themeChange } from "theme-change"
 
 export function Header(): React.JSX.Element {
+  const [theme, setTheme] = useState<"light" | "dark">("light")
   const [scrollY, setScrollY] = useState<{
     scrollY: number
     isScrollDown: boolean
@@ -26,20 +28,32 @@ export function Header(): React.JSX.Element {
     })
   }
 
+  useEffect(() => {
+    if (
+      !("theme" in localStorage) &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+      localStorage.setItem("theme", "dark")
+    }
+
+    themeChange(false)
+    if (localStorage.getItem("theme") === "dark") {
+      setTheme("dark")
+    }
+  })
+
   return (
     <header
-      className={`transition duration-400 ease bg-base-100 navbar sticky top-0 z-10 ${
+      className={`transition duration-400 ease bg-base-100 justify-between navbar sticky top-0 z-10 ${
         headerHeight < scrollY.scrollY && scrollY.isScrollDown
           ? "-translate-y-20"
           : "translate-y-0"
       }`}
     >
-      <div className="flex-1">
-        <Link href="/" className="btn btn-ghost h-fit text-xl">
-          {SITE_TITLE}
-        </Link>
-      </div>
-      <div className="flex-none gap-4">
+      <Link href="/" className="btn btn-ghost h-fit text-xl">
+        {SITE_TITLE}
+      </Link>
+      <div className="gap-4">
         <Link
           href="/login"
           className="btn btn-ghost btn-square h-fit gap-0 text-nowrap"
@@ -48,14 +62,20 @@ export function Header(): React.JSX.Element {
           ログイン
         </Link>
         <label className="btn btn-ghost btn-square h-fit swap swap-rotate">
-          <input type="checkbox" className="theme-controller" value="dark" />
-          <div className="swap-on">
-            <MoonIcon className="size-10 text-secondary" />
-            ダーク
-          </div>
-          <div className="swap-off">
+          <input type="checkbox" />
+          <div
+            className={`${theme === "light" ? "swap-off" : "swap-on"}`}
+            data-set-theme="light"
+          >
             <SunIcon className="size-10 text-warning" />
             ライト
+          </div>
+          <div
+            className={`${theme === "dark" ? "swap-off" : "swap-on"}`}
+            data-set-theme="dark"
+          >
+            <MoonIcon className="size-10 text-secondary" />
+            ダーク
           </div>
         </label>
       </div>

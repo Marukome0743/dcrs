@@ -1,64 +1,30 @@
 import type { FormItem } from "@/app/interfaces/form"
-import type { SiteLink } from "@/app/interfaces/siteLink"
-import type { Step } from "@/app/interfaces/step"
+import type { Index } from "@/app/interfaces/index"
 import {
+  BuildingOffice2Icon,
   CheckCircleIcon,
+  ClockIcon,
   EnvelopeIcon,
   HandThumbUpIcon,
   IdentificationIcon,
   PencilSquareIcon,
   PhoneIcon,
+  PhotoIcon,
   TableCellsIcon,
+  TagIcon,
   UserIcon,
 } from "@heroicons/react/24/solid"
 
-export const NAME: FormItem = {
-  name: "name",
-  value: "氏名",
-  type: "text",
-  icon: UserIcon,
-  placeholder: "オープン太郎",
-}
-export const COMPANY: FormItem = {
-  name: "company",
-  value: "所属会社",
-  type: "select",
-}
-export const EMPLOYEE_ID: FormItem = {
-  name: "employeeId",
-  value: "社員番号",
-  type: "number",
-  icon: IdentificationIcon,
-  placeholder: "123456",
-}
-export const TELEPHONE: FormItem = {
-  name: "telephone",
-  value: "電話番号",
-  type: "tel",
-  icon: PhoneIcon,
-  placeholder: "09012345678",
-}
-export const EMAIL: FormItem = {
-  name: "email",
-  value: "Eメール",
-  type: "email",
-  icon: EnvelopeIcon,
-  placeholder: "example@mail.com",
-}
-export const AGREEMENT: FormItem = {
-  name: "agreement",
-  value: "個人情報提供への同意",
-  type: "checkbox",
-}
-export const IMAGE: FormItem = {
-  name: "image",
-  value: "障がい者手帳の画像・写真",
-  type: "file",
-}
-
 export const SITE_TITLE: string = "障がい者手帳登録システム"
+export const TEST_BUCKET: string = "dcrs-test"
+export const USERS_LINK: Index = {
+  name: "登録データ一覧",
+  href: "/users",
+  icon: TableCellsIcon,
+  color: "text-secondary",
+}
 
-export const STEPS: Step[] = [
+export const STEPS: Index[] = [
   {
     name: "必要情報の入力",
     icon: PencilSquareIcon,
@@ -72,11 +38,99 @@ export const STEPS: Step[] = [
   { name: "完了", icon: HandThumbUpIcon, color: "text-success" },
 ] as const
 
-export const TEST_BUCKET: string = "dcrs-test"
+export const NAME: FormItem = {
+  name: "name",
+  label: "氏名",
+  type: "text",
+  icon: UserIcon,
+  placeholder: "オープン太郎",
+}
 
-export const USERS_LINK: SiteLink = {
-  name: "登録データ一覧",
-  href: "/users",
-  icon: TableCellsIcon,
-  color: "text-secondary",
-} as const
+export const COMPANY: FormItem = {
+  name: "company",
+  label: "所属会社",
+  type: "select",
+  icon: BuildingOffice2Icon,
+}
+
+export const EMPLOYEE_ID: FormItem = {
+  name: "employeeId",
+  label: "社員番号",
+  type: "number",
+  icon: IdentificationIcon,
+  placeholder: "123456",
+}
+
+export const TELEPHONE: FormItem = {
+  name: "telephone",
+  label: "電話番号",
+  type: "tel",
+  icon: PhoneIcon,
+  placeholder: "09012345678",
+}
+
+export const EMAIL: FormItem = {
+  name: "email",
+  label: "Eメール",
+  type: "email",
+  icon: EnvelopeIcon,
+  placeholder: "example@mail.com",
+}
+
+export const AGREEMENT: FormItem = {
+  name: "agreement",
+  label: "個人情報提供への同意",
+  type: "checkbox",
+  icon: CheckCircleIcon,
+  placeholder: "同意する",
+}
+
+export const IMAGE: FormItem = {
+  name: "image",
+  label: "障がい者手帳の画像",
+  type: "file",
+  icon: PhotoIcon,
+}
+
+export const INDEX_LIST: Index[] = [
+  {
+    name: "ID",
+    icon: TagIcon,
+    color: "text-warning",
+  },
+  {
+    name: "登録日時",
+    icon: ClockIcon,
+    color: "text-primary",
+  },
+  {
+    name: NAME.label,
+    icon: NAME.icon,
+    color: "text-error",
+  },
+  {
+    name: COMPANY.label,
+    icon: COMPANY.icon,
+    color: "text-success",
+  },
+  {
+    name: EMPLOYEE_ID.label,
+    icon: EMPLOYEE_ID.icon,
+    color: "text-secondary",
+  },
+  {
+    name: TELEPHONE.label,
+    icon: TELEPHONE.icon,
+    color: "text-warning",
+  },
+  {
+    name: EMAIL.label,
+    icon: EMAIL.icon,
+    color: "text-info",
+  },
+  {
+    name: IMAGE.label,
+    icon: IMAGE.icon,
+    color: "text-accent",
+  },
+] as const

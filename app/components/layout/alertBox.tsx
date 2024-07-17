@@ -27,13 +27,13 @@ export function AlertBox({
     message: "",
   })
 
-  function CloseAlert() {
+  function CloseAlert(): void {
     const timeout = setTimeout(() => {
       setAlert({ eventType: "", message: "" })
     }, 1500)
     alertBox.classList.remove("fade-in-alert")
     alertBox.classList.add("fade-out-alert")
-    return () => window.clearTimeout(timeout)
+    window.clearTimeout(timeout)
   }
 
   return (
@@ -59,7 +59,7 @@ export function AlertBox({
           <button
             type="button"
             className="btn btn-sm flex-nowrap"
-            onClick={() => CloseAlert()}
+            onClick={CloseAlert}
           >
             <XMarkIcon className="size-6" />
             閉じる

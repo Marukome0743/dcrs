@@ -1,9 +1,9 @@
 import { DownloadBtn } from "@/app/components/button/downloadBtn"
 import { Breadcrumb } from "@/app/components/layout/breadcrumb"
 import { ImagePreview } from "@/app/components/layout/imagePreview"
-import type { SiteLink } from "@/app/interfaces/siteLink"
-import { USERS_LINK } from "@/app/lib/constant"
-import { ArrowUturnLeftIcon, PhotoIcon } from "@heroicons/react/24/solid"
+import type { Index } from "@/app/interfaces/index"
+import { INDEX_LIST, USERS_LINK } from "@/app/lib/constant"
+import { ArrowUturnLeftIcon } from "@heroicons/react/24/solid"
 import Link from "next/link"
 import type React from "react"
 import { Suspense } from "react"
@@ -13,16 +13,15 @@ export default function ImagePage({
 }: Readonly<{
   params: { key: string }
 }>): React.JSX.Element {
-  const imageLink: SiteLink = {
+  const imageCrumb: Index = {
     name: key,
-    href: "",
-    icon: PhotoIcon,
-    color: "text-accent",
+    icon: INDEX_LIST[7].icon,
+    color: INDEX_LIST[7].color,
   }
 
   return (
     <>
-      <Breadcrumb crumbs={[USERS_LINK, imageLink]} />
+      <Breadcrumb crumbs={[USERS_LINK, imageCrumb]} />
       <Suspense fallback={<Skelton />}>
         <ImagePreview path={key} />
       </Suspense>

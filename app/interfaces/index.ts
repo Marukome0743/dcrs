@@ -1,8 +1,8 @@
 import type React from "react"
 
-export type SiteLink = {
+export type Index = {
   name: string
-  href: string
   icon: React.ElementType
   color: string
+  href?: string
 }

@@ -19,16 +19,12 @@ export function Modal({
     }
   })
 
-  function onDismiss(): void {
-    router.back()
-  }
-
   return (
-    <dialog ref={dialogRef} className="modal" onClose={onDismiss}>
+    <dialog ref={dialogRef} className="modal" onClose={router.back}>
       <div className="modal-box">
         <button
           type="button"
-          onClick={onDismiss}
+          onClick={router.back}
           className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 hover:scale-110"
           aria-label="閉じる"
         >
@@ -40,7 +36,7 @@ export function Modal({
             <DownloadBtn />
             <button
               type="button"
-              onClick={onDismiss}
+              onClick={router.back}
               className="btn hover:scale-110"
             >
               <XMarkIcon className="size-6" />

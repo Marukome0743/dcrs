@@ -87,7 +87,7 @@ export default function Register(): React.JSX.Element {
         <label className="form-control w-full">
           <div className="label">
             <p className="label-text after:ml-0.5 after:text-red-500 after:content-['*']">
-              {COMPANY.value}
+              {COMPANY.label}
             </p>
           </div>
           <select
@@ -112,7 +112,7 @@ export default function Register(): React.JSX.Element {
         <div className="card bg-base-100 shadow-xl">
           <div className="card-body overflow-y-auto max-h-72">
             <p className="mb-2 after:ml-0.5 after:text-red-500 after:content-['*']">
-              {AGREEMENT.value}
+              {AGREEMENT.label}
             </p>
             <p className="text-sm">
               お預かりした個人情報は、
@@ -163,19 +163,19 @@ export default function Register(): React.JSX.Element {
               <br />
             </p>
             <label className="label cursor-pointer self-center">
-              <span className="label-text mr-2">同意する</span>
+              <span className="label-text mr-2">{AGREEMENT.placeholder}</span>
               <input
                 type="checkbox"
                 className="checkbox"
                 {...register("agreement", { required: true })}
-                value="同意する"
+                value={AGREEMENT.placeholder}
                 required={true}
               />
             </label>
           </div>
         </div>
         <p className="after:ml-0.5 after:text-red-500 after:content-['*']">
-          {IMAGE.value}
+          {IMAGE.label}
         </p>
         <ImageUploader register={register} unregister={unregister} />
         <button
@@ -202,13 +202,11 @@ function Input({
   item: FormItem
   register: UseFormRegister<Form>
 }>): React.JSX.Element {
-  const Icon = item.icon as React.ElementType
-
   return (
     <label className="input input-bordered flex flex-row items-center gap-2">
       <span className="flex flex-row items-center text-sm whitespace-nowrap after:ml-0.5 after:text-red-500 after:content-['*']">
-        <Icon className="mr-2 size-4 opacity-70" />
-        {item.value}
+        <item.icon className="mr-2 size-4 opacity-70" />
+        {item.label}
       </span>
       <input
         type={item.type}
@@ -255,7 +253,7 @@ function ConfirmDialog({
           <tbody>
             {form.map((item) => (
               <tr key={item.name} className="grid grid-cols-2">
-                <th>{item.value}</th>
+                <th>{item.label}</th>
                 <td className="text-center">
                   {item.name === "image" && watch(item.name) ? (
                     <Image

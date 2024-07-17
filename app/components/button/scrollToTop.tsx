@@ -40,7 +40,7 @@ export function ScrollToTop(): React.JSX.Element {
       className={`btn btn-square btn-primary fixed right-5 bottom-5 gap-0 hover:scale-110 ${
         scrollY < scrollPoint ? "hidden" : "fade-in-up"
       }`}
-      onClick={() => scrollToTop()}
+      onClick={scrollToTop}
     >
       <ChevronDoubleUpIcon className="size-8 scroll-up" />
       TOP
