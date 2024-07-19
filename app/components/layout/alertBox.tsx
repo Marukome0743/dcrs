@@ -7,20 +7,28 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline"
 import type React from "react"
-import { createContext, useRef, useState } from "react"
+import {
+  type Dispatch,
+  type ReactNode,
+  type RefObject,
+  type SetStateAction,
+  createContext,
+  useRef,
+  useState,
+} from "react"
 
-export const AlertContext = createContext<
-  React.Dispatch<React.SetStateAction<Alert>>
->(() => {
-  return
-})
+export const AlertContext = createContext<Dispatch<SetStateAction<Alert>>>(
+  () => {
+    return
+  },
+)
 
 export function AlertBox({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: ReactNode
 }>): React.JSX.Element {
-  const ref: React.RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
+  const ref: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
   const alertBox: HTMLDivElement = ref.current as HTMLDivElement
   const [alert, setAlert] = useState<Alert>({
     eventType: "",
@@ -40,7 +48,7 @@ export function AlertBox({
     <AlertContext.Provider value={setAlert}>
       <div
         ref={ref}
-        className={`toast toast-top toast-center z-10 ${
+        className={`toast toast-center toast-top z-10 ${
           alert.eventType && alert.message ? "fade-in-alert" : "hidden"
         }`}
       >
@@ -51,9 +59,9 @@ export function AlertBox({
           }`}
         >
           {alert.eventType === "error" ? (
-            <ExclamationCircleIcon className="size-6 text-info" />
+            <ExclamationCircleIcon className="text-info size-6" />
           ) : (
-            <CheckCircleIcon className="size-6 text-warning" />
+            <CheckCircleIcon className="text-warning size-6" />
           )}
           <span>{alert.message}</span>
           <button

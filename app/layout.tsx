@@ -8,6 +8,7 @@ import type { NextFont } from "next/dist/compiled/@next/font"
 import { Sawarabi_Gothic } from "next/font/google"
 import type React from "react"
 import "./globals.css"
+import type { ReactNode } from "react"
 
 const sawarabi: NextFont = Sawarabi_Gothic({
   subsets: ["latin"],
@@ -24,8 +25,8 @@ export default function RootLayout({
   children,
   modal,
 }: Readonly<{
-  children: React.ReactNode
-  modal: React.ReactNode
+  children: ReactNode
+  modal: React.JSX.Element
 }>): React.JSX.Element {
   return (
     <html lang="ja">

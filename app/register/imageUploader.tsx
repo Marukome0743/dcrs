@@ -5,7 +5,17 @@ import type { Alert } from "@/app/interfaces/alert"
 import type { Form } from "@/app/interfaces/form"
 import { PhotoIcon, XMarkIcon } from "@heroicons/react/24/solid"
 import Image from "next/image"
-import { type DragEvent, useContext, useRef, useState } from "react"
+import {
+  type ChangeEvent,
+  type Dispatch,
+  type DragEvent,
+  type MutableRefObject,
+  type ReactNode,
+  type SetStateAction,
+  useContext,
+  useRef,
+  useState,
+} from "react"
 import type React from "react"
 import type { UseFormRegister, UseFormUnregister } from "react-hook-form"
 
@@ -26,10 +36,9 @@ export function ImageUploader({
     { name: "PNG", mimeType: "image/png" },
     { name: "WEBP", mimeType: "image/webp" },
   ] as const
-  const setAlert: React.Dispatch<React.SetStateAction<Alert>> =
-    useContext(AlertContext)
-  const inputRef: React.MutableRefObject<HTMLInputElement> =
-    useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>
+  const setAlert: Dispatch<SetStateAction<Alert>> = useContext(AlertContext)
+  const inputRef: MutableRefObject<HTMLInputElement> =
+    useRef<HTMLInputElement>() as MutableRefObject<HTMLInputElement>
   const [image, setImage] = useState<FileList>()
 
   function validateFile(file: Readonly<File>): string {
@@ -42,7 +51,7 @@ export function ImageUploader({
     return ""
   }
 
-  function onUpload(e: React.ChangeEvent<HTMLInputElement>): void {
+  function onUpload(e: ChangeEvent<HTMLInputElement>): void {
     const result = validateFile(e.target.files?.[0] as File)
     if (result) {
       onUploadCancel("error", result)
@@ -77,7 +86,7 @@ export function ImageUploader({
           className="mx-auto size-12 text-gray-300"
           aria-hidden="true"
         />
-        <div className="mt-4 flex text-gray-600 text-sm leading-6">
+        <div className="flex leading-6 mt-4 text-sm text-gray-600">
           <label className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2">
             <span>アップロード</span>
             <input
@@ -101,7 +110,7 @@ export function ImageUploader({
           </label>
           <p className="pl-1">又は、ドラッグ＆ドロップ</p>
         </div>
-        <p className="text-gray-600 text-xs leading-5">
+        <p className="leading-5 text-gray-600 text-xs">
           {acceptedImages.map((image) => image.name).join(", ")} のファイルを
           {maxUploadSize / 1024 / 1024}MB まで
         </p>
@@ -109,7 +118,7 @@ export function ImageUploader({
       <button
         type="button"
         onClick={() => onUploadCancel("success", "キャンセルしました")}
-        className="btn btn-error w-max place-self-center hover:scale-110"
+        className="btn btn-error place-self-center w-max hover:scale-110"
         disabled={!image}
       >
         <XMarkIcon className="size-6" />
@@ -124,9 +133,9 @@ function DropImageZone({
   image,
   inputRef,
 }: Readonly<{
-  children: React.ReactNode
+  children: ReactNode
   image: FileList
-  inputRef: React.MutableRefObject<HTMLInputElement>
+  inputRef: MutableRefObject<HTMLInputElement>
 }>): React.JSX.Element {
   const [isHoverd, setIsHoverd] = useState<boolean>(false)
 
@@ -152,8 +161,8 @@ function DropImageZone({
       onDragLeave={(e) => onDragLeave(e)}
       onDragOver={(e) => e.preventDefault()}
       onDrop={(e) => onDrop(e)}
-      className={`mt-2 justify-center rounded-lg border border-dashed px-6 py-10 text-center${
-        isHoverd ? " border-indigo-600" : " border-gray-900/25"
+      className={`border border-dashed justify-center mt-2 rounded-lg px-6 py-10 text-center ${
+        isHoverd ? "border-indigo-600" : "border-gray-900/25"
       }`}
       hidden={!!image}
     >

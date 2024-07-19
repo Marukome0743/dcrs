@@ -23,7 +23,7 @@ export async function ImagePreview({
         id={path}
         width={300}
         height={300}
-        className="w-full max-w-lg rounded-lg"
+        className="max-w-lg rounded-lg w-full"
         alt={path}
       />
     </>

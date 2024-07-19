@@ -19,9 +19,9 @@ export const SITE_TITLE: string = "障がい者手帳登録システム"
 export const TEST_BUCKET: string = "dcrs-test"
 export const USERS_LINK: Index = {
   name: "登録データ一覧",
-  href: "/users",
   icon: TableCellsIcon,
   color: "text-secondary",
+  href: "/users",
 }
 
 export const STEPS: Index[] = [

@@ -4,7 +4,7 @@ import type React from "react"
 
 export function Footer(): React.JSX.Element {
   return (
-    <footer className="footer flex flex-row items-center bg-base-300 justify-center p-4 text-base-content">
+    <footer className="bg-base-300 flex flex-row footer items-center justify-center p-4 text-base-content">
       <aside>
         <p>Copyright © Open Up Group Inc. All rights reserved.</p>
       </aside>

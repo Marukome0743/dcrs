@@ -3,14 +3,14 @@
 import { DownloadBtn } from "@/app/components/button/downloadBtn"
 import { XMarkIcon } from "@heroicons/react/24/solid"
 import { useRouter } from "next/navigation"
-import { useEffect, useRef } from "react"
+import { type ReactNode, type RefObject, useEffect, useRef } from "react"
 import type React from "react"
 
 export function Modal({
   children,
-}: Readonly<{ children: React.ReactNode }>): React.JSX.Element {
+}: Readonly<{ children: ReactNode }>): React.JSX.Element {
   const router = useRouter()
-  const dialogRef: React.RefObject<HTMLDialogElement> =
+  const dialogRef: RefObject<HTMLDialogElement> =
     useRef<HTMLDialogElement>(null)
 
   useEffect(() => {

@@ -56,9 +56,9 @@ export function Header(): React.JSX.Element {
       <div className="gap-4">
         <Link
           href="/login"
-          className="btn btn-ghost btn-square h-fit gap-0 text-nowrap"
+          className="btn btn-ghost btn-square gap-0 h-fit text-nowrap"
         >
-          <ArrowRightEndOnRectangleIcon className="size-10 text-primary rotate-y" />
+          <ArrowRightEndOnRectangleIcon className="rotate-y size-10 text-primary" />
           ログイン
         </Link>
         <label className="btn btn-ghost btn-square h-fit swap swap-rotate">

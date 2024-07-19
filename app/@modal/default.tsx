@@ -1,5 +1,5 @@
-import type React from "react"
+import type { ReactNode } from "react"
 
-export default function Default(): React.ReactNode {
+export default function Default(): ReactNode {
   return null
 }

@@ -23,7 +23,14 @@ import {
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import type React from "react"
-import { useActionState, useContext, useRef } from "react"
+import {
+  type Dispatch,
+  type RefObject,
+  type SetStateAction,
+  useActionState,
+  useContext,
+  useRef,
+} from "react"
 import {
   type UseFormRegister,
   type UseFormWatch,
@@ -42,10 +49,9 @@ export default function Register(): React.JSX.Element {
     unregister,
     watch,
   } = useForm<Form>()
-  const dialogRef: React.RefObject<HTMLDialogElement> =
+  const dialogRef: RefObject<HTMLDialogElement> =
     useRef<HTMLDialogElement>(null)
-  const setAlert: React.Dispatch<React.SetStateAction<Alert>> =
-    useContext(AlertContext)
+  const setAlert: Dispatch<SetStateAction<Alert>> = useContext(AlertContext)
   const router = useRouter()
   const [_state, formAction, isPending] = useActionState(
     sendData,
@@ -223,7 +229,7 @@ function ConfirmDialog({
   watch,
   isPending,
 }: Readonly<{
-  ref: React.RefObject<HTMLDialogElement>
+  ref: RefObject<HTMLDialogElement>
   watch: UseFormWatch<Form>
   isPending: boolean
 }>): React.JSX.Element {
