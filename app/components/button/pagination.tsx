@@ -1,7 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline"
-import type React from "react"
+import type { JSX } from "react"
 
-export function Pagination(): React.JSX.Element {
+export function Pagination(): JSX.Element {
   return (
     <div className="join mx-auto">
       <button type="button" className="join-item btn btn-disabled">

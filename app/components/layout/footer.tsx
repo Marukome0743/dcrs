@@ -1,8 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
-import type React from "react"
+import type { JSX } from "react"
 
-export function Footer(): React.JSX.Element {
+export function Footer(): JSX.Element {
   return (
     <footer className="bg-base-300 flex flex-row footer items-center justify-center p-4 text-base-content">
       <aside>

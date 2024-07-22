@@ -22,9 +22,9 @@ import {
 } from "@heroicons/react/24/solid"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
-import type React from "react"
 import {
   type Dispatch,
+  type JSX,
   type RefObject,
   type SetStateAction,
   useActionState,
@@ -38,7 +38,7 @@ import {
 } from "react-hook-form"
 import { ImageUploader } from "./imageUploader"
 
-export default function Register(): React.JSX.Element {
+export default function Register(): JSX.Element {
   const companies: string[] = [
     "オープンアップグループ",
     "ビーネックステクノロジーズ",
@@ -204,10 +204,7 @@ export default function Register(): React.JSX.Element {
 function Input({
   item,
   register,
-}: Readonly<{
-  item: FormItem
-  register: UseFormRegister<Form>
-}>): React.JSX.Element {
+}: Readonly<{ item: FormItem; register: UseFormRegister<Form> }>): JSX.Element {
   return (
     <label className="input input-bordered flex flex-row items-center gap-2">
       <span className="flex flex-row items-center text-sm whitespace-nowrap after:ml-0.5 after:text-red-500 after:content-['*']">
@@ -232,7 +229,7 @@ function ConfirmDialog({
   ref: RefObject<HTMLDialogElement>
   watch: UseFormWatch<Form>
   isPending: boolean
-}>): React.JSX.Element {
+}>): JSX.Element {
   const form: FormItem[] = [
     NAME,
     COMPANY,

@@ -6,9 +6,8 @@ import { SITE_TITLE } from "@/app/lib/constant"
 import type { Metadata } from "next"
 import type { NextFont } from "next/dist/compiled/@next/font"
 import { Sawarabi_Gothic } from "next/font/google"
-import type React from "react"
 import "./globals.css"
-import type { ReactNode } from "react"
+import type { JSX, ReactNode } from "react"
 
 const sawarabi: NextFont = Sawarabi_Gothic({
   subsets: ["latin"],
@@ -24,10 +23,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
   modal,
-}: Readonly<{
-  children: ReactNode
-  modal: React.JSX.Element
-}>): React.JSX.Element {
+}: Readonly<{ children: ReactNode; modal: JSX.Element }>): JSX.Element {
   return (
     <html lang="ja">
       <body className={sawarabi.className}>

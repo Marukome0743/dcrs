@@ -1,8 +1,8 @@
-import type React from "react"
+import type { ElementType } from "react"
 
 export type Index = {
   name: string
-  icon: React.ElementType
+  icon: ElementType
   color: string
   href?: string
 }

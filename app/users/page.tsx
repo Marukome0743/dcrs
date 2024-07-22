@@ -5,12 +5,11 @@ import { getUsers } from "@/app/lib/getUsers"
 import type { User } from "@/app/lib/schema"
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid"
 import Link from "next/link"
-import type React from "react"
-import { Suspense } from "react"
+import { type JSX, Suspense } from "react"
 
 export const dynamic = "force-dynamic"
 
-export default function Users(): React.JSX.Element {
+export default function Users(): JSX.Element {
   return (
     <>
       <Breadcrumb crumbs={[USERS_LINK]} />
@@ -38,7 +37,7 @@ export default function Users(): React.JSX.Element {
   )
 }
 
-function TableIndex(): React.JSX.Element {
+function TableIndex(): JSX.Element {
   return (
     <tr>
       <Checkbox />
@@ -53,7 +52,7 @@ function TableIndex(): React.JSX.Element {
   )
 }
 
-function Checkbox(): React.JSX.Element {
+function Checkbox(): JSX.Element {
   return (
     <th>
       <label>
@@ -63,7 +62,7 @@ function Checkbox(): React.JSX.Element {
   )
 }
 
-function Skeleton(): React.JSX.Element {
+function Skeleton(): JSX.Element {
   return (
     <tr>
       <Checkbox />
@@ -77,7 +76,7 @@ function Skeleton(): React.JSX.Element {
   )
 }
 
-async function Tbody(): Promise<React.JSX.Element> {
+async function Tbody(): Promise<JSX.Element> {
   const userData: { getUsers: User[] } = await getUsers()
 
   return (

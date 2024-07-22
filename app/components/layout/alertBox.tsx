@@ -6,9 +6,9 @@ import {
   ExclamationCircleIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline"
-import type React from "react"
 import {
   type Dispatch,
+  type JSX,
   type ReactNode,
   type RefObject,
   type SetStateAction,
@@ -25,9 +25,7 @@ export const AlertContext = createContext<Dispatch<SetStateAction<Alert>>>(
 
 export function AlertBox({
   children,
-}: Readonly<{
-  children: ReactNode
-}>): React.JSX.Element {
+}: Readonly<{ children: ReactNode }>): JSX.Element {
   const ref: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
   const alertBox: HTMLDivElement = ref.current as HTMLDivElement
   const [alert, setAlert] = useState<Alert>({

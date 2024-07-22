@@ -5,14 +5,11 @@ import type { Index } from "@/app/interfaces/index"
 import { INDEX_LIST, USERS_LINK } from "@/app/lib/constant"
 import { ArrowUturnLeftIcon } from "@heroicons/react/24/solid"
 import Link from "next/link"
-import type React from "react"
-import { Suspense } from "react"
+import { type JSX, Suspense } from "react"
 
 export default function ImagePage({
   params: { key },
-}: Readonly<{
-  params: { key: string }
-}>): React.JSX.Element {
+}: Readonly<{ params: { key: string } }>): JSX.Element {
   const imageCrumb: Index = {
     name: key,
     icon: INDEX_LIST[7].icon,
@@ -34,7 +31,7 @@ export default function ImagePage({
   )
 }
 
-function Skelton(): React.JSX.Element {
+function Skelton(): JSX.Element {
   return (
     <>
       <h1>

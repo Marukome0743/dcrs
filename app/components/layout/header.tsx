@@ -7,11 +7,10 @@ import {
   SunIcon,
 } from "@heroicons/react/24/outline"
 import Link from "next/link"
-import type React from "react"
-import { useEffect, useState } from "react"
+import { type JSX, useEffect, useState } from "react"
 import { themeChange } from "theme-change"
 
-export function Header(): React.JSX.Element {
+export function Header(): JSX.Element {
   const [theme, setTheme] = useState<"light" | "dark">("light")
   const [scrollY, setScrollY] = useState<{
     scrollY: number

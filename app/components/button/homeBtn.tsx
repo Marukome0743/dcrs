@@ -1,8 +1,8 @@
 import { HomeIcon } from "@heroicons/react/24/solid"
 import Link from "next/link"
-import type React from "react"
+import type { JSX } from "react"
 
-export function HomeBtn(): React.JSX.Element {
+export function HomeBtn(): JSX.Element {
   return (
     <Link
       href="/"

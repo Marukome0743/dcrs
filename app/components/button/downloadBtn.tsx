@@ -3,10 +3,9 @@
 import { AlertContext } from "@/app/components/layout//alertBox"
 import type { Alert } from "@/app/interfaces/alert"
 import { FolderArrowDownIcon } from "@heroicons/react/24/solid"
-import type React from "react"
-import { type Dispatch, type SetStateAction, useContext } from "react"
+import { type Dispatch, type JSX, type SetStateAction, useContext } from "react"
 
-export function DownloadBtn(): React.JSX.Element {
+export function DownloadBtn(): JSX.Element {
   const setAlert: Dispatch<SetStateAction<Alert>> = useContext(AlertContext)
 
   function download(): void {

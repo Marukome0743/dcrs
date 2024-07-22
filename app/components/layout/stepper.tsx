@@ -1,9 +1,9 @@
 import { STEPS } from "@/app/lib/constant"
-import type React from "react"
+import type { JSX } from "react"
 
 export function Stepper({
   targetStep,
-}: Readonly<{ targetStep: number }>): React.JSX.Element {
+}: Readonly<{ targetStep: number }>): JSX.Element {
   return (
     <>
       <ul className="steps">

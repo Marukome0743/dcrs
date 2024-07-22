@@ -9,6 +9,7 @@ import {
   type ChangeEvent,
   type Dispatch,
   type DragEvent,
+  type JSX,
   type MutableRefObject,
   type ReactNode,
   type SetStateAction,
@@ -16,7 +17,6 @@ import {
   useRef,
   useState,
 } from "react"
-import type React from "react"
 import type { UseFormRegister, UseFormUnregister } from "react-hook-form"
 
 export function ImageUploader({
@@ -25,7 +25,7 @@ export function ImageUploader({
 }: Readonly<{
   register: UseFormRegister<Form>
   unregister: UseFormUnregister<Form>
-}>): React.JSX.Element {
+}>): JSX.Element {
   const { ref, onChange, ...rest } = register("image", {
     required: true,
   })
@@ -136,7 +136,7 @@ function DropImageZone({
   children: ReactNode
   image: FileList
   inputRef: MutableRefObject<HTMLInputElement>
-}>): React.JSX.Element {
+}>): JSX.Element {
   const [isHoverd, setIsHoverd] = useState<boolean>(false)
 
   function onDragLeave(e: DragEvent<HTMLDivElement>): void {

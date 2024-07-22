@@ -1,12 +1,9 @@
 import { HomeBtn } from "@/app/components/button/homeBtn"
-import type React from "react"
-import type { ReactNode } from "react"
+import type { JSX, ReactNode } from "react"
 
 export default function UserLayout({
   children,
-}: Readonly<{
-  children: ReactNode
-}>): React.JSX.Element {
+}: Readonly<{ children: ReactNode }>): JSX.Element {
   return (
     <>
       {children}

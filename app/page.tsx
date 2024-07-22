@@ -8,12 +8,11 @@ import {
   TableCellsIcon,
 } from "@heroicons/react/24/solid"
 import Link from "next/link"
-import type React from "react"
-import { Suspense } from "react"
+import { type JSX, Suspense } from "react"
 
 export const dynamic = "force-dynamic"
 
-export default function Home(): React.JSX.Element {
+export default function Home(): JSX.Element {
   return (
     <>
       <h1 className="flex font-semibold items-center mx-auto text-center text-2xl w-fit">
@@ -57,7 +56,7 @@ export default function Home(): React.JSX.Element {
   )
 }
 
-async function Badge(): Promise<React.JSX.Element> {
+async function Badge(): Promise<JSX.Element> {
   const userData: { getUsers: User[] } = await getUsers()
 
   return (

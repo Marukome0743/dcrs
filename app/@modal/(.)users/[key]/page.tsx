@@ -1,13 +1,10 @@
 import { ImagePreview } from "@/app/components/layout/imagePreview"
-import type React from "react"
-import { Suspense } from "react"
+import { type JSX, Suspense } from "react"
 import { Modal } from "./modal"
 
 export default function ImageModal({
   params: { key },
-}: Readonly<{
-  params: { key: string }
-}>): React.JSX.Element {
+}: Readonly<{ params: { key: string } }>): JSX.Element {
   return (
     <Modal>
       <Suspense fallback={<Skelton />}>
@@ -17,7 +14,7 @@ export default function ImageModal({
   )
 }
 
-function Skelton(): React.JSX.Element {
+function Skelton(): JSX.Element {
   return (
     <>
       <h1 className="mx-auto">

@@ -1,11 +1,11 @@
 import type { Index } from "@/app/interfaces/index"
 import { HomeIcon } from "@heroicons/react/24/solid"
 import Link from "next/link"
-import type React from "react"
+import type { JSX } from "react"
 
 export function Breadcrumb({
   crumbs,
-}: Readonly<{ crumbs: Index[] }>): React.JSX.Element {
+}: Readonly<{ crumbs: Index[] }>): JSX.Element {
   return (
     <div className="breadcrumbs mx-auto text-sm">
       <ul>

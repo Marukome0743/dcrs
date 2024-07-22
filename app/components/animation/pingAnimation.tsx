@@ -1,6 +1,6 @@
-import type React from "react"
+import type { JSX } from "react"
 
-export function PingAnimation(): React.JSX.Element {
+export function PingAnimation(): JSX.Element {
   return (
     <span className="indicator-item">
       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75" />

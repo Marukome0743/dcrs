@@ -1,4 +1,4 @@
-import type React from "react"
+import type { ElementType } from "react"
 import type { Path } from "react-hook-form"
 
 export type Form = {
@@ -15,6 +15,6 @@ export type FormItem = {
   name: Path<Form>
   label: string
   type: string
-  icon: React.ElementType
+  icon: ElementType
   placeholder?: string
 }
