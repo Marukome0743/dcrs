@@ -1,4 +1,5 @@
 import { Pagination } from "@/app/components/button/pagination"
+import { ScrollRightHint } from "@/app/components/layout/ScrollHint"
 import { Breadcrumb } from "@/app/components/layout/breadcrumb"
 import { INDEX_LIST, USERS_LINK } from "@/app/lib/constant"
 import { getUsers } from "@/app/lib/getUsers"
@@ -17,7 +18,8 @@ export default function Users(): JSX.Element {
         <USERS_LINK.icon className={`mr-2 size-8 ${USERS_LINK.color}`} />
         {USERS_LINK.name}
       </h1>
-      <section className="max-h-96 max-w-full overflow-x-auto">
+      <section className="max-h-96 max-w-full overflow-x-auto relative">
+        <ScrollRightHint />
         <table className="table table-xs table-pin-rows table-pin-cols table-zebra text-center">
           <thead>
             <TableIndex />
