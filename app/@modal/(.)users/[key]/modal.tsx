@@ -33,7 +33,7 @@ export function Modal({
           className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 hover:scale-110"
           aria-label="閉じる"
         >
-          <XMarkIcon />
+          <XMarkIcon className="size-7" />
         </button>
         <div className="grid gap-4 text-center">{children}</div>
         <div className="modal-action">
