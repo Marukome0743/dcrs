@@ -30,7 +30,7 @@ export function Modal({
         <button
           type="button"
           onClick={router.back}
-          className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 hover:scale-110"
+          className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2 hover:scale-110"
           aria-label="閉じる"
         >
           <XMarkIcon className="size-7" />

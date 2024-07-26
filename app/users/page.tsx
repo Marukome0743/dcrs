@@ -70,7 +70,7 @@ function Skeleton(): JSX.Element {
       <Checkbox />
       {INDEX_LIST.map((index) => (
         <td key={index.name}>
-          <p className="skeleton h-4 w-full text-transparent" />
+          <p className="h-4 skeleton text-transparent w-full" />
         </td>
       ))}
       <Checkbox />
@@ -108,7 +108,7 @@ async function Tbody(): Promise<JSX.Element> {
             <td>
               <Link href={`/users/${user.image}`} className="link link-primary">
                 {user.image}
-                <ArrowTopRightOnSquareIcon className="inline size-4 ml-1" />
+                <ArrowTopRightOnSquareIcon className="inline ml-1 size-4" />
               </Link>
             </td>
             <Checkbox />

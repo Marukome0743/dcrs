@@ -24,7 +24,7 @@ export default function ImagePage({
       </Suspense>
       <DownloadBtn />
       <Link href="/users" className="btn max-w-fit mx-auto hover:scale-110">
-        <ArrowUturnLeftIcon className="size-6 rotate-z" />
+        <ArrowUturnLeftIcon className="rotate-z size-6" />
         表に戻る
       </Link>
     </>
@@ -35,9 +35,9 @@ function Skelton(): JSX.Element {
   return (
     <>
       <h1>
-        <p className="skeleton h-6 w-32" />
+        <p className="h-6 skeleton w-32" />
       </h1>
-      <div className="skeleton h-80 w-full max-w-lg" />
+      <div className="h-80 max-w-lg skeleton w-full" />
     </>
   )
 }

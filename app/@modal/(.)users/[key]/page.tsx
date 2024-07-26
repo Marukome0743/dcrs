@@ -18,9 +18,9 @@ function Skelton(): JSX.Element {
   return (
     <>
       <h1 className="mx-auto">
-        <p className="skeleton h-6 w-32" />
+        <p className="h-6 skeleton w-32" />
       </h1>
-      <div className="skeleton h-64 w-full" />
+      <div className="h-64 skeleton w-full" />
     </>
   )
 }
