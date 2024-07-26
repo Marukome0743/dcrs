@@ -10,7 +10,7 @@
   <a aria-label="typescript" href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-3178C6?labelColor=000000&logo=typescript&style=for-the-badge" alt="typescript"></a>
   <a aria-label="vscode" href="https://code.visualstudio.com/"><img src="https://img.shields.io/badge/visual%20studio%20code-007ACC?labelColor=000000&style=for-the-badge" alt="vscode"></a>
   <a aria-label="devcontainer" href="https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/OpenUp-LabTakizawa/dcrs"><img src="https://img.shields.io/badge/open-007ACC?label=dev%20containers&labelColor=000000&style=for-the-badge" alt="devcontainer"></a>
-  <a aria-label="License" href="https://github.com/OpenUp-LabTakizawa/dcrs/blob/main/LICENSE"><img src="https://img.shields.io/github/license/OpenUp-LabTakizawa/dcrs?style=for-the-badge&labelColor=000000" alt="License"></a>
+  <a aria-label="License" href="https://github.com/OpenUp-LabTakizawa/dcrs/blob/main/LICENSE"><img src="https://img.shields.io/github/license/OpenUp-LabTakizawa/dcrs?labelColor=000000&style=for-the-badge" alt="License"></a>
 </p>
 <p align="center">
   Disability Certificate Register System📇
@@ -102,6 +102,7 @@ Then check out one of our issues labeled as [😵‍💫help wanted][help] or [g
 
 This software uses the following open source packages:
 
+- [AWS Lambda Web Adapter](https://github.com/awslabs/aws-lambda-web-adapter)
 - [Biome](https://biomejs.dev/)
 - [Bun](https://bun.sh/)
 - [daisyUI](https://daisyui.com/)
