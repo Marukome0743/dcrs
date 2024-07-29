@@ -35,7 +35,7 @@
     "drizzle-kit": "generated",
     "postcss": "^8.4.40",
     "tailwindcss": "^3.4.7",
-    "typescript": "^5.5.4"
+    "typescript": "beta"
   },
   "trustedDependencies": ["@biomejs/biome", "esbuild", "sharp"]
 }
