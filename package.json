@@ -13,7 +13,7 @@
     "studio": "drizzle-kit studio"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.620.0",
+    "@aws-sdk/client-s3": "^3.620.1",
     "@heroicons/react": "^2.1.5",
     "drizzle-orm": "generated",
     "next": "canary",
