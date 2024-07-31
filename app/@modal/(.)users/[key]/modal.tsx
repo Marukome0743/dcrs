@@ -30,7 +30,7 @@ export function Modal({
         <button
           type="button"
           onClick={router.back}
-          className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2 hover:scale-110"
+          className="absolute btn btn-sm btn-circle btn-ghost right-2 top-2"
           aria-label="閉じる"
         >
           <XMarkIcon className="size-7" />
@@ -39,11 +39,7 @@ export function Modal({
         <div className="modal-action">
           <div className="flex gap-4 justify-end">
             <DownloadBtn />
-            <button
-              type="button"
-              onClick={router.back}
-              className="btn hover:scale-110"
-            >
+            <button type="button" onClick={router.back} className="btn">
               <XMarkIcon className="size-6" />
               閉じる
             </button>

@@ -33,21 +33,15 @@ export default function Home(): JSX.Element {
           </li>
         ))}
       </ul>
-      <Link
-        href="/register"
-        className="btn btn-primary max-w-fit mx-auto hover:scale-110"
-      >
+      <Link href="/register" className="btn btn-primary max-w-fit mx-auto">
         <CameraIcon className="size-6" />
         障がい者手帳画像を提出
       </Link>
-      <Link
-        href="/users"
-        className="btn btn-secondary indicator mx-auto hover:scale-110"
-      >
+      <Link href="/users" className="btn btn-secondary indicator mx-auto">
         <TableCellsIcon className="size-6" />
         登録データ一覧
         <Suspense
-          fallback={<div className="indicator-item badge skeleton w-8" />}
+          fallback={<div className="badge indicator-item skeleton w-8" />}
         >
           <Badge />
         </Suspense>
@@ -62,7 +56,7 @@ async function Badge(): Promise<JSX.Element> {
   return (
     <>
       {userData && userData.getUsers.length > 0 && (
-        <div className="indicator-item badge badge-warning">
+        <div className="badge badge-warning indicator-item">
           <PlusIcon className="size-4" />
           {userData.getUsers.length}件
         </div>

@@ -4,7 +4,7 @@ import { PingAnimation } from "@/app/components/animation/pingAnimation"
 import { AlertContext } from "@/app/components/layout/alertBox"
 import { Stepper } from "@/app/components/layout/stepper"
 import type { Alert } from "@/app/interfaces/alert"
-import type { Form, FormItem } from "@/app/interfaces/form"
+import type { ProfileForm, ProfileFormItem } from "@/app/interfaces/form"
 import {
   AGREEMENT,
   COMPANY,
@@ -48,7 +48,7 @@ export default function Register(): JSX.Element {
     register,
     unregister,
     watch,
-  } = useForm<Form>()
+  } = useForm<ProfileForm>()
   const dialogRef: RefObject<HTMLDialogElement> =
     useRef<HTMLDialogElement>(null)
   const setAlert: Dispatch<SetStateAction<Alert>> = useContext(AlertContext)
@@ -204,7 +204,10 @@ export default function Register(): JSX.Element {
 function Input({
   item,
   register,
-}: Readonly<{ item: FormItem; register: UseFormRegister<Form> }>): JSX.Element {
+}: Readonly<{
+  item: ProfileFormItem
+  register: UseFormRegister<ProfileForm>
+}>): JSX.Element {
   return (
     <label className="input input-bordered flex flex-row items-center gap-2">
       <span className="flex flex-row items-center text-sm whitespace-nowrap after:ml-0.5 after:text-red-500 after:content-['*']">
@@ -227,10 +230,10 @@ function ConfirmDialog({
   isPending,
 }: Readonly<{
   ref: RefObject<HTMLDialogElement>
-  watch: UseFormWatch<Form>
+  watch: UseFormWatch<ProfileForm>
   isPending: boolean
 }>): JSX.Element {
-  const form: FormItem[] = [
+  const form: ProfileFormItem[] = [
     NAME,
     COMPANY,
     EMPLOYEE_ID,
@@ -246,7 +249,7 @@ function ConfirmDialog({
         <button
           type="button"
           onClick={() => ref.current?.close()}
-          className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 hover:scale-110"
+          className="absolute btn btn-circle btn-ghost btn-sm right-2 top-2"
           aria-label="閉じる"
         >
           <XMarkIcon />
@@ -274,7 +277,7 @@ function ConfirmDialog({
             ))}
           </tbody>
         </table>
-        <div className="modal-action justify-center gap-4">
+        <div className="gap-4 justify-center modal-action">
           <button
             type="submit"
             className={`btn btn-info ${
@@ -288,7 +291,7 @@ function ConfirmDialog({
           </button>
           <button
             type="button"
-            className="btn btn-error hover:scale-110"
+            className="btn btn-error"
             onClick={() => ref.current?.close()}
           >
             <ArrowUturnLeftIcon className="size-6" />

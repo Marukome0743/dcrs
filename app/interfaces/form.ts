@@ -1,7 +1,7 @@
 import type { ElementType } from "react"
 import type { Path } from "react-hook-form"
 
-export type Form = {
+export type ProfileForm = {
   agreement: boolean
   company: string
   email: string
@@ -11,8 +11,8 @@ export type Form = {
   telephone: string
 }
 
-export type FormItem = {
-  name: Path<Form>
+export type ProfileFormItem = {
+  name: Path<ProfileForm>
   label: string
   type: string
   icon: ElementType

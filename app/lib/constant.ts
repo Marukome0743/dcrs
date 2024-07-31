@@ -1,4 +1,4 @@
-import type { FormItem } from "@/app/interfaces/form"
+import type { ProfileFormItem } from "@/app/interfaces/form"
 import type { Index } from "@/app/interfaces/index"
 import {
   BuildingOffice2Icon,
@@ -38,7 +38,7 @@ export const STEPS: Index[] = [
   { name: "完了", icon: HandThumbUpIcon, color: "text-success" },
 ] as const
 
-export const NAME: FormItem = {
+export const NAME: ProfileFormItem = {
   name: "name",
   label: "氏名",
   type: "text",
@@ -46,14 +46,14 @@ export const NAME: FormItem = {
   placeholder: "オープン太郎",
 }
 
-export const COMPANY: FormItem = {
+export const COMPANY: ProfileFormItem = {
   name: "company",
   label: "所属会社",
   type: "select",
   icon: BuildingOffice2Icon,
 }
 
-export const EMPLOYEE_ID: FormItem = {
+export const EMPLOYEE_ID: ProfileFormItem = {
   name: "employeeId",
   label: "社員番号",
   type: "number",
@@ -61,7 +61,7 @@ export const EMPLOYEE_ID: FormItem = {
   placeholder: "123456",
 }
 
-export const TELEPHONE: FormItem = {
+export const TELEPHONE: ProfileFormItem = {
   name: "telephone",
   label: "電話番号",
   type: "tel",
@@ -69,7 +69,7 @@ export const TELEPHONE: FormItem = {
   placeholder: "09012345678",
 }
 
-export const EMAIL: FormItem = {
+export const EMAIL: ProfileFormItem = {
   name: "email",
   label: "Eメール",
   type: "email",
@@ -77,7 +77,7 @@ export const EMAIL: FormItem = {
   placeholder: "example@mail.com",
 }
 
-export const AGREEMENT: FormItem = {
+export const AGREEMENT: ProfileFormItem = {
   name: "agreement",
   label: "個人情報提供への同意",
   type: "checkbox",
@@ -85,7 +85,7 @@ export const AGREEMENT: FormItem = {
   placeholder: "同意する",
 }
 
-export const IMAGE: FormItem = {
+export const IMAGE: ProfileFormItem = {
   name: "image",
   label: "障がい者手帳の画像",
   type: "file",

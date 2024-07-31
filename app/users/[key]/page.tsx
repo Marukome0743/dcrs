@@ -23,7 +23,7 @@ export default function ImagePage({
         <ImagePreview path={key} />
       </Suspense>
       <DownloadBtn />
-      <Link href="/users" className="btn max-w-fit mx-auto hover:scale-110">
+      <Link href="/users" className="btn max-w-fit mx-auto">
         <ArrowUturnLeftIcon className="rotate-z size-6" />
         表に戻る
       </Link>

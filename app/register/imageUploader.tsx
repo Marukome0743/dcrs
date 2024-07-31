@@ -2,7 +2,7 @@
 
 import { AlertContext } from "@/app/components/layout/alertBox"
 import type { Alert } from "@/app/interfaces/alert"
-import type { Form } from "@/app/interfaces/form"
+import type { ProfileForm } from "@/app/interfaces/form"
 import { PhotoIcon, XMarkIcon } from "@heroicons/react/24/solid"
 import Image from "next/image"
 import {
@@ -23,8 +23,8 @@ export function ImageUploader({
   register,
   unregister,
 }: Readonly<{
-  register: UseFormRegister<Form>
-  unregister: UseFormUnregister<Form>
+  register: UseFormRegister<ProfileForm>
+  unregister: UseFormUnregister<ProfileForm>
 }>): JSX.Element {
   const { ref, onChange, ...rest } = register("image", {
     required: true,
@@ -118,7 +118,7 @@ export function ImageUploader({
       <button
         type="button"
         onClick={() => onUploadCancel("success", "キャンセルしました")}
-        className="btn btn-error place-self-center w-max hover:scale-110"
+        className="btn btn-error place-self-center w-max"
         disabled={!image}
       >
         <XMarkIcon className="size-6" />
