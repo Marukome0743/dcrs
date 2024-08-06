@@ -29,21 +29,19 @@
   top: 0%;
   transform: scale3d(0.5, 0.5, 0.5);
   animation: scroll-right 3s ease-out infinite;
-}
-
-.scroll-right:first-child {
-  animation: scroll-right 3s ease-out 1s infinite;
-}
-
-.scroll-right:nth-child(2) {
-  animation: scroll-right 3s ease-out 2s infinite;
+  &:first-child {
+    animation-delay: 1s;
+  }
+  &:nth-child(2) {
+    animation-delay: 2s;
+  }
 }
 
 .scroll-up {
   animation: scroll-up 1.5s infinite;
 }
 
-.rotate-y:hover {
+a:is(:hover) .rotate-y {
   animation: rotate-y 2s;
 }
 
