@@ -7,27 +7,25 @@ export function ScrollRightHint(): JSX.Element {
   const ref: RefObject<HTMLDivElement> = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (window.IntersectionObserver) {
-      const observer = new IntersectionObserver((entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.classList.add("opacity-0")
-            }, 3000)
-          } else {
-            entry.target.classList.remove("opacity-0")
-          }
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add("opacity-0")
+          }, 3000)
+        } else {
+          entry.target.classList.remove("opacity-0")
         }
-      })
-
-      if (ref.current) {
-        observer.observe(ref.current)
       }
+    })
 
-      return () => {
-        if (ref.current) {
-          observer.unobserve(ref.current as HTMLDivElement)
-        }
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current as HTMLDivElement)
       }
     }
   })
@@ -35,7 +33,7 @@ export function ScrollRightHint(): JSX.Element {
   return (
     <div
       ref={ref}
-      className="absolute bg-black/60 pt-20 text-white left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
+      className="absolute bg-black/60 left-1/2 pt-20 text-white top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
     >
       <ChevronRightIcon className="scroll-right size-20" />
       <ChevronRightIcon className="scroll-right size-20" />

@@ -35,7 +35,7 @@ export function Modal({
         >
           <XMarkIcon className="size-7" />
         </button>
-        <div className="grid gap-4 text-center">{children}</div>
+        <div className="gap-4 grid text-center">{children}</div>
         <div className="modal-action">
           <div className="flex gap-4 justify-end">
             <DownloadBtn />

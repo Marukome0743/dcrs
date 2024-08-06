@@ -8,10 +8,10 @@ import Link from "next/link"
 import { type JSX, Suspense } from "react"
 
 export default function ImagePage({
-  params: { key },
-}: Readonly<{ params: { key: string } }>): JSX.Element {
+  params: { path },
+}: Readonly<{ params: { path: string } }>): JSX.Element {
   const imageCrumb: Index = {
-    name: key,
+    name: path,
     icon: INDEX_LIST[7].icon,
     color: INDEX_LIST[7].color,
   }
@@ -20,7 +20,7 @@ export default function ImagePage({
     <>
       <Breadcrumb crumbs={[USERS_LINK, imageCrumb]} />
       <Suspense fallback={<Skelton />}>
-        <ImagePreview path={key} />
+        <ImagePreview path={path} />
       </Suspense>
       <DownloadBtn />
       <Link href="/users" className="btn max-w-fit mx-auto">

@@ -43,7 +43,7 @@ export function Header(): JSX.Element {
 
   return (
     <header
-      className={`transition duration-400 ease bg-base-100 justify-between navbar sticky top-0 z-10 ${
+      className={`bg-base-100 duration-400 ease justify-between navbar sticky top-0 transition z-10 ${
         headerHeight < scrollY.scrollY && scrollY.isScrollDown
           ? "-translate-y-20"
           : "translate-y-0"

@@ -57,9 +57,9 @@ export function AlertBox({
           }`}
         >
           {alert.eventType === "error" ? (
-            <ExclamationCircleIcon className="text-info size-6" />
+            <ExclamationCircleIcon className="size-6 text-info" />
           ) : (
-            <CheckCircleIcon className="text-warning size-6" />
+            <CheckCircleIcon className="size-6 text-warning" />
           )}
           <span>{alert.message}</span>
           <button

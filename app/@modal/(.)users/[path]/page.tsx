@@ -3,12 +3,12 @@ import { type JSX, Suspense } from "react"
 import { Modal } from "./modal"
 
 export default function ImageModal({
-  params: { key },
-}: Readonly<{ params: { key: string } }>): JSX.Element {
+  params: { path },
+}: Readonly<{ params: { path: string } }>): JSX.Element {
   return (
     <Modal>
       <Suspense fallback={<Skelton />}>
-        <ImagePreview path={key} />
+        <ImagePreview path={path} />
       </Suspense>
     </Modal>
   )
