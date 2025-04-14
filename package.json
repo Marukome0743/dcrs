@@ -16,10 +16,12 @@
     "studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@auth/drizzle-adapter": "^1.8.0",
     "@aws-sdk/client-s3": "^3.787.0",
     "@heroicons/react": "^2.2.0",
     "drizzle-orm": "^0.40.1",
     "next": "canary",
+    "next-auth": "beta",
     "next-rspack": "canary",
     "postgres": "^3.4.5",
     "react": "^19.1.0",
