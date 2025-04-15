@@ -78,7 +78,7 @@ export function Header(): JSX.Element {
           </label>
         </div>
       </header>
-      <SignInModal ref={dialogRef} />
+      <SignInModal dialogRef={dialogRef} />
     </>
   )
 }
