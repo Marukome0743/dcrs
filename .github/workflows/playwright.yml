@@ -48,6 +48,9 @@ jobs:
       - name: 📦 Install dependencies
         run: bun i
 
+      - name: 🔑 Generate Auth.js Secret
+        run: bunx auth secret
+
       - name: 🧩 Build app
         run: bun run build
 
