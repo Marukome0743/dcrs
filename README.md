@@ -125,6 +125,12 @@ Then check out one of our issues labeled as [😵‍💫help wanted][help] or [g
 [gfi]: https://github.com/OpenUp-LabTakizawa/dcrs/labels/good%20first%20issue
 [help]: https://github.com/OpenUp-LabTakizawa/dcrs/labels/😵%E2%80%8D💫help%20wanted
 
+## ♥️ Contributors
+
+<a href="https://github.com/OpenUp-LabTakizawa/dcrs/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=OpenUp-LabTakizawa/dcrs" alt="Contributors">
+</a>
+
 ## 📦 Credits
 
 This software uses the following open source packages:
