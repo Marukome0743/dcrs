@@ -52,6 +52,7 @@ jobs:
         ports:
           - 5432:5432
     env:
+      BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
       DATABASE_URL: postgres://postgres:postgres@localhost:5432/postgres
 
     steps:
